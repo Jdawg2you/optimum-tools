@@ -13,13 +13,13 @@
 <meta property="og:url" content="https://tools.ffloptimum.com/">
 <meta property="og:title" content="Insurance Agent Planning Tools">
 <meta property="og:description" content="Work out the income you want, the daily activity to get there, and what it actually pays. Free, no sign-up, works on your phone.">
-<meta property="og:image" content="https://tools.ffloptimum.com/og-image.png">
+<meta property="og:image" content="https://tools.ffloptimum.com/og-image.png?v=2">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Insurance Agent Planning Tools">
 <meta name="twitter:description" content="Work out the income you want, the daily activity to get there, and what it actually pays. Free, no sign-up, works on your phone.">
-<meta name="twitter:image" content="https://tools.ffloptimum.com/og-image.png">
+<meta name="twitter:image" content="https://tools.ffloptimum.com/og-image.png?v=2">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -157,6 +157,16 @@
   #recModal .rec2 a{color:#A8853A;font-weight:700;text-decoration:none}
   #recModal .rec2 a:hover{text-decoration:underline}
 
+
+  /* share with an agent — defined once here; build_shell.py lifts it into the landing page */
+  .share{margin:26px 0 0;background:var(--card);border:1px solid var(--rule);border-radius:14px;padding:20px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .share-t{flex:1 1 260px;font-family:var(--sans);font-size:14px;color:#55503f;line-height:1.55}
+  .share-t b{display:block;font-family:var(--serif);font-size:18px;color:var(--navy);margin-bottom:2px}
+  .share-btn{appearance:none;cursor:pointer;display:inline-flex;align-items:center;gap:9px;background:var(--navy);color:#fff;border:0;border-radius:10px;padding:12px 20px;font:700 14px var(--sans)}
+  .share-btn:hover{background:#22305a}
+  .share-btn svg{width:17px;height:17px;flex:none}
+  .share-ok{flex-basis:100%;font-family:var(--sans);font-size:13px;font-weight:600;color:#3F7A56}
+  @media(max-width:720px){.share{padding:18px}.share-btn{width:100%;justify-content:center}}
 </style>
 </head><body>
 <div id="app">
@@ -196,6 +206,14 @@
         <div class="k">When you're in front of a client</div>
         <a data-suite="wizard" href="#"><span class="n">1</span><div><b>Product Wizard</b><span>Enter age and conditions — see exactly which products they can buy.</span></div></a>
         <a data-suite="navigator" href="#"><span class="n">2</span><div><b>Script Navigator</b><span>Card-by-card scripts for veteran life, IUL and mortgage protection calls.</span></div></a>
+      </div>
+      <div class="share">
+        <div class="share-t"><b>Know an agent who'd use these?</b>Send them the link &mdash; it takes about ten seconds.</div>
+        <button type="button" class="share-btn" id="shareBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M7 8l5-5 5 5"/><path d="M5 13v6a2 2 0 002 2h10a2 2 0 002-2v-6"/></svg>
+          Share with an agent
+        </button>
+        <span class="share-ok" id="shareOk" hidden>Link copied &mdash; paste it into a text to another agent.</span>
       </div>
       <p class="hfoot">Built for insurance agents by
         <a href="https://www.ffloptimum.com/" target="_blank" rel="noopener">Optimum</a>.
@@ -416,4 +434,27 @@ var SUITE_CURRENT = 'planning';
  document.querySelectorAll('.recopen').forEach(function(b){b.addEventListener('click',op);});})();
 </script>
 
+<script>
+/* Share with an agent: opens the phone's share sheet with the message pre-written.
+   Where the browser has no share sheet, it copies the message + link instead.
+   The link goes INSIDE the text: many share targets (Copy, AirDrop, Notes, sometimes
+   Messages) drop the text entirely when a separate url is passed alongside it. */
+(function(){
+  var btn=document.getElementById('shareBtn'), ok=document.getElementById('shareOk');
+  if(!btn) return;
+  var LINK='https://tools.ffloptimum.com/';
+  var TEXT='Found some amazing free tools for insurance agents. An insurance product wizard, interactive call scripts, an income planner with activity planner, as well as tools to help build your agency. And the best part is there\'s no catch, it really is all free.';
+  function done(){ ok.hidden=false; clearTimeout(done.t); done.t=setTimeout(function(){ ok.hidden=true; }, 5000); }
+  function legacyCopy(){
+    var t=document.createElement('textarea'); t.value=TEXT+' '+LINK; t.setAttribute('readonly','');
+    t.style.cssText='position:fixed;top:0;left:0;opacity:0'; document.body.appendChild(t); t.select();
+    try{ document.execCommand('copy'); }catch(e){} document.body.removeChild(t); done();
+  }
+  btn.addEventListener('click', function(){
+    if(navigator.share){ navigator.share({text:TEXT+' '+LINK}).catch(function(){}); return; }
+    if(navigator.clipboard && window.isSecureContext){ navigator.clipboard.writeText(TEXT+' '+LINK).then(done, legacyCopy); return; }
+    legacyCopy();
+  });
+})();
+</script>
 </body></html>
