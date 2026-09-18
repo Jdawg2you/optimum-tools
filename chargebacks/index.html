@@ -18,8 +18,84 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap">
 <style>
-:root{--cream:#f5f1e8;--ink:#1b1b1b;--navy:#16203c;--gold:#c9a24e;--soft:#6b6b6b;--line:#e2dbcc;--card:#fffdf8}
-/* shared header + GOAT modal — generated from shell-template.html */
+
+  *{box-sizing:border-box}
+  :root{--cream:#f5f1e8;--ink:#1b1b1b;--navy:#16203c;--gold:#c9a24e;--soft:#6b6b6b;--line:#e2dbcc;--card:#fffdf8}
+  body{margin:0;background:var(--cream);color:var(--ink);font-family:Inter,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.55}
+  h1,h2,h3{font-family:"Source Serif 4",Georgia,serif}
+  a{color:inherit}
+
+  .wrap{max-width:900px;margin:0 auto;padding:36px 20px 60px}
+  .hero h1{font-size:38px;font-weight:700;margin:0 0 12px;line-height:1.12;letter-spacing:-.01em}
+  .hero h1 i{font-style:normal;color:var(--gold)}
+  .hero p{font-size:15.5px;color:#4a4a4a;max-width:58ch;margin:0;line-height:1.65}
+  .lab{font-size:11px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#9b937d;margin:36px 0 12px}
+
+  /* GOAT block */
+  .goatblock{margin-top:26px;background:linear-gradient(140deg,#1d2a4d 0%,#16203c 55%,#101932 100%);color:#fff;border-radius:18px;
+    padding:28px 28px 24px;position:relative;overflow:hidden;box-shadow:0 18px 40px rgba(22,32,60,.26)}
+  .goatblock:before{content:"";position:absolute;right:-70px;top:-80px;width:280px;height:280px;border-radius:50%;
+    background:radial-gradient(circle,rgba(201,162,78,.26),transparent 68%)}
+  .goatblock .k{position:relative;display:inline-block;background:rgba(201,162,78,.18);color:var(--gold);font-size:10.5px;
+    font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 11px;border-radius:20px;margin-bottom:11px}
+  .goatblock h2{position:relative;font-size:27px;font-weight:700;margin:0 0 9px;line-height:1.2}
+  .goatblock h2 i{font-style:normal;color:var(--gold)}
+  .goatblock .sub{position:relative;font-size:14px;color:#c3cbdd;margin:0 0 20px;max-width:58ch;line-height:1.6}
+  .perks{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.12);
+    border-radius:12px;overflow:hidden;margin-bottom:20px}
+  .perk{background:#1b2746;padding:15px 15px 16px}
+  .perk b{display:block;font-size:13.5px;font-weight:600;margin-bottom:4px}
+  .perk span{font-size:11.5px;color:#9fa9c2;line-height:1.5}
+  .goatrow{position:relative;display:flex;gap:13px;align-items:center;flex-wrap:wrap}
+  .btn-gold{display:inline-block;background:linear-gradient(135deg,#e0b95f,#c9a24e);color:#221a05;font-weight:700;
+    font-size:14.5px;padding:13px 26px;border-radius:10px;text-decoration:none;box-shadow:0 8px 20px rgba(201,162,78,.28)}
+  .goatrow .m{font-size:12px;color:#95a1bb}
+
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .tool{position:relative;display:block;background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:20px 21px;text-decoration:none;color:inherit;transition:.14s}
+  .tool:hover{border-color:#cbbc96;box-shadow:0 10px 28px rgba(27,27,27,.09);transform:translateY(-1px)}
+  .tool .n{font-family:"Source Serif 4",Georgia,serif;font-size:19px;font-weight:700;color:var(--navy);margin-bottom:6px}
+  .tool .d{font-size:13.5px;color:#55503f;line-height:1.6}
+  .tool .go{display:inline-block;margin-top:13px;font-size:13px;font-weight:600;color:var(--navy)}
+  .tool .go:after{content:" →";color:var(--gold)}
+  .pop{position:absolute;top:16px;right:16px;background:var(--gold);color:#2a2205;font-size:9.5px;font-weight:700;
+    letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:20px}
+
+  .big{display:block;background:var(--navy);color:#fff;border-radius:16px;padding:26px 26px 8px;text-decoration:none;
+    box-shadow:0 14px 34px rgba(22,32,60,.22);position:relative;overflow:hidden}
+  .big:before{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;
+    background:radial-gradient(circle,rgba(201,162,78,.2),transparent 68%)}
+  .big .k{position:relative;font-size:10.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--gold);margin-bottom:7px}
+  .big h3{position:relative;font-size:26px;font-weight:700;margin:0 0 8px;line-height:1.2}
+  .big p{position:relative;font-size:14px;color:#c3cbdd;margin:0 0 20px;max-width:56ch;line-height:1.6}
+  .steps{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.13);
+    border-radius:11px;overflow:hidden;margin-bottom:22px}
+  .step{background:#1b2746;padding:15px 14px 16px}
+  .step .num{font-family:"Source Serif 4",Georgia,serif;font-size:20px;font-weight:700;color:var(--gold);line-height:1}
+  .step .t{font-size:13.5px;font-weight:600;margin:7px 0 4px}
+  .step .s{font-size:11.5px;color:#9fa9c2;line-height:1.5}
+  .bigcta{position:relative;display:inline-block;background:linear-gradient(135deg,#e0b95f,#c9a24e);color:#221a05;
+    font-weight:700;font-size:14px;padding:12px 24px;border-radius:10px;margin-bottom:22px}
+
+  .three{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .ref{display:flex;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:15px 16px;
+    text-decoration:none;color:inherit;transition:.12s}
+  .ref:hover{border-color:#cbbc96;background:#fff}
+  .ref .ic{width:34px;height:34px;flex:0 0 auto;border-radius:9px;background:#efe9db;display:flex;align-items:center;justify-content:center;font-size:15px}
+  .ref b{display:block;font-size:14px;font-weight:600;color:var(--navy)}
+  .ref span{display:block;font-size:12.5px;color:#6b6659;line-height:1.5;margin-top:2px}
+
+  footer{text-align:center;font-size:12px;color:var(--soft);padding:10px 20px 40px;line-height:1.7}
+  footer a{color:var(--navy);font-weight:600}
+
+  @media(max-width:720px){
+    .two,.three,.perks{grid-template-columns:1fr}
+    .steps{grid-template-columns:1fr 1fr}
+    .hero h1{font-size:29px}.goatblock h2{font-size:22px}.big h3{font-size:21px}
+  }
+
+  /* shared header, strip + modals — generated from shell-template.html */
   :root{--blue:#2C4A7C;--golddk:#A8853A;--muted:#8B8A82;--rule:#E3DFD4;--rule-soft:#EDE9DF;--sans:'Inter',-apple-system,'Segoe UI',Roboto,sans-serif;--serif:'Source Serif 4',Georgia,serif;--slate:#4A4A44}
   header{background:var(--navy);color:#fff;flex:0 0 auto;padding:12px 20px 0;position:relative;z-index:2}
   .brandrow{display:flex;align-items:center;gap:14px;margin-bottom:12px}
@@ -30,9 +106,13 @@
   .bs .sep{color:rgba(255,255,255,.35);margin:0 4px}
   .bs a{color:var(--gold);font-family:var(--serif);font-weight:700;font-size:13.5px;text-decoration:none}
   .bs a:hover{color:#fff}
+  .goat{margin-left:auto;appearance:none;cursor:pointer;background:var(--gold);color:var(--navy);
         border:1px solid var(--gold);font-family:inherit;font-size:12.5px;font-weight:700;
         padding:8px 16px;border-radius:999px;display:inline-flex;align-items:center;gap:7px;
         transition:background .12s,color .12s,border-color .12s}
+  .goat:hover{background:var(--blue);border-color:var(--blue);color:#fff}
+  .gstar{font-size:11px;line-height:1}
+  .gshort{display:none}
   .modal[hidden]{display:none}
   .modal{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;padding:20px}
   .backdrop{position:absolute;inset:0;background:rgba(22,32,60,.55)}
@@ -51,6 +131,8 @@
         font-size:15px;font-weight:600;padding:14px;border-radius:8px}
   .gcta:hover{background:var(--blue)}
 @media(max-width:860px){
+  .glong{display:none}
+  .gshort{display:inline}
   }
 @media(max-width:640px){
   header{padding:10px 14px 0}
@@ -58,15 +140,32 @@
   .bt{font-size:17px}
   .bs{font-size:11px}
   .bmark{width:32px;height:32px}
+  .goat{margin:6px 0 2px;flex:1 1 auto;justify-content:center}
+  .brandrow>.goat{flex:1 0 100%}
   .bwrap{flex:1 1 0;min-width:0}
   .sheet{padding:22px 20px 20px}
   .sheet h2{font-size:21px}
   }
+  .recopen{appearance:none;cursor:pointer;font-family:'Inter',-apple-system,'Segoe UI',Roboto,sans-serif}
+  .recstrip{background:#EFEADD;border-bottom:1px solid #E3DFD4;padding:9px 20px;text-align:center;
     font-size:13px;color:#4A4A44;font-family:'Inter',-apple-system,'Segoe UI',Roboto,sans-serif}
+  .recstrip .recopen{background:transparent;border:0;color:#A8853A;font-size:13px;font-weight:800;
     text-decoration:underline;padding:0 0 0 5px}
 @media(max-width:640px){
+  .recstrip{font-size:12px;padding:8px 14px;line-height:1.5}
+  .recstrip .recopen{font-size:12px}
   }
+  #recModal .sheet{max-width:580px}
+  #recModal .recnote{background:#F5F1E8;border-left:3px solid #C9A24E;border-radius:0 10px 10px 0;
     padding:11px 15px;margin:14px 0 16px;font-size:13px;line-height:1.55;color:#4A4A44}
+  #recModal .recnote b{color:#16203C}
+  #recModal .recask{font-size:14.5px;line-height:1.6;color:#4A4A44;margin:0 0 4px}
+  #recModal .recask b{color:#16203C}
+  #recModal .recturn{font-size:13px;font-weight:700;color:#4A4A44;margin:16px 0 10px}
+  #recModal .gcta{margin-top:20px}
+  #recModal .rec2{margin:12px 0 0;text-align:center;font-size:13.5px}
+  #recModal .rec2 a{color:#A8853A;font-weight:700;text-decoration:none}
+  #recModal .rec2 a:hover{text-decoration:underline}
   .share{margin:26px 0 0;background:var(--card);border:1px solid var(--rule);border-radius:14px;padding:20px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
   .share-t{flex:1 1 260px;font-family:var(--sans);font-size:14px;color:#55503f;line-height:1.55}
   .share-t b{display:block;font-family:var(--serif);font-size:18px;color:var(--navy);margin-bottom:2px}
@@ -78,11 +177,12 @@
   .share{padding:18px}
   .share-btn{width:100%;justify-content:center}
   }
+  /* landing only: no tab row under the brand row, so the header must hold its own bottom
+     spacing — otherwise the brand row's margin collapses out of the navy band */
   header{padding-bottom:12px}
   header .brandrow{margin-bottom:0}
   @media(max-width:640px){ header{padding-bottom:10px} }
 
-  
 /* ===== this page ===== */
 *{box-sizing:border-box}
 body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--sans);line-height:1.6}
@@ -113,11 +213,17 @@ li{margin:0 0 9px}
       <div class="bt">Chargebacks, Explained</div>
       <div class="bs">Tools built for agents, by agents <span class="sep">&middot;</span> Brought to you by <a href="https://www.ffloptimum.com/" target="_blank" rel="noopener">Optimum</a></div>
     </div>
+    <button type="button" class="goat" id="goatBtn" aria-haspopup="dialog">
+        <span class="gstar">&#9733;</span>
+        <span class="glong">FREE Agent Website, Digital Business Card &amp; Booking Calendar</span>
+        <span class="gshort">FREE Website, Card &amp; Calendar</span>
+      </button>
     <a class="hmore" href="/">More free tools &rarr;</a>
   </div>
 </header>
+<div class="recstrip">Free for every agent, period.<button type="button" class="recopen" aria-haspopup="dialog">Not a Family First Life agent?</button></div>
 
-<div class="wrap">
+<main class="wrap">
 <p class="eyebrow">Before Your First Dial</p>
 <h1>Chargebacks, explained before you need to know</h1>
 <p class="lede">Every recruiting ad talks about commission. Almost none mention this. Here it is first, so your first cancelled policy is an annoyance instead of a crisis.</p>
@@ -176,6 +282,137 @@ li{margin:0 0 9px}
   Optimum · Family First Life<br>
   General education for agents and prospective agents. Advance rates, chargeback periods and commission structures vary by carrier, product and contract — confirm yours before you write business. Nothing here is a promise of earnings.
 </p>
+<p class="o-footer">Built for insurance agents by <a href="https://optimumprotects.com/" target="_blank" rel="noopener">Optimum</a>.</p>
+</main>
+
+<div class="modal" id="goatModal" hidden>
+  <div class="backdrop" data-close></div>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="goatTitle">
+    <button type="button" class="x" id="goatClose" aria-label="Close">&#10005;</button>
+        <h2 id="goatTitle">Three things every agent should have on day one</h2>
+    <p class="kick">Free when you sign up with GOAT through Optimum</p>
+
+    <div class="gitem">
+      <h3>A verified agent website</h3>
+      <p>Your own page with your photo, bio, carriers and state licenses pulled from NIPR &mdash; so a
+      client can check you out before they buy.</p>
+    </div>
+    <div class="gitem">
+      <h3>A digital business card</h3>
+      <p>One tap saves your name, direct line and NPN to the client's phone, links to your website,
+      and shows you're a verified, licensed agent.</p>
+    </div>
+    <div class="gitem">
+      <h3>A booking calendar</h3>
+      <p>A booking link clients use to grab a time with you &mdash; no back-and-forth texting.</p>
+    </div>
+
+    <p class="gclose">All three are free when you sign up with GOAT through Optimum. Set-up takes
+    about fifteen minutes.</p>
+    <a class="gcta" id="goatCta"
+       href="https://goatleads.com/registration/new?affiliate_id=66c4aa379e0123651ad2f0e6"
+       target="_blank" rel="noopener">Sign up free with GOAT</a>
+  </div>
 </div>
+<div class="modal" id="recModal" hidden>
+  <div class="backdrop" data-close></div>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="recTitle">
+    <button type="button" class="x" id="recClose" aria-label="Close">&#10005;</button>
+    <h2 id="recTitle">Not with Family First Life? You can still use these tools.</h2>
+
+    <p class="recask">They're free, and they stay free. But while you're running your numbers, it's
+    worth asking what you're actually being paid for that production &mdash; <b>a lower contract can
+    cost you six figures over a few years without ever showing up on a single statement.</b>
+    If they're not paying you what you're worth, that's worth a hard look.</p>
+
+    <div class="recnote"><b>Already with FFL?</b> You're in the best position there is &mdash;
+    congratulations.</div>
+
+    <p class="recturn">If you're outside Family First Life, here's the honest take:</p>
+
+    <div class="gitem"><h3>100% independent, never captive</h3>
+      <p>Forty-plus carriers. You write what's best for your client &mdash; not whatever a captive
+      shelf allows.</p></div>
+    <div class="gitem"><h3>Real leads, priced honestly</h3>
+      <p>High-intent leads from vetted independent partners. Not one overpriced in-house lead type
+      you're required to buy, and not &ldquo;free&rdquo; cold leads you quietly pay for in low comp.</p></div>
+    <div class="gitem"><h3>A plug-and-play system from day one</h3>
+      <p>You're handed something that already works. FFL writes over $110 million a month &mdash; more
+      than some brokerages do in a year &mdash; as the fastest-growing brokerage in the country.
+      The system is figured out. You just run it.</p></div>
+    <div class="gitem"><h3>Vested from day one</h3>
+      <p>Your business is yours &mdash; including all renewals.</p></div>
+    <div class="gitem"><h3>The highest compensation in the business</h3>
+      <p>Up to 145% on your own production, plus producer bonuses, manager bonuses, carrier
+      bonuses and company trips.</p></div>
+
+    <a class="gcta" href="https://www.ffloptimum.com/#apply" target="_blank" rel="noopener">Start the conversation &rarr;</a>
+    <p class="rec2"><a href="https://www.ffloptimum.com/#why" target="_blank" rel="noopener">Or read more about the agency first &rarr;</a></p>
+  </div>
+</div>
+<script>
+/* Legacy hash forwarding — the root used to BE the planning app. Old shared links
+   (#income etc.) must keep working. Keys are the real routes from build_shell.py;
+   'agency' is kept only as an alias because an earlier handoff used that name. */
+(function(){
+  var R={home:'home',income:'income',activity:'activity',agencybuild:'agencybuild',agency:'agencybuild',commission:'commission'};
+  try{ var h=(location.hash||'').replace(/^#\/?/,'').toLowerCase();
+       if(h && R[h]) location.replace('/planning/#'+R[h]); }catch(e){}
+})();
+</script>
+<script>
+(function(){var rm=document.getElementById('recModal');if(!rm)return;
+ function op(){rm.hidden=false;document.getElementById('recClose').focus();}
+ function sh(){rm.hidden=true;}
+ document.getElementById('recClose').addEventListener('click',sh);
+ rm.querySelector('.backdrop').addEventListener('click',sh);
+ document.addEventListener('keydown',function(e){if(e.key==='Escape')sh();});
+ document.querySelectorAll('.recopen').forEach(function(b){b.addEventListener('click',op);});})();
+</script>
+<script>
+/* GOAT call-out */
+var gm = document.getElementById('goatModal');
+function goatOpen(){ gm.hidden = false; document.getElementById('goatClose').focus(); }
+function goatShut(){ gm.hidden = true; document.getElementById('goatBtn').focus(); }
+document.getElementById('goatBtn').addEventListener('click', goatOpen);
+document.getElementById('goatClose').addEventListener('click', goatShut);
+gm.addEventListener('click', function(e){ if(e.target.hasAttribute('data-close')) goatShut(); });
+document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && !gm.hidden) goatShut(); });
+document.getElementById('goatCta').addEventListener('click', goatShut);
+</script>
+<script>
+/* Share with an agent: opens the phone's share sheet with the message pre-written.
+   Where the browser has no share sheet, it copies the message + link instead.
+   The link goes INSIDE the text: many share targets (Copy, AirDrop, Notes, sometimes
+   Messages) drop the text entirely when a separate url is passed alongside it. */
+(function(){
+  var btn=document.getElementById('shareBtn'), ok=document.getElementById('shareOk');
+  if(!btn) return;
+  var LINK='https://tools.ffloptimum.com/';
+  var TEXT='Found some amazing free tools for insurance agents. An insurance product wizard, interactive call scripts, an income planner with activity planner, as well as tools to help build your agency. And the best part is there\'s no catch, it really is all free.';
+  function done(){ ok.hidden=false; clearTimeout(done.t); done.t=setTimeout(function(){ ok.hidden=true; }, 5000); }
+  function legacyCopy(){
+    var t=document.createElement('textarea'); t.value=TEXT+' '+LINK; t.setAttribute('readonly','');
+    t.style.cssText='position:fixed;top:0;left:0;opacity:0'; document.body.appendChild(t); t.select();
+    try{ document.execCommand('copy'); }catch(e){} document.body.removeChild(t); done();
+  }
+  btn.addEventListener('click', function(){
+    if(navigator.share){ navigator.share({text:TEXT+' '+LINK}).catch(function(){}); return; }
+    if(navigator.clipboard && window.isSecureContext){ navigator.clipboard.writeText(TEXT+' '+LINK).then(done, legacyCopy); return; }
+    legacyCopy();
+  });
+})();
+</script>
+<script>
+window.goatcounter = {
+  allow_frame: true,
+  path: function (p) {
+    var sub = location.hostname.split('.')[0] || 'unknown';
+    var embed = /[?&]embed=1/.test(location.search) ? '/embedded' : '';
+    return '/' + sub + (p === '/' ? '' : p) + embed;
+  }
+};
+</script>
+<script data-goatcounter="https://ffloptimum.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
