@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Objection Flashcards &mdash; Free for insurance agents</title>
+<meta name="description" content="Objection flashcards for life insurance agents. Pick the call, tap a card, see the exact words that work. Free, no sign-up.">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#16203C">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Free Tools for Insurance Agents">
+<meta property="og:title" content="Objection Flashcards &mdash; free for insurance agents">
+<meta property="og:description" content="Pick the call, tap a card, see the exact words that work. Free, no sign-up.">
+<meta property="og:url" content="https://tools.ffloptimum.com/objections/">
+<meta property="og:image" content="https://tools.ffloptimum.com/og-image.png?v=2">
+<meta property="og:image:alt" content="Free Tools for Insurance Agents — product wizard, script navigator, planning tools and cheat sheets.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://tools.ffloptimum.com/og-image.png?v=2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#F5F1E8; --card:#FFFFFF; --fill:#FAF8F2; --rule:#E3DFD4; --rule-soft:#EDE9DF;
+  --ink:#1B1B1B; --slate:#4A4A44; --muted:#8B8A82;
+  --navy:#16203C; --navy-deep:#101832; --blue:#2C4A7C; --bluesoft:#EDF1F8;
+  --gold:#C9A24E; --golddk:#A8853A; --goldsoft:#F4EBD5; --goldline:#E6D6AE;
+  --serif:'Source Serif 4',Georgia,'Times New Roman',serif;
+  --sans:'Inter',-apple-system,'Segoe UI',Roboto,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;max-width:100%;overflow-x:hidden}
+body{background:var(--cream);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1000px;margin:0 auto;padding:0 20px 70px}
+
+header{background:var(--navy);color:#fff;padding:14px 0 12px}
+header .in{max-width:1000px;margin:0 auto;padding:0 20px;display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.brandrow{display:flex;align-items:center;gap:12px;min-width:0}
+.bmark{width:38px;height:38px;flex:none;border-radius:10px}
+.bt{font-family:var(--serif);font-weight:700;font-size:20px;line-height:1.15}
+.bs{font-size:12.5px;color:#C9CEDB;margin-top:2px}
+.bs a{color:var(--gold);text-decoration:none}
+.sep{color:var(--gold);margin:0 4px}
+.goat{display:inline-block;background:var(--gold);color:var(--navy);font-size:11.5px;font-weight:700;padding:9px 15px;border-radius:999px;text-decoration:none;line-height:1.3;border:0;cursor:pointer;font-family:var(--sans)}
+.goat:hover{background:var(--blue);color:#fff}
+.hmore{font-size:12px;color:#C9CEDB;text-decoration:none;white-space:nowrap}
+.hmore:hover{color:var(--gold)}
+.strip{background:var(--goldsoft);border-bottom:1px solid var(--goldline);text-align:center;padding:9px 16px;font-size:13px;color:#4a3c14}
+
+h1{font-family:var(--serif);font-size:clamp(25px,4.2vw,36px);margin:26px 0 6px;letter-spacing:-.02em}
+.lead{color:var(--slate);max-width:66ch;margin:0}
+
+.seg{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 6px}
+.seg button{appearance:none;font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer;
+  background:var(--card);color:var(--slate);border:1px solid var(--rule);border-radius:999px;padding:10px 18px}
+.seg button:hover{border-color:var(--gold);color:var(--ink)}
+.seg button[aria-pressed="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.seg .cnt{font-size:11px;opacity:.65;margin-left:6px;font-weight:700}
+.bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:12px 0 4px;font-size:12.5px;color:var(--muted)}
+.bar button{appearance:none;background:none;border:1px solid var(--rule);border-radius:8px;cursor:pointer;
+  font-family:var(--sans);font-size:12px;font-weight:600;color:var(--slate);padding:6px 12px}
+.bar button:hover{border-color:var(--gold);color:var(--ink)}
+
+h2.grp{font-family:var(--serif);font-size:19px;margin:30px 0 2px}
+.grpsub{font-size:12.5px;color:var(--muted);margin-bottom:12px}
+.deck{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:14px;grid-auto-rows:1fr}
+
+.fc{perspective:1400px;height:100%;cursor:pointer;border:0;padding:0;background:none;font:inherit;text-align:left;display:block;width:100%}
+.fc .inner{display:grid;height:100%;transition:transform .5s cubic-bezier(.2,.7,.3,1);transform-style:preserve-3d;position:relative}
+.fc[aria-pressed="true"] .inner{transform:rotateY(180deg)}
+.face{grid-area:1/1;-webkit-backface-visibility:hidden;backface-visibility:hidden;
+  background:var(--card);border:1px solid var(--rule);border-radius:13px;padding:17px 18px;min-height:132px;
+  display:flex;flex-direction:column;justify-content:center}
+.face.back{transform:rotateY(180deg);background:var(--fill);justify-content:flex-start}
+.fc:hover .face.front{border-color:var(--goldline)}
+.q{font-family:var(--serif);font-size:17.5px;font-weight:700;color:var(--navy);line-height:1.35}
+.hint{font-size:11px;letter-spacing:.7px;text-transform:uppercase;color:var(--muted);font-weight:700;margin-top:10px}
+.k{font-size:10px;letter-spacing:.9px;text-transform:uppercase;font-weight:700;color:var(--golddk);display:block;margin-bottom:5px}
+.say{font-size:14px;line-height:1.6;color:var(--ink)}
+.why{margin-top:12px;padding-top:10px;border-top:1px solid var(--rule);font-size:12.5px;color:var(--slate)}
+.why .k{color:var(--blue)}
+.tip{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--gold);border-radius:0 12px 12px 0;padding:14px 16px}
+.tip .t{font-family:var(--serif);font-weight:700;color:var(--navy);font-size:15px;margin-bottom:4px}
+.tip .w{font-size:13.5px;color:var(--slate)}
+.src{background:var(--bluesoft);border-left:3px solid var(--blue);border-radius:0 12px 12px 0;padding:13px 16px;margin:26px 0 0;font-size:13.5px}
+.src .k{color:var(--blue)}
+footer{border-top:1px solid var(--rule);margin-top:34px;padding-top:15px;font-size:12.5px;color:var(--muted)}
+footer a{color:var(--blue)}
+@media(max-width:640px){ .wrap{padding:0 16px 56px} header .in{padding:0 16px} .seg button{padding:9px 14px;font-size:12.5px} .bt{font-size:18px} }
+@media(prefers-reduced-motion:reduce){ .fc .inner{transition:none} }
+</style>
+</head>
+<body>
+<header>
+  <div class="in">
+    <div class="brandrow">
+      <img class="bmark" src="/apple-touch-icon.png" alt="Optimum">
+      <div>
+        <div class="bt">Objection Flashcards</div>
+        <div class="bs">Tools built for agents, by agents <span class="sep">&middot;</span> Brought to you by <a href="https://www.ffloptimum.com/" target="_blank" rel="noopener">Optimum</a></div>
+      </div>
+    </div>
+    <a class="goat" href="https://goatleads.com/registration/new?affiliate_id=66c4aa379e0123651ad2f0e6" target="_blank" rel="noopener">&#9733; FREE Agent Website, Digital Business Card &amp; Booking Calendar</a>
+    <a class="hmore" href="/">More free tools &rarr;</a>
+  </div>
+</header>
+<div class="strip">Free for every agent, period.</div>
+
+<div class="wrap">
+  <h1>Pick your call. Tap a card. See the answer.</h1>
+  <p class="lead">The words that actually work on the objections you hear every day &mdash; and why they work.
+  No sign-up, nothing stored.</p>
+
+  <div class="seg" id="types" role="group" aria-label="Type of call"></div>
+  <div class="bar">
+    <button type="button" id="flipAll">Flip all</button>
+    <button type="button" id="resetAll">Reset</button>
+    <span id="status"></span>
+  </div>
+
+  <div id="out"></div>
+
+  <div class="src">
+    <span class="k">Where these come from</span>
+    Every card is the wording from our
+    <a href="https://script.ffloptimum.com/vet/objections/" target="_blank" rel="noopener">Veteran / FEX objections cheat sheet</a>,
+    generated from it directly &mdash; so the two never drift apart. Want the full call, start to finish? Use the
+    <a href="https://script.ffloptimum.com/" target="_blank" rel="noopener">Script Navigator</a>.
+  </div>
+
+  <footer>
+    Built for insurance agents by <a href="https://www.ffloptimum.com/" target="_blank" rel="noopener">Optimum</a>.
+    Nothing is stored or sent anywhere &mdash; it all runs in your browser.
+  </footer>
+</div>
+
+<script>
+const DATA = {"deck": {"fex": {"opening": [{"q": "\"What is this for?\"", "say": "\"I was getting back to you about the request you sent in — where you listed [beneficiary] as your beneficiary for life insurance. Most of my clients are looking to cover burial expenses, cremation costs, or protect a mortgage. Which one was it for you?\"", "why": "re-anchor on the request + beneficiary, then a closed choice pulls them into the conversation."}, {"q": "\"I already have coverage / it's handled.\"", "say": "\"Perfect — that's exactly why I'm calling. I work with over 40 companies, so I can usually save you a good bit of money. Would you be against saving money?\"", "why": "agree, reframe to savings, and the closed-ended question is nearly impossible to say no to."}, {"q": "\"I'm not interested.\"", "say": "\"I understand — most of my clients say that because they don't think they can qualify, or someone showed them something that was too expensive. Which one was it for you?\"", "why": "you don't fight the \"no\" — you give them two reasons and a closed choice that reopens the door."}, {"q": "\"I can't qualify.\"", "say": "\"I work with over 40 different companies to shop around for you — even with serious health conditions, I can often get people approved. Let me see what I can do to help you. It says here your date of birth is ___?\"", "why": "remove the disqualifier, then pivot straight into verifying DOB — that's how you move forward, not just rebut."}, {"q": "\"I can't afford it.\"", "say": "\"I work with people on fixed income — Social Security, disability — and still get them affordable coverage. Is that the same situation you're in? No worries, I can help you out. It says here your date of birth is ___?\"", "why": "normalize their situation, reassure, and pivot into DOB to keep the call moving."}, {"q": "\"I don't remember filling this out.\"", "say": "\"No worries — I don't even remember what I had for breakfast. Most of my clients are looking to cover burial, cremation, or protect a mortgage. Which one was it for you?\"", "why": "a little humor disarms them, then you loop right back to the anchor with a closed choice."}], "closing": [{"q": "\"I want to shop around.\"", "say": "\"That makes sense — and I already did that for you. All insurance is state-regulated, so whether you go straight to the company or through a broker, the price is the same. It's based on your health and your age, and I've shopped the entire market. Do you want me to go higher or lower, or is ___ good for you?\"", "why": "reframe \"shopping\" as already done, anchor on health + age, and re-close with the higher/lower choice."}, {"q": "\"I've seen it for ___ (cheaper).\"", "say": "\"All insurance is based off your health and your age — this is the best rate I could find for you, if I can get you approved. Do you want me to go higher or lower, or is ___ good for you?\"", "why": "they're usually just throwing out a number. Don't debate it — anchor on health + age and re-close."}, {"q": "\"I want to talk to ___ first.\"", "say": "\"That makes sense. But we don't even know yet if we can get you approved — so start with what you know in your heart would always be affordable. Once we're approved, you talk it over with ___ and adjust up or down. The hard part is just seeing if they'll accept you. Do you want me to go higher or lower, or is ___ good for you?\"", "why": "approval-first reframe — get a small yes now, and leave the door open to adjust later."}, {"q": "\"That's too high.\"", "say": "\"Yeah, ___ is a lot of coverage. But you'd agree any amount going to [beneficiary] would help them out, right? And since we don't even know if we can get you approved yet, let's start with what you know in your heart would always be affordable.\"", "why": "shrink it to an affordable number without losing the sale — keep momentum toward submitting."}]}, "vet": {"opening": [{"q": "\"What is this for?\"", "say": "\"I was getting back to you about the request you sent in — where you listed [beneficiary] as your beneficiary for life insurance. Most of my clients are looking to cover burial expenses, cremation costs, or protect a mortgage. Which one was it for you?\"", "why": "re-anchor on the request + beneficiary, then a closed choice pulls them into the conversation."}, {"q": "\"I already have coverage / it's handled.\"", "say": "\"Perfect — that's exactly why I'm calling. I work with over 40 companies, so I can usually save you a good bit of money. Would you be against saving money?\"", "why": "agree, reframe to savings, and the closed-ended question is nearly impossible to say no to."}, {"q": "\"I'm not interested.\"", "say": "\"I understand — most of my clients say that because they don't think they can qualify, or someone showed them something that was too expensive. Which one was it for you?\"", "why": "you don't fight the \"no\" — you give them two reasons and a closed choice that reopens the door."}, {"q": "\"I can't qualify.\"", "say": "\"I work with over 40 different companies to shop around for you — even with serious health conditions, I can often get people approved. Let me see what I can do to help you. It says here your date of birth is ___?\"", "why": "remove the disqualifier, then pivot straight into verifying DOB — that's how you move forward, not just rebut."}, {"q": "\"I can't afford it.\"", "say": "\"I work with people on fixed income — Social Security, disability — and still get them affordable coverage. Is that the same situation you're in? No worries, I can help you out. It says here your date of birth is ___?\"", "why": "normalize their situation, reassure, and pivot into DOB to keep the call moving."}, {"q": "\"I don't remember filling this out.\"", "say": "\"No worries — I don't even remember what I had for breakfast. Most of my clients are looking to cover burial, cremation, or protect a mortgage. Which one was it for you?\"", "why": "a little humor disarms them, then you loop right back to the anchor with a closed choice."}], "closing": [{"q": "\"I want to shop around.\"", "say": "\"That makes sense — and I already did that for you. All insurance is state-regulated, so whether you go straight to the company or through a broker, the price is the same. It's based on your health and your age, and I've shopped the entire market. Do you want me to go higher or lower, or is ___ good for you?\"", "why": "reframe \"shopping\" as already done, anchor on health + age, and re-close with the higher/lower choice."}, {"q": "\"I've seen it for ___ (cheaper).\"", "say": "\"All insurance is based off your health and your age — this is the best rate I could find for you, if I can get you approved. Do you want me to go higher or lower, or is ___ good for you?\"", "why": "they're usually just throwing out a number. Don't debate it — anchor on health + age and re-close."}, {"q": "\"I want to talk to ___ first.\"", "say": "\"That makes sense. But we don't even know yet if we can get you approved — so start with what you know in your heart would always be affordable. Once we're approved, you talk it over with ___ and adjust up or down. The hard part is just seeing if they'll accept you. Do you want me to go higher or lower, or is ___ good for you?\"", "why": "approval-first reframe — get a small yes now, and leave the door open to adjust later."}, {"q": "\"That's too high.\"", "say": "\"Yeah, ___ is a lot of coverage. But you'd agree any amount going to [beneficiary] would help them out, right? And since we don't even know if we can get you approved yet, let's start with what you know in your heart would always be affordable.\"", "why": "shrink it to an affordable number without losing the sale — keep momentum toward submitting."}]}}, "tips": [{"q": "\"What is this for?\"", "why": "re-anchor on the request + beneficiary, then a closed choice pulls them into the conversation."}, {"q": "\"I already have coverage / it's handled.\"", "why": "agree, reframe to savings, and the closed-ended question is nearly impossible to say no to."}, {"q": "\"I'm not interested.\"", "why": "you don't fight the \"no\" — you give them two reasons and a closed choice that reopens the door."}, {"q": "\"I can't qualify.\"", "why": "remove the disqualifier, then pivot straight into verifying DOB — that's how you move forward, not just rebut."}, {"q": "\"I can't afford it.\"", "why": "normalize their situation, reassure, and pivot into DOB to keep the call moving."}, {"q": "\"I don't remember filling this out.\"", "why": "a little humor disarms them, then you loop right back to the anchor with a closed choice."}, {"q": "\"I want to shop around.\"", "why": "reframe \"shopping\" as already done, anchor on health + age, and re-close with the higher/lower choice."}, {"q": "\"I've seen it for ___ (cheaper).\"", "why": "they're usually just throwing out a number. Don't debate it — anchor on health + age and re-close."}, {"q": "\"I want to talk to ___ first.\"", "why": "approval-first reframe — get a small yes now, and leave the door open to adjust later."}, {"q": "\"That's too high.\"", "why": "shrink it to an affordable number without losing the sale — keep momentum toward submitting."}]};
+const TYPES = [['fex','FEX'],['vet','Veteran'],['tips','Top tips']];
+let active = 'fex';
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const countFor = k => k === 'tips' ? DATA.tips.length : DATA.deck[k].opening.length + DATA.deck[k].closing.length;
+
+function renderTypes(){
+  document.getElementById('types').innerHTML = TYPES.map(([k,label]) =>
+    '<button type="button" data-k="'+k+'" aria-pressed="'+(k===active)+'">'+label+'<span class="cnt">'+countFor(k)+'</span></button>').join('');
+}
+function card(c, i){
+  return '<button class="fc" type="button" aria-pressed="false" data-i="'+i+'"><div class="inner">'
+    + '<div class="face front"><div class="q">'+esc(c.q)+'</div><div class="hint">Tap to see the answer</div></div>'
+    + '<div class="face back"><div><span class="k">Say this</span><div class="say">'+esc(c.say)+'</div>'
+    + (c.why ? '<div class="why"><span class="k">Why it works</span>'+esc(c.why)+'</div>' : '')
+    + '</div></div></div></button>';
+}
+function group(title, sub, items){
+  return items.length ? '<h2 class="grp">'+title+'</h2><div class="grpsub">'+sub+'</div><div class="deck">'+items.map(card).join('')+'</div>' : '';
+}
+function render(){
+  const out = document.getElementById('out');
+  if (active === 'tips'){
+    out.innerHTML = '<h2 class="grp">Top tips</h2><div class="grpsub">The principle behind each answer.</div>'
+      + '<div class="deck">' + DATA.tips.map(t => '<div class="tip"><div class="t">'+esc(t.q)+'</div><div class="w">'+esc(t.why)+'</div></div>').join('') + '</div>';
+    document.getElementById('status').textContent = '';
+    return;
+  }
+  const d = DATA.deck[active];
+  out.innerHTML = group('Opening objections','Getting past the first ten seconds.', d.opening)
+                + group('Closing objections','When they stall at the end.', d.closing);
+  wire();
+}
+function wire(){
+  document.querySelectorAll('.fc').forEach(b => b.addEventListener('click', () => {
+    b.setAttribute('aria-pressed', b.getAttribute('aria-pressed') === 'true' ? 'false' : 'true'); tally();
+  }));
+  tally();
+}
+function tally(){
+  const all = document.querySelectorAll('.fc');
+  const f = [...all].filter(b => b.getAttribute('aria-pressed') === 'true').length;
+  document.getElementById('status').textContent = all.length ? f + ' of ' + all.length + ' flipped' : '';
+}
+document.getElementById('types').addEventListener('click', e => {
+  const b = e.target.closest('button[data-k]'); if (!b) return;
+  active = b.dataset.k; renderTypes(); render();
+});
+document.getElementById('flipAll').addEventListener('click', () => {
+  document.querySelectorAll('.fc').forEach(b => b.setAttribute('aria-pressed','true')); tally(); });
+document.getElementById('resetAll').addEventListener('click', () => {
+  document.querySelectorAll('.fc').forEach(b => b.setAttribute('aria-pressed','false')); tally(); });
+renderTypes(); render();
+</script>
+<!-- ===== GoatCounter — page counts only ==========================================
+     No cookies, no consent banner, nothing from the form: it sends a path, a referrer
+     and a screen size. Never add a session recorder here (Hotjar, FullStory, Clarity) —
+     those capture form fields, which on these tools means client health conditions,
+     names and beneficiaries.
+
+     allow_frame: kept deliberately, though nothing is framed today — the Script Navigator
+     opens the wizard with window.open, in its own window. count.js skips frames by
+     default, and the failure is silent: an embedded page would simply stop counting
+     rather than error. One line to keep that from ever happening quietly.
+
+     path(): all four suite sites report into one dashboard, so each is prefixed with its
+     subdomain — /wizard, /script, /tools, /portal. The /embedded branch only fires on a
+     page loaded with ?embed=1, which nothing currently does. To see wizard opens that
+     came from a call script rather than someone opening it directly, read the referrer
+     (script.ffloptimum.com), not the path — count.js sends document.referrer by default.
+     localhost and file:// are skipped by count.js itself.
+============================================================================== -->
+<script>
+window.goatcounter = {
+  allow_frame: true,
+  path: function (p) {
+    var sub = location.hostname.split('.')[0] || 'unknown';
+    var embed = /[?&]embed=1/.test(location.search) ? '/embedded' : '';
+    return '/' + sub + (p === '/' ? '' : p) + embed;
+  }
+};
+</script>
+<script data-goatcounter="https://ffloptimum.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
