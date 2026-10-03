@@ -1,0 +1,1586 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Agent Success Plan</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<meta name="description" content="Your Optimum Success Plan: a guided path for new agents, from your first setup to your income, your week, your leads, and how every call comes together.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:light;
+  --cream:#F5F1E8; --card:#FFFFFF; --fill:#FAF8F2; --rule:#E3DFD4; --rule-soft:#EDE9DF;
+  --ink:#1B1B1B; --slate:#4A4A44; --muted:#8B8A82;
+  --navy:#16203C; --navy-deep:#101832; --blue:#2C4A7C; --bluesoft:#EDF1F8;
+  --gold:#C9A24E; --golddk:#A8853A; --goldsoft:#F4EBD5; --goldline:#E6D6AE;
+  --green:#3F7A56; --greensoft:#EDF4EF; --rust:#A8452F; --rustsoft:#F8EEEB;
+  --serif:'Source Serif 4',Georgia,'Times New Roman',serif;
+  --sans:'Inter',-apple-system,'Segoe UI',Roboto,sans-serif;
+  --radius:12px; --radius-sm:8px; --radius-pill:999px;
+  --shadow:0 1px 2px rgba(22,32,60,.06);
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--cream);color:var(--ink);font:16px/1.55 var(--sans);margin:0;-webkit-font-smoothing:antialiased}
+a{color:var(--blue)}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+h1,h2,h3{font-family:var(--serif);color:var(--navy);font-weight:700;letter-spacing:-.015em;line-height:1.15;margin:0}
+
+/* brand band (Optimum brand kit) */
+.o-header{background:var(--navy);color:#fff;padding:13px 20px;display:flex;align-items:center;gap:14px}
+.o-title{font-family:var(--serif);font-weight:700;font-size:20px;color:#fff;letter-spacing:-.01em;white-space:nowrap}
+.o-sub{font-size:12px;font-weight:500;color:rgba(255,255,255,.62);margin-top:3px}
+.o-sub .o-sep{color:rgba(255,255,255,.35);margin:0 4px}
+.o-sub a{color:var(--gold);font-family:var(--serif);font-weight:700;font-size:13.5px;text-decoration:none}
+.o-sub a:hover{color:#fff}
+.o-pill{margin-left:auto;background:var(--gold);color:var(--navy);border:1px solid var(--gold);border-radius:var(--radius-pill);font-weight:700;font-size:12.5px;padding:8px 16px;text-decoration:none}
+.o-pill:hover{background:var(--blue);border-color:var(--blue);color:#fff}
+@media(max-width:640px){.o-header{flex-wrap:wrap}.o-pill{width:100%;text-align:center;margin:6px 0 0}}
+.o-footer{font-size:12px;color:var(--muted);text-align:center;padding:8px 16px 28px;line-height:1.7}
+.o-footer a{color:var(--golddk);font-weight:600;text-decoration:none}
+
+/* floating bar: the route + every tool, always in reach */
+.dock{position:sticky;top:0;z-index:50;background:rgba(245,241,232,.96);backdrop-filter:saturate(1.4) blur(6px);border-bottom:1px solid var(--rule)}
+.dock-in{max-width:880px;margin:0 auto;padding:10px 16px 10px;display:grid;gap:9px}
+.tools{display:flex;align-items:center;gap:6px;overflow-x:auto;scrollbar-width:none;white-space:nowrap}
+.tools::-webkit-scrollbar{display:none}
+.tools .k{font-size:12px;font-weight:600;color:var(--muted);margin-right:2px}
+.tools a{font-size:12.5px;font-weight:600;color:var(--navy);text-decoration:none;background:#fff;border:1px solid var(--rule);border-radius:999px;padding:5px 11px}
+.tools a:hover{border-color:var(--navy)}
+.tools a.goat{background:var(--gold);border-color:var(--gold)}
+.rail{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(var(--steps,10),minmax(0,1fr));gap:5px}
+.rail button{width:100%;display:grid;gap:5px;justify-items:start;text-align:left;border:0;background:none;padding:0;cursor:pointer}
+.rail button:disabled{cursor:not-allowed;opacity:.5}
+.rail .bar{height:5px;width:100%;border-radius:99px;background:var(--rule)}
+.rail .lbl{font:600 11.5px/1.2 var(--sans);color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.rail .lbl span{font-family:var(--serif);font-weight:700;margin-right:3px}
+.rail .done .bar{background:var(--green)}
+.rail .cur .bar{background:var(--gold)}
+.rail .cur .lbl{color:var(--navy)}
+.rail li.gap{position:relative}
+@media (max-width:700px){.rail .lbl b{display:none}}
+@media (max-width:640px){.dock.tuck .tools{display:none}}
+
+.wrap{max-width:880px;margin:0 auto;padding:18px 16px 0}
+@media (prefers-reduced-motion:no-preference){.stage{animation:rise .3s ease both}}
+@keyframes rise{from{transform:translateY(6px);opacity:.4}to{transform:none;opacity:1}}
+
+.stage{background:var(--card);border:1px solid var(--rule);border-radius:var(--radius);box-shadow:var(--shadow);padding:clamp(20px,4vw,36px);display:grid;gap:22px}
+.eyebrow{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;font:600 13px/1 var(--sans);color:var(--golddk)}
+.eyebrow .t{font-weight:500;color:var(--slate);background:var(--fill);border:1px solid var(--rule);border-radius:6px;padding:4px 8px}
+h1{font-size:clamp(28px,5vw,40px);line-height:1.08;text-wrap:balance}
+.lead{margin:0;font-size:17px;color:var(--slate);max-width:64ch}
+h2{font-size:19px}
+.block{display:grid;gap:12px}
+
+.todo{list-style:none;margin:0;padding:0;display:grid;gap:10px;counter-reset:t}
+.todo li{display:grid;grid-template-columns:30px 1fr;gap:12px;align-items:start;counter-increment:t}
+.todo li::before{content:counter(t);font:700 26px/1 var(--serif);color:var(--gold);text-align:center}
+
+.open{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px;background:var(--navy);color:#fff;border-radius:var(--radius);padding:16px 18px}
+.open p{margin:0;flex:1 1 240px;font-size:14.5px;color:rgba(255,255,255,.75)}
+.open p b{display:block;font:700 18px/1.25 var(--serif);color:#fff;margin-bottom:2px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:var(--radius-sm);padding:12px 18px;font-weight:600;font-size:15px;text-decoration:none;border:1px solid transparent;cursor:pointer}
+.btn-gold{background:var(--gold);color:var(--navy);border-color:var(--gold);font-weight:700}
+.btn-gold:hover{background:#fff;border-color:#fff}
+.btn-main{background:var(--navy);color:#fff}
+.btn-main:hover{background:var(--blue)}
+.btn-main:disabled,.btn-main.locked{background:var(--rule);color:var(--muted)}
+.btn-main:disabled{cursor:not-allowed}
+.btn-ghost{background:transparent;color:var(--navy);border-color:var(--rule)}
+.btn-ghost:hover{border-color:var(--navy)}
+.tip{margin:0;background:var(--goldsoft);border:1px solid var(--goldline);border-radius:var(--radius-sm);padding:12px 14px;font-size:15px}
+.tip b{color:var(--golddk)}
+
+/* how a call comes together */
+.flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.flow div{background:var(--fill);border:1px solid var(--rule);border-radius:var(--radius-sm);padding:12px;position:relative}
+.flow div.on{background:var(--goldsoft);border-color:var(--gold)}
+.flow b{display:block;font:700 15px/1.2 var(--serif);color:var(--navy)}
+.flow span{font-size:13px;color:var(--slate);line-height:1.4;display:block;margin-top:3px}
+.flow div:not(:last-child)::after{content:"→";position:absolute;right:-9px;top:50%;transform:translateY(-50%);color:var(--golddk);font-weight:700;z-index:1}
+@media(max-width:600px){.flow{grid-template-columns:1fr 1fr}.flow div::after{display:none}}
+
+/* plan numbers */
+.calc{border:1px solid var(--rule);border-radius:var(--radius);padding:16px;display:grid;gap:14px;background:var(--fill)}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+.fld{display:grid;gap:5px}
+.fld label{font-weight:600;font-size:14px}
+.fld small{font-size:12.5px;color:var(--slate)}
+.inbox{display:flex;align-items:center;border:1px solid var(--rule);border-radius:var(--radius-sm);background:#fff;padding:0 10px}
+.inbox span{color:var(--muted)}
+.inbox input{border:0;outline:0;padding:10px 4px;width:100%;background:transparent;font-variant-numeric:tabular-nums}
+.nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px}
+.num{background:#fff;border:1px solid var(--rule);border-radius:var(--radius-sm);padding:10px 12px;display:grid;gap:2px}
+.num b{font:700 22px/1.1 var(--serif);color:var(--navy);font-variant-numeric:tabular-nums}
+.num span{font-size:12.5px;color:var(--slate);font-weight:500}
+.num.key{background:var(--navy);border-color:var(--navy)}
+.num.key b{color:var(--gold)}.num.key span{color:rgba(255,255,255,.75)}
+.fine{margin:0;font-size:13px;color:var(--slate)}
+.need{margin:0;background:var(--bluesoft);border-radius:var(--radius-sm);padding:10px 12px;font-size:14.5px;color:var(--blue)}
+
+/* lead tiers */
+.tiers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media(max-width:640px){.tiers{grid-template-columns:1fr}}
+.tier{background:#fff;border:1px solid var(--rule);border-radius:var(--radius);padding:14px;display:grid;gap:8px;align-content:start}
+.tier.goal{border:2px solid var(--gold);background:var(--goldsoft)}
+.tier h3{font-size:17px}
+.tier .big{font:700 26px/1 var(--serif);color:var(--navy);font-variant-numeric:tabular-nums}
+.tier .big small{font:500 13px var(--sans);color:var(--slate)}
+.tier ul{list-style:none;margin:0;padding:0;display:grid;gap:3px;font-size:14px;color:var(--slate)}
+.tier ul b{color:var(--ink);font-variant-numeric:tabular-nums}
+.tier .why{font-size:13px;color:var(--slate);margin:0}
+
+/* quick check */
+.check{border-top:1px dashed var(--goldline);padding-top:22px;display:grid;gap:16px}
+.q{border:0;margin:0;padding:0;display:grid;gap:10px}
+.q legend{font:700 18px/1.3 var(--serif);color:var(--navy);padding:0;margin-bottom:10px;text-wrap:balance}
+.opt{display:grid;grid-template-columns:20px 1fr;gap:12px;align-items:start;border:1px solid var(--rule);border-radius:var(--radius-sm);padding:12px 14px;cursor:pointer;background:#fff}
+.opt:hover{border-color:var(--navy)}
+.opt input{margin:3px 0 0;accent-color:var(--navy)}
+.opt.right{border-color:var(--green);background:var(--greensoft)}
+.opt.wrong{border-color:var(--rust);background:var(--rustsoft)}
+.opt.chosen{border-color:var(--navy);background:var(--bluesoft)}
+.fb{margin:0;font-size:14.5px;border-radius:var(--radius-sm);padding:10px 12px}
+.fb.right{background:var(--greensoft);color:var(--green)}
+.fb.soft{background:var(--goldsoft);color:var(--ink)}.fb.soft b{color:var(--golddk)}
+.fb.wrong{background:var(--rustsoft);color:var(--rust)}
+.q.nudge legend{color:var(--rust)}
+
+.list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.list label{display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:start;border:1px solid var(--rule);border-radius:var(--radius-sm);padding:12px 14px;cursor:pointer;background:#fff}
+.list input{width:18px;height:18px;margin:2px 0 0;accent-color:var(--green)}
+.list label:has(input:checked){border-color:var(--green);background:var(--greensoft)}
+
+.parts{display:grid;gap:14px}
+.part h3{font-size:13px;font-family:var(--sans);font-weight:600;color:var(--golddk);margin-bottom:4px}
+.path{list-style:none;margin:0;padding:0}
+.path li{display:grid;grid-template-columns:34px 1fr auto;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--rule-soft)}
+.path li:last-child{border-bottom:0}
+.path .n{font:700 26px/1 var(--serif);color:var(--gold);text-align:center}
+.path b{display:block;font:700 17px/1.25 var(--serif);color:var(--navy)}
+.path small{color:var(--slate);font-size:14px}
+.path .min{font-size:12px;color:var(--muted);white-space:nowrap}
+
+.nav{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px}
+.nav .hint{font-size:14px;color:var(--slate);margin:0}
+.nav .hint.warn{color:var(--rust);font-weight:600}
+
+.stage.cover{margin-top:clamp(24px,8vh,80px);text-align:center;justify-items:center;padding-block:clamp(40px,9vw,80px);gap:16px}
+.cover .kicker{font:600 13px/1 var(--sans);color:var(--golddk)}
+.cover h1{font-size:clamp(36px,7vw,56px);max-width:15ch}
+.cover .sub{margin:0;font-size:18px;color:var(--slate);max-width:44ch}
+.cover .meta{margin:0;font-size:13px;color:var(--muted)}
+.cover .btn{padding:14px 28px;font-size:16px}
+.cover .rule{width:56px;height:3px;background:var(--gold);border-radius:2px}
+.done-mark{display:grid;place-items:center;width:60px;height:60px;border-radius:50%;background:var(--greensoft);color:var(--green)}
+.rhythm{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.rhythm li{background:var(--fill);border:1px solid var(--rule);border-radius:999px;padding:7px 14px;font-weight:600;color:var(--navy);font-size:14.5px}
+.toolwrap{border:1px solid var(--rule);border-radius:var(--radius);overflow:hidden;background:var(--cream)}
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;background:var(--navy);color:#fff;padding:10px 14px;font-size:13.5px}
+.toolbar b{font-family:var(--serif);font-size:16px}
+.toolbar a{color:var(--gold);font-weight:600;text-decoration:none;font-size:13px}
+.toolframe{display:block;width:100%;border:0;min-height:560px;background:var(--cream)}
+.live{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
+.live .num b{transition:color .3s}
+.live .num.flash b{color:var(--green)}
+.carried{margin:0;background:var(--greensoft);color:var(--green);border-radius:var(--radius-sm);padding:10px 12px;font-size:14.5px}
+.tiers.two{grid-template-columns:repeat(2,minmax(0,1fr))}.tiers.one{grid-template-columns:minmax(0,420px)}
+@media(max-width:640px){.tiers.two,.tiers.one{grid-template-columns:1fr}}
+.tier.pick{font:inherit;text-align:left;cursor:pointer}.tier.pick:hover{border-color:var(--navy)}
+.own{border-top:1px solid var(--rule);padding-top:10px}.own summary{cursor:pointer;font-weight:600;color:var(--navy);font-size:14px;margin-bottom:10px}
+.tablewrap{overflow-x:auto;border:1px solid var(--rule);border-radius:var(--radius-sm);background:#fff}
+table.ramp{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums;min-width:620px}
+.ramp th{background:var(--navy);color:#fff;font-weight:600;font-size:12px;text-align:left;padding:8px 10px}
+.ramp td{padding:8px 10px;border-top:1px solid var(--rule-soft);vertical-align:top}
+.ramp td small{display:block;font-size:11.5px;color:var(--slate)}
+.ramp td.you{color:var(--rust);font-weight:600}.ramp td.pos{color:var(--green);font-weight:700}
+.why textarea{width:100%;border:1px solid var(--rule);border-radius:var(--radius-sm);padding:10px 12px;font:inherit;font-size:15.5px;line-height:1.5;background:#fff;resize:vertical}
+.why textarea:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:var(--gold)}
+.why label small{font-weight:500;color:var(--muted)}
+.whycard{background:var(--navy);color:#fff;border-radius:var(--radius);padding:18px 20px;display:grid;gap:6px}
+.whycard .k{font-size:12px;font-weight:600;color:var(--gold)}
+.whycard p{margin:0;color:rgba(255,255,255,.82);font-size:15px}
+.whycard p.main{font:600 20px/1.35 var(--serif);color:#fff}
+.whycard b{color:var(--gold);font-weight:600}
+.why input[type=text]{width:100%;border:1px solid var(--rule);border-radius:var(--radius-sm);padding:10px 12px;font-size:15.5px;background:#fff}
+.why input[type=text]:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:var(--gold)}
+/* poster: sized in em so one design scales from thumbnail to a full page */
+.poster{font-size:10px;background:#fff;color:var(--ink);border:1px solid var(--rule);border-top:.8em solid var(--navy);padding:2.4em 2.8em 1.8em;display:grid;gap:1.5em;font-family:var(--sans);aspect-ratio:8.5/11;align-content:start;box-sizing:border-box}
+.poster header{display:grid;gap:.4em;border-bottom:.25em solid var(--gold);padding-bottom:1.2em}
+.poster .pk{font-size:1.2em;font-weight:600;color:var(--golddk)}
+.poster h2{font:700 3.4em/1.05 var(--serif);color:var(--navy);margin:0}
+.poster .pl{display:block;font-size:1.1em;font-weight:700;color:var(--golddk);margin-bottom:.4em}
+.poster .pmain{font:600 2.1em/1.3 var(--serif);color:var(--navy);margin:0}
+.poster .pwhy3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4em;margin-top:1.4em}
+.poster .pwhy3 p{margin:0;font-size:1.3em;line-height:1.4;color:var(--slate)}
+.poster .ph{color:var(--muted);font-style:italic;font-weight:400}
+.poster .pmain,.poster .pwhy3 p{display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden}.poster .pmain{-webkit-line-clamp:5}.poster .pwhy3 p{-webkit-line-clamp:6}
+.poster .pnums{display:grid;grid-template-columns:repeat(5,1fr);gap:.8em}
+.poster .pt{background:var(--navy);border-radius:.6em;padding:1em .8em;display:grid;gap:.2em}
+.poster .pt b{font:700 2em/1.1 var(--serif);color:var(--gold)}
+.poster .pt span{font-size:1.05em;color:rgba(255,255,255,.8)}
+.poster .prow{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:.8em}
+.poster .prow div{border:1px solid var(--rule);border-radius:.6em;padding:.9em 1em;display:grid;gap:.15em;background:var(--fill)}
+.poster .prow b{font:700 1.4em/1.2 var(--serif);color:var(--navy)}
+.poster .prow span{font-size:1.1em;color:var(--slate)}
+.poster .prhythm p{margin:0;font-size:1.35em;color:var(--navy);font-weight:600}
+.poster footer{margin-top:auto;font-size:1em;color:var(--muted);border-top:1px solid var(--rule);padding-top:1em}
+.walk-row{display:grid;grid-template-columns:150px 1fr;gap:18px;align-items:center}
+.walk-row p{margin:0;color:var(--slate)}
+.poster-mini{width:150px;overflow:hidden;pointer-events:none;box-shadow:var(--shadow-lift,0 10px 24px rgba(22,32,60,.12))}
+.poster-mini .poster{font-size:3.4px;border-width:.5px}
+.poster-screen{max-width:640px;width:100%;margin:0 auto;box-shadow:0 10px 24px rgba(22,32,60,.12)}
+.poster-screen .poster{font-size:clamp(5px,1.55vw,10px)}
+@media(max-width:480px){.walk-row{grid-template-columns:100px 1fr}.poster-mini{width:100px}.poster-mini .poster{font-size:2.3px}}
+#printArea{display:none}
+@media print{
+  @page{size:letter;margin:.35in}
+  body{background:#fff}
+  body > *:not(#printArea){display:none!important}
+  #printArea{display:block}
+  #printArea .poster{font-size:11.2px;border:0;border-top:.8em solid var(--navy);height:10.2in;aspect-ratio:auto;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+.walk-ad{display:grid;grid-template-columns:120px 1fr;grid-template-areas:"img head" "img body";gap:4px 20px;align-items:center;background:var(--navy);color:#fff;border-radius:var(--radius);padding:18px 22px;border-left:5px solid var(--gold)}
+.walk-ad .k{font-size:12px;font-weight:600;color:var(--gold)}
+.walk-ad .big{font:700 22px/1.2 var(--serif);color:#fff;margin:4px 0 6px}
+.walk-ad p{margin:0;color:rgba(255,255,255,.8);font-size:14.5px}
+.walk-ad .poster-mini{grid-area:img;width:120px;transform:rotate(-3deg);box-shadow:0 10px 24px rgba(0,0,0,.35)}
+.walk-ad .poster-mini .poster{font-size:2.75px}
+.walk-ad .wa-head{grid-area:head;align-self:end}.walk-ad .wa-body{grid-area:body;align-self:start}
+@media(max-width:560px){.walk-ad{grid-template-columns:76px 1fr;grid-template-areas:"img head" "body body";gap:12px 14px;padding:14px 16px}.walk-ad .poster-mini{width:76px}.walk-ad .poster-mini .poster{font-size:1.75px}.walk-ad .big{font-size:18px}}
+.ic{display:grid;gap:18px}
+.ic-in{border:1px solid var(--rule);border-radius:var(--radius);padding:16px;background:var(--fill);display:grid;gap:10px}
+.ic-in > label{font-weight:600}
+.ic-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.ic-money{width:180px}.ic-money input{font:700 22px var(--serif);color:var(--navy)}
+.seg{display:inline-flex;border:1px solid var(--rule);border-radius:999px;background:#fff;padding:3px;gap:2px;flex-wrap:wrap}
+.seg button{border:0;background:transparent;border-radius:999px;padding:7px 13px;font-size:14px;font-weight:600;color:var(--slate);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--navy);color:#fff}
+.seg.small button{padding:5px 11px;font-size:13px}
+.ic select{width:100%;border:1px solid var(--rule);border-radius:var(--radius-sm);padding:10px;background:#fff;font:inherit}
+.story{display:grid;gap:8px;border-left:4px solid var(--gold);padding:4px 0 4px 18px}
+.story p{margin:0;font-size:16.5px}
+.story .s1{color:var(--slate)}
+.story .hero{font:700 clamp(34px,6vw,46px)/1 var(--serif);color:var(--navy)}
+.story .hero small{font:500 15px var(--sans);color:var(--slate)}
+.polrow{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;background:var(--goldsoft);border-radius:var(--radius-sm);padding:10px 12px;margin-top:4px}
+.ledger{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.ledger td{padding:9px 10px;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+.ledger td:nth-child(2){text-align:right;font-weight:600;white-space:nowrap;color:var(--navy)}
+.ledger td:nth-child(3){font-size:13px;color:var(--slate)}
+.ledger tr.sub td{background:var(--fill)}
+.ledger tr.total td{background:var(--navy);color:#fff;font:700 17px var(--serif)}
+.ledger tr.total td:nth-child(2){color:var(--gold)}
+.ledger tr.note td{color:var(--slate);font-style:italic}.ledger tr.note td:nth-child(2){color:var(--green);font-style:normal}
+@media(max-width:560px){.ledger td:nth-child(3){display:none}}
+.bars{display:grid;grid-template-columns:repeat(12,1fr);gap:4px;align-items:end;height:170px;padding-top:18px}
+.bcol{display:grid;grid-template-rows:auto 1fr auto;height:100%;align-items:end;text-align:center;gap:3px}
+.bamt{font-size:9.5px;color:var(--slate);white-space:nowrap;overflow:hidden}
+.bstack{display:flex;flex-direction:column;border-radius:4px 4px 0 0;overflow:hidden;align-self:end}
+.bnow{background:var(--navy)}.btail{background:var(--gold)}
+.bm{font-size:11px;color:var(--muted)}
+.lg{display:inline-block;width:10px;height:10px;border-radius:2px;vertical-align:-1px;margin:0 3px 0 8px}.lg.now{background:var(--navy);margin-left:0}.lg.tail{background:var(--gold)}
+.levers{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.levers li{display:grid;grid-template-columns:130px 1fr;gap:14px;align-items:center;border:1px solid var(--rule);border-left:4px solid var(--green);border-radius:var(--radius-sm);padding:12px 14px;background:#fff}
+.levers li > div{display:grid;gap:2px}
+.levers .gain{font:700 22px/1.1 var(--serif);color:var(--green)}.levers .gain small{display:block;font:500 12px var(--sans);color:var(--slate)}
+@media(max-width:480px){.levers li{grid-template-columns:1fr;gap:4px}}
+.levers span{font-size:14px;color:var(--slate)}
+.nums.ladder .num b{font-size:20px}
+.headline{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;border:1px solid var(--rule);border-left:5px solid var(--green);border-radius:var(--radius);padding:14px 16px;background:#fff}
+.headline.va{border-left-color:var(--gold)}.headline.vr{border-left-color:var(--rust)}
+.headline .hl{margin:0 0 6px;font:600 21px/1.25 var(--serif);color:var(--navy)}
+.headline ul{margin:0;padding-left:18px;font-size:14px;color:var(--slate);display:grid;gap:2px}
+.headline .badge{font-size:12px;font-weight:700;border-radius:999px;padding:4px 10px;white-space:nowrap;background:var(--greensoft);color:var(--green)}
+.headline.va .badge{background:var(--goldsoft);color:var(--golddk)}.headline.vr .badge{background:var(--rustsoft);color:var(--rust)}
+.wk{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:16px;align-items:start}
+@media(max-width:760px){.wk{grid-template-columns:1fr}}
+.wk-in{border:1px solid var(--rule);border-radius:var(--radius);padding:16px;background:var(--fill);display:grid;gap:12px}
+.wk h3{font-size:16px}
+.sl{display:grid;gap:4px}.slh{display:flex;justify-content:space-between;gap:8px;font-size:14px;font-weight:600}
+.slh output{font-variant-numeric:tabular-nums;color:var(--navy)}
+.sl input[type=range]{width:100%;accent-color:var(--navy)}
+.sl small{font-size:12.5px;color:var(--slate)}
+.fields.three{grid-template-columns:repeat(auto-fit,minmax(110px,1fr))}
+.linkbtn{border:0;background:none;padding:0;text-decoration:underline;color:var(--slate);cursor:pointer;font-size:13px;justify-self:start}
+.wk-out{display:grid;gap:14px}
+.chain{border:1px solid var(--rule);border-radius:var(--radius);background:#fff;padding:14px 16px}
+.chainh{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px}
+.crow{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--rule-soft)}
+.crow b{display:block;color:var(--navy)}.crow small{font-size:12.5px;color:var(--slate)}
+.crow > span{font:700 24px var(--serif);color:var(--navy);font-variant-numeric:tabular-nums}
+.crow.key{background:var(--navy);margin:6px -10px 0;padding:10px;border-radius:var(--radius-sm)}
+.crow.key b{color:#fff}.crow.key small{color:rgba(255,255,255,.7)}.crow.key > span{color:var(--gold)}
+.workday{border:1px solid var(--rule);border-radius:var(--radius);background:#fff;padding:14px 16px;display:grid;gap:10px}
+.workday h3{display:flex;justify-content:space-between;font-size:16px}.workday h3 span{font:600 13px var(--sans);color:var(--slate)}
+.wbar{position:relative;display:flex;height:22px;background:var(--fill);border-radius:6px;overflow:visible}
+.wbar i{display:block;height:100%}.wbar i:first-child{border-radius:6px 0 0 6px}
+.wd{background:var(--blue)}.wt{background:var(--navy)}.wa{background:var(--goldline)}
+.lg.wd{background:var(--blue);margin-left:0}.lg.wt{background:var(--navy)}.lg.wa{background:var(--goldline)}
+.wbar em{position:absolute;top:-16px;bottom:-4px;border-left:2px solid var(--gold);font:600 10.5px var(--sans);color:var(--golddk);padding-left:3px;font-style:normal;white-space:nowrap}
+.apromo{border:1px dashed var(--gold);border-radius:var(--radius);padding:14px 16px;background:var(--goldsoft);display:grid;gap:6px}
+.apromo p{margin:0;font-size:14px;color:var(--slate)}.apromo a{font-weight:600}
+.persp{margin-top:10px;background:var(--navy);color:#fff;border-radius:var(--radius);padding:16px 18px;display:grid;gap:4px}
+.persp p{margin:0;color:rgba(255,255,255,.85);font-size:15px}
+.persp p:first-child{font:600 21px/1.3 var(--serif);color:#fff}.persp p:first-child b:last-child{color:var(--gold)}
+.persp small{font-size:12px;color:rgba(255,255,255,.55)}
+.fixit{border:2px solid var(--rust);background:var(--rustsoft);border-radius:var(--radius);padding:16px 18px;display:grid;gap:10px}
+.fixit h3{color:var(--rust);font-size:19px}
+.fixit p{margin:0}.fixit ul{margin:0;padding-left:20px;display:grid;gap:3px}
+.fixit-ag{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;background:var(--navy);color:#fff;border-radius:var(--radius-sm);padding:12px 14px}
+.fixit-ag div{display:grid;gap:2px;flex:1 1 260px}.fixit-ag b{font-family:var(--serif);font-size:17px}.fixit-ag span{font-size:13.5px;color:rgba(255,255,255,.78)}
+.tight{margin:0;background:var(--goldsoft);border:1px solid var(--goldline);border-radius:var(--radius-sm);padding:10px 12px;font-size:14.5px}
+.howto{margin:0;font-weight:600;color:var(--rust)}
+.bigg{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;background:var(--navy);color:#fff;border-radius:var(--radius);padding:14px 16px;border-left:5px solid var(--gold)}
+.bigg div{display:grid;gap:2px;flex:1 1 240px}.bigg b{font:700 17px var(--serif)}.bigg span{font-size:13.5px;color:rgba(255,255,255,.8)}
+.bigtxt{margin:0;background:var(--bluesoft);border-radius:var(--radius-sm);padding:10px 12px;font-size:14.5px;color:var(--navy)}
+.tier .path{font-size:11.5px;font-weight:700;color:var(--golddk)}
+.store{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+@media(max-width:760px){.store{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.shot{display:block;height:170px;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:#fff;box-shadow:var(--shadow);transition:transform .15s,box-shadow .15s}
+.shot:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(22,32,60,.15)}
+.shot img{display:block;width:100%;height:100%;object-fit:cover;object-position:top center}
+.store figure{margin:0;display:grid;gap:8px;align-content:start}
+.store figcaption{font-size:13px;color:var(--slate)}.store figcaption b{display:block;font:700 15px var(--serif);color:var(--navy)}
+.mock{border:1px solid var(--rule);border-radius:10px;background:#fff;padding:10px;height:168px;display:grid;gap:7px;align-content:start;box-shadow:var(--shadow);font-size:11px;overflow:hidden}
+.mock b{color:var(--navy);font-family:var(--serif)}.mock small{color:var(--slate);font-size:9.5px}
+.mbar{display:flex;gap:3px;align-items:center;background:var(--fill);border-radius:5px;padding:3px 6px}.mbar i{width:5px;height:5px;border-radius:50%;background:var(--rule)}.mbar span{margin-left:6px;font-size:9px;color:var(--muted)}
+.mhero{display:flex;gap:8px;align-items:center}.mhero div{display:grid}
+.av{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--goldline),var(--gold));display:inline-block}.av.big{width:40px;height:40px;justify-self:center}
+.mrow{display:flex;gap:4px;flex-wrap:wrap}.chip{font-size:9px;background:var(--bluesoft);color:var(--blue);border-radius:999px;padding:2px 7px}
+.mlines{display:grid;gap:4px}.mlines i{height:5px;background:var(--rule-soft);border-radius:3px}.mlines i.s{width:60%}
+.mbtn{background:var(--navy);color:#fff;border-radius:6px;text-align:center;padding:5px;font-size:10px;font-weight:600}
+.mock.card{text-align:center;justify-items:center}.mock.card .mbtn{width:100%}
+.days{display:flex;gap:4px}.days span{flex:1;border:1px solid var(--rule);border-radius:5px;text-align:center;font-size:9px;padding:3px 0;color:var(--slate)}.days em{display:block;font-style:normal;font-weight:700;color:var(--navy)}
+.days span.on{background:var(--navy);color:#fff}.days span.on em{color:var(--gold)}
+.slots{display:grid;grid-template-columns:1fr 1fr;gap:4px}.slots span{border:1px solid var(--rule);border-radius:5px;text-align:center;padding:3px;font-size:9.5px}.slots span.on{border-color:var(--gold);background:var(--goldsoft);font-weight:700}
+.sub2{margin:-14px 0 0;font:600 17px var(--serif);color:var(--golddk)}
+.ramp tr.goalrow td{background:var(--goldsoft);font-weight:600}.ramp td small{display:block}
+.shots{display:grid;gap:12px}.shots.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(max-width:600px){.shots.two{grid-template-columns:1fr}}
+.shots figure{margin:0;display:grid;gap:6px}.shots figcaption{font:600 13px var(--sans);color:var(--slate)}
+.shot.big{height:auto;aspect-ratio:16/10}
+.pts{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.pts li{border-left:3px solid var(--gold);padding:2px 0 2px 12px;font-size:15.5px}
+.poster header{display:flex!important;justify-content:space-between;align-items:flex-end;gap:1em}
+.poster .pdate{font-size:1.1em;color:var(--muted);white-space:nowrap}
+.poster .phero{display:grid;grid-template-columns:1fr 1fr;gap:1em;background:var(--navy);border-radius:.8em;padding:1.4em 1.6em}
+.poster .phero div{display:grid;gap:.2em}.poster .phero .pl{color:var(--gold);margin:0}
+.poster .phero b{font:700 3.2em/1 var(--serif);color:#fff}
+.poster .phero div:first-child b{color:var(--gold)}
+.poster .phero span:last-child{font-size:1.15em;color:rgba(255,255,255,.75)}
+.poster .prow div.goal{background:var(--goldsoft);border-color:var(--gold)}
+.open.alt{background:#fff;color:var(--ink);border:1px solid var(--rule)}.open.alt p{color:var(--slate)}.open.alt p b{color:var(--navy)}
+.fixlink{text-decoration:none;cursor:pointer;display:inline-flex;gap:5px;align-items:center}
+.headline.vr .badge.fixlink{background:var(--rust);color:#fff;padding:6px 12px}.headline.vr .badge.fixlink:hover{background:var(--navy)}
+.fixlink span{display:inline-block;animation:nudge 1.2s ease-in-out infinite}
+@keyframes nudge{0%,100%{transform:translateY(0)}50%{transform:translateY(3px)}}
+@media (prefers-reduced-motion:reduce){.fixlink span{animation:none}}
+.fixit h3 .fixarrow{display:inline-block;color:var(--rust)}
+.poster .plead{display:grid;grid-template-columns:13em 1fr;gap:.8em;align-items:stretch}
+.poster .plead .start{background:var(--navy);border-radius:.6em;padding:1em;display:grid;gap:.2em;align-content:center}
+.poster .plead .start b{font:700 2.4em/1 var(--serif);color:var(--gold)}
+.poster .plead .start span{font-size:1.15em;color:#fff}
+.poster .plead .start small{font-size:1em;color:rgba(255,255,255,.7)}
+.poster .plead .pline{border:1px solid var(--rule);border-radius:.6em;padding:1em 1.2em;background:var(--fill);display:grid;gap:.4em;align-content:center}
+.poster .plead .pline p{margin:0;font-size:1.3em;color:var(--navy)}
+.copied{font-size:13px;color:var(--green);font-weight:600}
+.foot-row{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:13px;color:var(--slate);padding:16px 0 4px}
+.foot-row button{border:0;background:none;padding:0;color:var(--slate);text-decoration:underline;cursor:pointer;font-size:13px}
+
+/* ——— phone layout ————————————————————————————————————————————————
+   Measured on a real 375px viewport before this block: the sticky dock plus the
+   header pushed the first line of content down to 279px — a third of the screen
+   spent on chrome before anything useful — and each of the nine step buttons was
+   a 34 x 24px target, well under the ~44px a thumb actually needs.
+   Nothing here changes the desktop layout. */
+@media (max-width:640px){
+  .dock-in{padding-top:7px!important;padding-bottom:7px!important}
+  .tools{gap:8px}
+  .tools::-webkit-scrollbar{display:none}
+
+  /* nine numbered steps, each a proper tap target */
+  .rail{gap:4px}
+  .rail button{min-height:44px;padding:7px 0 5px;justify-items:center;gap:6px}
+  .rail .bar{width:100%}
+  .rail .lbl{text-align:center;font-size:12.5px;font-weight:700}
+
+  /* The header was 167px of a 812px screen before any content. It is not sticky,
+     so it only costs the first screenful - but that is the screenful that decides
+     whether this looks finished. Same words, less air. */
+  .o-header{padding:11px 16px 10px!important;gap:8px}
+  .o-title{font-size:18px}
+  .o-sub{font-size:11px;line-height:1.35}
+  .o-pill{font-size:10.5px;padding:8px 12px;line-height:1.3;margin-top:4px}
+}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js" defer></script>
+</head>
+<body>
+
+<header class="o-header">
+  <div>
+    <div class="o-title">Agent Success Plan</div>
+    <div class="o-sub">Tools built for agents, by agents <span class="o-sep">&middot;</span>
+      Brought to you by <a href="https://www.ffloptimum.com/" target="_blank" rel="noopener">Optimum</a></div>
+  </div>
+  <a class="o-pill" href="https://goatleads.com/registration/new?affiliate_id=66c4aa379e0123651ad2f0e6"
+     target="_blank" rel="noopener">&#9733; FREE Agent Website, Digital Business Card &amp; Booking Calendar</a>
+</header>
+
+<div class="dock" id="dock">
+  <div class="dock-in">
+    <nav class="tools" aria-label="Your tools" id="tools"></nav>
+    <ol class="rail" id="rail" aria-label="Your path"></ol>
+  </div>
+</div>
+
+<div class="wrap">
+  <main id="stage" class="stage" aria-live="polite"></main>
+  <div class="foot-row" id="footRow">
+    <span id="count"></span>
+    <span>Your progress saves on this device. Nothing you enter leaves this page. <button type="button" id="resetAll">Start over</button></span>
+  </div>
+</div>
+
+<div id="printArea" aria-hidden="true"></div>
+<p class="o-footer">Built for insurance agents by
+  <a href="https://www.ffloptimum.com/" target="_blank" rel="noopener">Optimum</a>.</p>
+
+<script>
+/* ---------- Links: the live Optimum tools. Edit here only. ---------- */
+const GOAT = "https://goatleads.com/registration/new?affiliate_id=66c4aa379e0123651ad2f0e6";
+const LINKS = {
+  goat:       GOAT,
+  income:     "https://tools.ffloptimum.com/planning/#income",
+  activity:   "https://tools.ffloptimum.com/planning/#activity",
+  navigator:  "https://script.ffloptimum.com/",
+  wizard:     "https://wizard.ffloptimum.com/",
+  poppro:     "https://mypoppro.com/",
+  compgrid:   "https://portal.ffloptimum.com/comp-grid.html",
+  commission: "https://tools.ffloptimum.com/planning/#commission"
+};
+const TOOLBAR = [
+  ["income","Income Calculator"],["activity","Activity Planner"],["navigator","Script Navigator"],
+  ["wizard","Product Wizard"],["commission","Commission Estimator"],["goat","GOAT"]
+];
+
+/* The Winning System: planning figures from Optimum's 90-day ramp.
+   Aged leads $3 at ~67 leads per sale (167 leads -> 2.5 sales); fresh leads $25
+   at 8 per sale (20 leads -> 2.5 sales); 20% close on presentations; each sale
+   pays premium x 90% commission x 75% advance, deposited the same week.
+   Ramp: aged held at $500 a week, +$500 a week of fresh each month.
+   Agents can replace every figure with their own under "Use my own numbers". */
+const SZ = {aP:3, aL:500/3/2.5, fP:25, fL:8, ct:90, adv:75, close:.20, agedHold:500, step:500, wpm:4, line:10000, prem:1000,
+            roi:5, roi2:7, deck:[[500,0],[500,500],[500,1000]]};
+
+const PARTS = {
+  why:  {n:1, name:"Start with your why"},
+  plan: {n:2, name:"Build your plan"},
+  call: {n:3, name:"How every call comes together"},
+  go:   {n:4, name:"Launch"}
+};
+
+const STEPS = [
+  {
+    id:"why", part:"why", short:"Your why", mins:10,
+    title:"Start with your why.",
+    lead:"Leads, scripts and numbers are the how. Your why is what gets you back on the phone on the days nobody answers. Take ten minutes and write it down in your own words. Your answers go at the top of the Success Plan you'll print and hang on your wall at the end.",
+    why:[
+      {k:"name", q:"Your first name", ph:"For the top of your printed plan", line:true},
+      {k:"main", q:"Why are you doing this business?", ph:"Not the money itself. What the money changes.", req:true},
+      {k:"who", q:"Who are you doing it for?", ph:"The people who are counting on you, by name."},
+      {k:"picture", q:"What do you want your life to look like in 12 months, when this works?", ph:"Where you live, what you drive, what you stopped worrying about."},
+      {k:"hard", q:"What will you tell yourself on the days when nothing goes right, to keep pushing forward?", ph:"Write the sentence you'll need to read that day."}
+    ],
+    tip:"Put your why somewhere you'll see it before every call block: your phone's lock screen, a sticky note on your monitor."
+  },
+  {
+    id:"income", part:"plan", short:"Income", mins:5,
+    title:"Set your income goal.",
+    lead:"Everything starts with one number: what you want to take home. Type it in and we'll work backwards to what you need to write, what comp level that puts you on, and how many policies it really takes.",
+    calc:"income", nextLabel:"Plan your week",
+    tip:"Pick a goal you will actually chase. A number you work every day beats a big one you ignore.",
+    quiz:[
+      {q:"Thinking about your income goal, what's most important?",
+       o:["How many leads you can afford","What you take home: your profitability","How your carrier's policies work","How many hours you want to work"], a:1,
+       why:"Everything in your plan starts from what you take home. Production, leads and hours are just how you get there."}
+    ]
+  },
+  {
+    id:"week", part:"plan", short:"Your week", mins:5,
+    title:"Turn your goal into activity.",
+    lead:"A goal doesn't tell you what to do on Monday. Here's your production broken down to a single day, the dials it takes to get there, and whether your week can hold it.",
+    calc:"week", quizTitle:"Gut check",
+    quizFn: () => weekQuestions()
+  },
+  {
+    id:"setup", part:"plan", short:"Set up", mins:15,
+    title:"Set up your website, card and calendar.",
+    subtitle:"Plus free sales funnels that bring leads to you.",
+    lead:"You know your number and your week. Before you buy a single lead, get your storefront up. Your free agent website, digital business card and booking calendar come through GOAT, the same place you'll buy your leads. Set it up once and every lead, card and booking runs through one account.",
+    preview:true,
+    todo:[
+      "Click the link below to set yourself up with GOAT. Make sure you use this link, so you're kept up to date on the latest promos and specials.",
+      "Build your agent website and your digital business card.",
+      "Turn on your booking calendar and book a test appointment with yourself.",
+      "Copy the link to your website, your card and your calendar, and save them somewhere you can send them to clients fast."
+    ],
+    tool:{name:"GOAT", link:"goat", cta:"Connect to GOAT", head:"Click the link to set yourself up", blurb:"Free website, digital business card, booking calendar and sales funnels. Opens in a new tab."},
+    tip:"Save your three links in your phone's text shortcuts. You'll send them after every call.",
+    confirm:[
+      "I created my GOAT account from the Optimum link.",
+      "I set up my website and digital business card.",
+      "I set up my booking calendar."
+    ]
+  },
+  {
+    id:"spend", part:"plan", short:"Lead plan", mins:10,
+    title:"Build your lead plan.",
+    lead:"There are two ways to reach your goal. <b>Grow into it with the Winning System:</b> start with $500 of aged leads and let the business fund every buy after that. Or <b>go straight to your goal:</b> buy what your goal really needs from week one. Pick the one that fits you.",
+    calc:"spend", toolAfter:true,
+    tool:{name:"GOAT", link:"goat", cta:"Order leads in GOAT", head:"Order your first week", blurb:"You set up your account a step ago. Buy next week's leads here."},
+    tip:"Most sales come after the first few attempts. Work every lead to the end of its follow-up before you call it dead.",
+    quizFn: () => leadQuestions()
+  },
+  {
+    id:"call", part:"call", short:"Start dialing", mins:5,
+    title:"Now it's time to start dialing.",
+    flow:0,
+    lead:"Every call runs in the <b>Script Navigator</b>. It walks you through the conversation card by card, so you always know what to say and what to ask next.",
+    shots:[["tool-navigator.jpg","Script Navigator","navigator"]],
+    points:[
+      "<b>It builds a client profile as you talk.</b> Save it or print it. Load a saved profile later and you pick up right where you left off.",
+      "<b>One button sends that profile on.</b> Life cases go straight to the Product Wizard. Health cases go to My POP Pro. No retyping.",
+      "<b>Objections are built in.</b> Opening and closing objection cards sit right inside the call, ready when you need them.",
+      "<b>Learn it right inside the tool.</b> A how-to page and a 10-minute video walkthrough are on the Navigator's home screen."
+    ],
+    tool:{name:"Script Navigator", link:"navigator", cta:"Open the Script Navigator", head:"Open it, bookmark it, come back here", blurb:"Have a look around and bookmark it. Then come back and finish your plan. You'll practise once your plan is done."},
+    tip:"You don't need to sound perfect. You need to sound like you know where the call is going, and the Navigator knows.",
+    quizTitle:"Gut check",
+    quiz:[
+      {q:"You'll never feel perfect before you've made a single call. What's the best way to feel confident when you start?",
+       r:[{t:"Read the script once and hope for the best", ok:false, msg:"<b>One read won't get you there.</b> Run the full script in the Navigator a few times so you're not going in cold."},
+          {t:"Read the full script and run it in the Navigator a few times, so I'm not going in cold", msg:"<b>That's it.</b> Know the flow, get sharp on your opening objections, then get on the phone. Doing it is what builds the confidence."},
+          {t:"Wing it and learn on real clients", tone:"soft", msg:"<b>We love the enthusiasm.</b> Just know that with no practice, you're committing to get right back up every time you trip. You can absolutely make it work. It's going to take grit. Let's go."},
+          {t:"Memorize everything and spend a few days practicing first", ok:false, msg:"<b>Think again 🙂</b> Be familiar with the script and get really good at your opening objections, then get out there. You don't need to practice it a million times. You need to actually do it."}]}
+    ]
+  },
+  {
+    id:"product", part:"call", short:"Product", mins:5,
+    title:"Then pick the product they can buy.",
+    flow:1,
+    lead:"When the call's questions are done, one button sends the client's profile from the Script Navigator to the right tool. <b>Life goes to the Product Wizard. Health goes to My POP Pro.</b>",
+    shots:[["tool-wizard.jpg","Product Wizard · life","wizard"],["tool-poppro.jpg","My POP Pro · health","poppro"]],
+    points:[
+      "<b>The Product Wizard</b> takes age, build, conditions, medications and how the client pays, and shows which products and carriers they can buy, with the reason when one says no.",
+      "<b>Type a medication</b> and the wizard finds the condition behind it. (The Script Navigator has the same lookup, and what you enter there carries over.)",
+      "<b>My POP Pro</b> puts a client's health plan next to a Package of Protection and shows the real monthly cost side by side."
+    ],
+    todo:[
+      "Open the Product Wizard and bookmark it.",
+      "Run one or two practice clients, so you have a feel for it before your first real call.",
+      "Come back here and finish your plan."
+    ],
+    tool:{name:"Product Wizard", link:"wizard", cta:"Open the Product Wizard", head:"Open it, bookmark it, come back here", blurb:"A practice run or two is plenty for now."},
+    tip:"Quoting the right product the first time is how you avoid declines and chargebacks later.",
+    quiz:[
+      {q:"A client takes a medication, and you're not sure what it's for. What do you do?",
+       o:["Skip the health questions","Guess a condition and move on","Type the medication into the Product Wizard so it can find the condition","End the call and call back later"], a:2,
+       why:"The wizard has a medication lookup. Type what they take and it matches the likely condition, right there on the call."},
+      {q:"You've finished the questions in the Script Navigator. How do the client's answers get to the Product Wizard?",
+       o:["Retype everything into the wizard","Write them down and enter them after the call","One button in the Navigator pushes the whole profile across","Ask the client the questions again"], a:2,
+       why:"The Navigator builds the profile while you talk, and pushes it to the Product Wizard, or to My POP Pro for a health case. No retyping, no second round of questions."}
+    ]
+  },
+  {
+    id:"pay", part:"call", short:"Your pay", mins:5,
+    title:"And see what it pays you.",
+    flow:2,
+    lead:"After a sale, put it into the <b>Commission Estimator</b>: the carrier, the product and the premium. It shows what the policy pays at your comp level, using real carrier rates, how much lands now as an advance, and what arrives later.",
+    shots:[["tool-commission.jpg","Commission Estimator","commission"]],
+    points:[
+      "<b>That's the loop:</b> the call runs in the Script Navigator, the product comes from the Product Wizard or My POP Pro, and the Commission Estimator shows what you made.",
+      "<b>An advance is paid before you've earned it.</b> If a policy lapses early, the carrier takes back what wasn't earned. Great service is what keeps it on the books."
+    ],
+    tool:{name:"Commission Estimator", link:"commission", cta:"Open the Commission Estimator", head:"Bookmark it for your first sale", blurb:"You'll use it after every sale. Opens in a new tab."},
+    tool2:{name:"FFL comp grid", link:"compgrid", cta:"Open the comp grid", head:"See what every product pays", blurb:"The full Family First Life comp grid, every carrier and product at every contract level."},
+    tip:"Set aside part of every advance until the policy is past its chargeback window.",
+    quiz:[
+      {q:"You just closed a sale. How do you find out what it pays you?",
+       o:["Wait for your first statement","Put the sale into the Commission Estimator","Ask the client","Guess from the premium"], a:1,
+       why:"The Commission Estimator reads your carrier's real rates at your comp level, so you know what you earned the day you sell it."},
+      {q:"What protects you most from chargebacks?",
+       o:["Selling the cheapest policy every time","Placing a policy that fits and following up with your client regularly, so you truly become their agent for life (and not their insurance one-night stand)","Writing as many policies as possible","Not answering client calls after the sale"], a:1,
+       why:"Policies that fit the client's budget and needs, plus real follow-up, are the ones that stay on the books."}
+    ]
+  },
+  {
+    id:"launch", part:"go", short:"Launch", mins:5,
+    title:"Launch your business.",
+    lead:"You have your why, your numbers, your storefront, your lead plan, and the tools to run the call, pick the product and get paid. Check off each item, and your Success Plan unlocks to print.",
+    checklist:[
+      "I filled in my income goal and my weekly plan.",
+      "My website, card and calendar are set up, and I'm ready for my first leads.",
+      "I know my lead plan: the Winning System, or straight to my goal.",
+      "I understand how the Script Navigator runs my call and pushes to the Product Wizard or My POP Pro.",
+      "I can use the Product Wizard to find the best carrier for my client.",
+      "I know how to see what I get paid, and how a chargeback works.",
+      "I know how many dials I need to make to hit my goal, and I've built a schedule that fits that activity."
+    ]
+  }
+];
+
+const FLOW = [
+  ["The call","Script Navigator runs it and builds the client profile"],
+  ["The product","Product Wizard for life, My POP Pro for health"],
+  ["Your pay","Commission Estimator shows what you made"],
+  ["Repeat","Great service keeps every policy on the books"]
+];
+
+/* ---------- state ---------- */
+const KEY = "optimum-success-plan";
+const blank = () => ({cur:-1, passed:[], answers:{}, confirms:{}, checks:[], launched:false, plan:{}, why:{}});
+let S = blank();
+try{ const s = JSON.parse(localStorage.getItem(KEY)||"null"); if(s && typeof s==="object") S = {...S, ...s, plan:{...S.plan, ...(s.plan||{})}}; }catch(e){}
+const save = () => { try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} };
+const $ = s => document.querySelector(s);
+const esc = v => String(v).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const money = v => "$" + Math.round(v).toLocaleString("en-US");
+const num = v => { const n = parseFloat(String(v??"").replace(/[^0-9.]/g,"")); return isFinite(n) && n > 0 ? n : null; };
+/* every number reads with commas, typed or shown */
+const commas = v => { const s = String(v ?? ""); if(!s) return s; const [i, d] = s.replace(/[^0-9.]/g,"").split("."); return (i ? Number(i).toLocaleString("en-US") : "0") + (d !== undefined ? "." + d : ""); };
+function liveCommas(el){
+  const before = el.value, caret = el.selectionStart ?? before.length;
+  const digitsLeft = before.slice(0, caret).replace(/[^0-9.]/g,"").length;
+  if(!/[0-9]/.test(before)) return;
+  const after = commas(before); if(after === before) return;
+  el.value = after;
+  let n = 0, pos = 0; while(pos < after.length && n < digitsLeft){ if(/[0-9.]/.test(after[pos])) n++; pos++; }
+  try{ el.setSelectionRange(pos, pos); }catch(e){}
+}
+const r1 = v => (Math.round(v*10)/10).toLocaleString("en-US");
+
+const stepTool = s => s.why ? "A short exercise" : s.calc === "income" ? "Income Calculator" : s.calc === "spend" ? "Winning System + GOAT" : s.embed ? VIEW_TITLES[s.embed] : s.tool ? s.tool.name : "Your launch checklist";
+const stepNo = id => STEPS.findIndex(s => s.id === id) + 1;
+const qsOf = s => s.quizFn ? s.quizFn() : (s.quiz || []);
+const qPass = (q, pick) => pick !== undefined && (q.r ? q.r[pick]?.ok !== false : pick === q.a);
+const isDone = s => s.why ? (S.why?.main || "").trim().length >= 20 : s.confirm ? s.confirm.every((_,k)=>(S.confirms[s.id]||[]).includes(k))
+                  : (s.quiz || s.quizFn) ? qsOf(s).every((q,qi)=>qPass(q, (S.answers[s.id]||{})[qi])) : false;
+const unlockedUpTo = () => { let i = 0; while(i < STEPS.length-1 && S.passed.includes(STEPS[i].id)) i++; return i; };
+const refreshPassed = s => { const was = S.passed.includes(s.id); S.passed = S.passed.filter(x => x !== s.id); if(isDone(s)){ S.passed.push(s.id); if(!was) celebrate(); } };
+/* a little burst every time a step opens up, a big one at launch */
+const calm = () => matchMedia("(prefers-reduced-motion: reduce)").matches || typeof confetti !== "function";
+const BRAND = ["#C9A24E","#16203C","#2C4A7C","#E6D6AE","#3F7A56"];
+function celebrate(){
+  if(calm()) return;
+  setTimeout(() => { const b = document.querySelector("#stage > .nav .btn-main"); const r = b ? b.getBoundingClientRect() : {left:innerWidth/2, top:innerHeight*.7, width:0, height:0};
+    confetti({particleCount:45, spread:60, startVelocity:28, scalar:.8, colors:BRAND, origin:{x:(r.left+r.width/2)/innerWidth, y:(r.top+r.height/2)/innerHeight}}); }, 60);
+}
+function bigCelebrate(){
+  if(calm()) return;
+  const end = Date.now() + 1800;
+  (function frame(){ confetti({particleCount:6, angle:60, spread:70, origin:{x:0, y:.7}, colors:BRAND}); confetti({particleCount:6, angle:120, spread:70, origin:{x:1, y:.7}, colors:BRAND});
+    if(Date.now() < end) requestAnimationFrame(frame); })();
+  setTimeout(() => confetti({particleCount:160, spread:110, startVelocity:45, origin:{y:.35}, colors:BRAND}), 300);
+}
+
+function goStep(i){
+  if(i > unlockedUpTo()) return;
+  S.cur = i; save(); render();
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+
+/* ---------- floating dock ---------- */
+$("#tools").innerHTML = `<span class="k">Your tools</span>` + TOOLBAR.map(([k,n]) =>
+  `<a class="${k==="goat"?"goat":""}" href="${LINKS[k]}" target="_blank" rel="noopener">${n}</a>`).join("");
+
+function renderRail(){
+  $("#rail").style.setProperty("--steps", STEPS.length);
+  const max = unlockedUpTo();
+  $("#rail").innerHTML = STEPS.map((s,i) => {
+    const cls = i === S.cur ? "cur" : (S.passed.includes(s.id) || (s.id==="launch" && S.launched)) ? "done" : "";
+    return `<li class="${cls}"><button type="button" data-i="${i}" ${i>max?"disabled":""} title="${PARTS[s.part].name}: ${s.short}" aria-label="Step ${i+1}: ${s.short}${i>max?" (locked)":""}"><span class="bar"></span><span class="lbl"><span>${i+1}</span><b>${s.short}</b></span></button></li>`;
+  }).join("");
+  const done = S.passed.length + (S.launched?1:0);
+  $("#count").textContent = `${done} of ${STEPS.length} steps done`;
+}
+$("#rail").addEventListener("click", e => { const b = e.target.closest("button"); if(b && !b.disabled) goStep(+b.dataset.i); });
+
+/* Phones: tuck the tool strip while scrolling down, bring it back on the way up. */
+(function(){
+  let lastY = 0;
+  addEventListener("scroll", () => {
+    const y = scrollY, dock = $("#dock");
+    if(Math.abs(y - lastY) < 8) return;
+    dock.classList.toggle("tuck", y > lastY && y > 120);
+    lastY = y;
+  }, {passive:true});
+})();
+
+/* ---------- plan maths ---------- */
+const val = (k, d) => { const n = num(S.plan[k]); return n ?? d; };
+function sz(){
+  return {aP:val("aP",SZ.aP), aL:val("aL",SZ.aL), fP:val("fP",SZ.fP), fL:val("fL",SZ.fL),
+          ct:val("ct",SZ.ct)/100, adv:val("adv",SZ.adv)/100, prem:val("prem",SZ.prem), roi:val("roi",SZ.roi), roi2:val("roi2",SZ.roi2)};
+}
+/* ---------- the Winning System, by return on lead spend ----------
+   Every $1 of leads writes about $5 of annual premium (the deck: $500 a week -> $2,500 a week).
+   Months 1-3 are always the deck's ramp: $500 aged, then +$500 fresh each month -> $10K, $20K, $30K.
+   The month you hit your goal buys exactly what the goal needs; from month 4 on it assumes a 7x return,
+   because three consistent months have sharpened your close. */
+function buyFor(spend, z){
+  const aged = Math.min(SZ.agedHold, spend), fresh = Math.max(0, spend - SZ.agedHold);
+  return {aged, fresh, spend, leads: aged / z.aP + fresh / z.fP};
+}
+function monthRow(m, buy, ap, roi, z, goalMonth){
+  return {m, ...buy, ap, roi, dep: ap * z.ct * z.adv, goalMonth};
+}
+function wsRamp(goal, z){
+  const rows = [];
+  for(let m = 1; m <= 4; m++){
+    const roi = m <= 3 ? z.roi : z.roi2;
+    if(m <= 3){
+      const [a, f] = SZ.deck[m-1], deckAp = (a + f) * z.roi * SZ.wpm;
+      if(deckAp < goal - 0.5){ rows.push(monthRow(m, buyFor(a + f, z), deckAp, roi, z, false)); continue; }
+    }
+    rows.push(monthRow(m, buyFor(goal / SZ.wpm / roi, z), goal, roi, z, true));
+    break;
+  }
+  let cum = 0; rows.forEach(r => { cum += r.dep - r.spend * SZ.wpm; r.profit = cum; });
+  return rows;
+}
+const MIXES = {aged:"All aged", fresh:"All fresh", mix:"Winning System mix"};
+const mixKind = () => MIXES[S.plan.mix] ? S.plan.mix : "mix";
+function straightPlan(goal, z, kind){
+  kind = kind || mixKind();
+  const spend = goal / SZ.wpm / z.roi;
+  const buy = kind === "aged" ? {aged:spend, fresh:0, spend, leads:spend / z.aP}
+            : kind === "fresh" ? {aged:0, fresh:spend, spend, leads:spend / z.fP} : buyFor(spend, z);
+  const r = monthRow(1, buy, goal, z.roi, z, true);
+  r.kind = kind; r.profit = r.dep - r.spend * SZ.wpm; return r;
+}
+const buyText = r => r.aged && r.fresh ? `${money(r.aged)} aged + ${money(r.fresh)} fresh` : r.fresh ? "all fresh" : "all aged";
+/* the week you're working once you're at goal, on the chosen path */
+function goalWeek(p){
+  if(!p.ap) return null;
+  const rows = S.plan.choice === "straight" ? [straightPlan(p.ap, p.z)] : wsRamp(p.ap, p.z);
+  return rows[rows.length-1];
+}
+function planNumbers(){
+  const ap = num(S.plan.ap), z = sz();
+  const salesWk = ap ? ap / SZ.wpm / z.prem : null;
+  return {ap, z, salesWk, goal:num(S.plan.goal)};
+}
+/* one week at a given spend: aged first (up to the hold), the rest fresh */
+function week(aged, fresh, z){
+  const aLeads = aged / z.aP, fLeads = fresh / z.fP;
+  const sales = aLeads / z.aL + fLeads / z.fL;
+  const ap = sales * z.prem;
+  return {spend:aged+fresh, aged, fresh, leads:aLeads+fLeads, aLeads, fLeads, sales, pres:sales/SZ.close, ap, dep:ap*z.ct*z.adv};
+}
+/* the cheapest mix that hits a weekly sales target: aged up to the hold, then fresh */
+function mixFor(sales, z){
+  const agedMax = SZ.agedHold / z.aP / z.aL;
+  const aged = sales <= agedMax ? sales * z.aL * z.aP : SZ.agedHold;
+  const fresh = sales <= agedMax ? 0 : (sales - agedMax) * z.fL * z.fP;
+  return week(Math.ceil(aged), Math.ceil(fresh/5)*5, z);
+}
+/* run weeks of spend; the business pays once its deposits cover the buy */
+function runWeeks(spends, z){
+  let bal = 0, oop = 0, spent = 0, dep = 0;
+  return spends.map(([aged, fresh]) => {
+    const w = week(aged, fresh, z);
+    const fromBiz = Math.min(bal, w.spend), fromYou = w.spend - fromBiz;
+    oop += fromYou; spent += w.spend; dep += w.dep; bal = bal - fromBiz + w.dep;
+    return {...w, fromYou, oop, profit: dep - spent};
+  });
+}
+function ramp(goalAP, z){
+  const months = []; let fresh = 0;
+  for(let m = 1; m <= 12; m++){
+    const target = goalAP / SZ.wpm / z.prem;
+    let f = fresh;
+    const atGoal = week(SZ.agedHold, f, z).sales >= target - 1e-9;
+    if(atGoal && m > 1){ const need = mixFor(target, z); f = need.fresh; }
+    months.push({m, aged:SZ.agedHold, fresh:f});
+    if(week(SZ.agedHold, f, z).sales >= target - 1e-9) break;
+    fresh += SZ.step;
+  }
+  const weeks = runWeeks(months.flatMap(x => Array(SZ.wpm).fill([x.aged, x.fresh])), z);
+  return months.map((x, i) => {
+    const wk = weeks.slice(i*SZ.wpm, (i+1)*SZ.wpm), w0 = wk[0], last = wk[wk.length-1];
+    return {...x, w:w0, apMonth: wk.reduce((a,b)=>a+b.ap,0), depMonth: wk.reduce((a,b)=>a+b.dep,0), oop:last.oop, profit:last.profit};
+  });
+}
+
+/* ---------- compact income calculator ----------
+   Runs the real Income Calculator's own maths in a hidden copy, so these numbers
+   always match the full tool. It talks to window.IncomeAPI, the stable surface
+   the calculator publishes for this page. Until that version is deployed, the
+   same calls fall back to the calculator's older globals. */
+let ENGINE = null;
+function legacyEngine(w){
+  const typesFor = p => p === "mix" ? {IUL:true, WholeLife:true, Term:true} : {IUL:p==="IUL", WholeLife:p==="WholeLife", Term:p==="Term"};
+  const withInput = (input, fn) => { const st = w.state, keep = JSON.stringify(st);
+    try{ if(input.goal != null) st.goal = +input.goal || 0; if(input.period) st.period = input.period; if(input.avgAP) st.avgAP = +input.avgAP;
+         if(input.product) st.types = typesFor(input.product);
+         ["wontPlace","leadPct","reservePct"].forEach(k => { if(input[k] != null) st[k] = input[k]; });
+         return fn(st); } finally { Object.assign(st, JSON.parse(keep)); } };
+  return {
+    solve: input => withInput(input, () => w.solve()),
+    takeHomeAt: (ap, input) => withInput(input, st => { const placed = ap * (1 - st.wontPlace), level = w.tierFor(placed);
+      return {net: w.ADVANCE_PCT * placed * w.blendedRateAt(level) - st.leadPct * ap, level, placed}; }),
+    bonus: v => w.producerBonus(v), nextLevel: v => w.nextTier(v), monthsLeftInYear: () => w.monthsLeftInYear(),
+    defaults: {avgAP:1500, wontPlace:w.state.wontPlace, leadPct:w.state.leadPct, reservePct:w.state.reservePct, advancePct:w.ADVANCE_PCT},
+    products: Object.entries(INC_TYPES).map(([key, label]) => ({key, label}))
+  };
+}
+function bootEngine(){
+  if(ENGINE || !TOOLS || !TOOLS.income) return;
+  const f = document.createElement("iframe");
+  f.hidden = true; f.setAttribute("aria-hidden","true");
+  f.addEventListener("load", () => { try{ const w = f.contentWindow;
+    ENGINE = w.IncomeAPI ? w.IncomeAPI : typeof w.solve === "function" ? legacyEngine(w) : null;
+    if(ENGINE){ if(STEPS[S.cur]?.calc === "income") render(); else runIncome(); } }catch(e){} });
+  f.srcdoc = new TextDecoder("utf-8").decode(Uint8Array.from(atob(TOOLS.income), c => c.charCodeAt(0)));
+  document.body.appendChild(f);
+}
+const INC_TYPES = {WholeLife:"Whole life / final expense", IUL:"IUL", Term:"Term", mix:"A mix of all three"};
+const incProducts = () => (ENGINE && ENGINE.products) || Object.entries(INC_TYPES).map(([key, label]) => ({key, label}));
+const incLabel = k => (incProducts().find(p => p.key === k) || {label:k}).label;
+const incState = () => ({goal:10000, period:"month", type:"WholeLife", avg:1500, unit:null, ...(S.inc||{})});
+const incInput = () => { const i = incState(); return {goal:+i.goal || 0, period:i.period, product:i.type, avgAP:+i.avg || 1500}; };
+function solveWith(over){
+  const input = {...incInput(), ...(over||{})}, r = ENGINE.solve(input);
+  r.avg = input.avgAP; return r;
+}
+/* take-home for a given monthly premium, using the engine's own ladder and rates */
+function netAt(ap, over){ return ENGINE.takeHomeAt(ap, {...incInput(), ...(over||{})}); }
+const RECRUITS = 3, OVERRIDE = 0.10;
+function incomeCalcHTML(){
+  const inc = incState();
+  const seg = (v, l) => `<button type="button" data-period="${v}" aria-pressed="${inc.period===v}">${l}</button>`;
+  return `<div class="ic">
+    <div class="ic-in">
+      <label for="incGoal">I want to take home</label>
+      <div class="ic-row"><div class="inbox ic-money"><span>$</span><input id="incGoal" data-inc="goal" type="text" inputmode="numeric" value="${esc(commas(inc.goal))}"></div>
+      <div class="seg" role="group" aria-label="Goal period">${seg("month","a month")}${seg("year","a year")}${seg("restofyear","rest of this year")}</div></div>
+      <details class="own"><summary>What you sell and your average policy</summary><div class="fields">
+        <div class="fld"><label for="incType">What you sell</label><select id="incType" data-inc="type">${incProducts().map(({key:k,label:l})=>`<option value="${k}"${inc.type===k?" selected":""}>${l}</option>`).join("")}</select></div>
+        <div class="fld"><label for="incAvg">Average policy (annual premium)</label><div class="inbox"><span>$</span><input id="incAvg" data-inc="avg" type="text" inputmode="numeric" value="${esc(commas(inc.avg))}"></div></div>
+      </div></details>
+    </div>
+    <div id="icOut"><p class="need">Loading the calculator…</p></div>
+  </div>`;
+}
+function runIncome(){
+  const el = $("#icOut"); if(!el) return;
+  if(!ENGINE){ bootEngine(); return; }
+  const inc = incState(), r = solveWith();
+  if(!r.ap){ el.innerHTML = `<p class="need">Type the take-home you want above.</p>`; return; }
+  const wk = 4.33, deals = r.ap / r.avg;
+  /* carry forward */
+  Object.assign(S.plan, {ap:Math.round(r.ap), prem:Math.round(r.avg), goal:Math.round(r.monthlyGoal), ppw:+(deals/wk).toFixed(1)}); save();
+  const unit = inc.unit || (inc.period === "year" ? "year" : "month");
+  const pol = {week:deals/wk, month:deals, year:deals*12}[unit];
+  const apU = {week:r.ap/wk, month:r.ap, year:r.ap*12}[unit];
+  const b = ENGINE.bonus(r.placed);
+  const goalLine = inc.period === "year" ? `${money(inc.goal)} a year</b> (${money(r.monthlyGoal)} a month)<b>`
+    : inc.period === "restofyear" ? `${money(inc.goal)} over the ${ENGINE.monthsLeftInYear().toFixed(1)} months left this year</b> (${money(r.monthlyGoal)} a month)<b>` : `${money(r.monthlyGoal)} a month`;
+  const ut = (v,l) => `<button type="button" data-unit="${v}" aria-pressed="${unit===v}">${l}</button>`;
+  /* the ledger */
+  const D = ENGINE.defaults, pl = 1 - D.wontPlace, notPlaced = r.ap - r.placed;
+  const L = (a, b, c, cls) => `<tr class="${cls||""}"><td>${a}</td><td>${b}</td><td>${c||""}</td></tr>`;
+  /* cash flow: advance net every month, the 25% tail lands 9-11 months later */
+  const bars = []; for(let m=1;m<=12;m++){ let tail = 0; for(let k=0;k<3;k++){ if(m - 9 - k >= 1) tail += r.later/3; } bars.push({m, now:r.net, tail}); }
+  const max = Math.max(...bars.map(x=>x.now+x.tail));
+  /* how to make more: every lever is more production, never less work */
+  const plm = 1 - ENGINE.defaults.wontPlace, more = [];
+  const nt = ENGINE.nextLevel(r.placed);
+  if(nt){
+    const apNext = Math.ceil(nt.v / plm), x = netAt(apNext);
+    more.push({gain:x.net - r.net, title:`Move up to the ${nt.c}% comp level`,
+      text:`Write ${money(apNext - r.ap)} more a month, about ${r1((apNext - r.ap) / r.avg)} more ${(apNext - r.ap) / r.avg < 1.05 ? "policy" : "policies"}, and every policy pays at the higher level.`});
+  }
+  { const extraLeads = r.leadCost * 0.10, apUp = r.ap + extraLeads * 5, x = netAt(apUp);
+    more.push({gain:x.net - r.net, title:"Grow your lead spend 10%",
+      text:`About ${money(extraLeads / wk)} more a week in leads. At the Winning System's 5x, that's ${money(apUp - r.ap)} more premium a month${x.level > r.level ? `, and it moves you to the ${x.level}% comp level` : ""}.`}); }
+  { const x = netAt(r.ap / r.avg * (r.avg + 250));
+    more.push({gain:x.net - r.net, title:`Write ${money(deals * 250)} more premium a month`,
+      text:`Same ${r1(deals / wk)} policies a week, each one ${money(250)} bigger in annual premium.`}); }
+  { const ov = RECRUITS * r.ap * OVERRIDE;
+    more.push({gain:ov, title:`Recruit ${RECRUITS} agents to do what you're doing`, recruit:true,
+      text:`Three agents writing ${money(r.ap)} a month each, at a ${Math.round(OVERRIDE*100)}% override on their production.`}); }
+  more.sort((a,b) => b.gain - a.gain);
+  el.innerHTML = `
+  <div class="story">
+    <p class="s1">To take home <b>${goalLine}</b>, you'll write</p>
+    <p class="hero">${money(r.ap)} <small>in annual premium a month</small></p>
+    <p>That production puts you at the <b>${r.level}% comp level</b>.</p>
+    <p>${b.bonus > 0 ? `<b>The good news:</b> at that level you also earn a <b>${money(b.bonus)} producer bonus</b> every month, on top. That's ${money(b.bonus*12)} a year.${b.next ? ` Reach ${money(b.next[0])} a month and it becomes ${money(b.next[1])}.` : ""}`
+      : `<b>The good news:</b> you're only ${money(20000 - r.placed)} a month from your first producer bonus, ${money(650)} a month on top at $20,000 placed.`}</p>
+    <div class="polrow"><p><b>And that's only ${unit==="year"?Math.round(pol):r1(pol)} ${pol===1?"policy":"policies"}</b> a ${unit}, about ${money(apU)} in premium.</p>
+      <div class="seg small" role="group" aria-label="Show per">${ut("week","week")}${ut("month","month")}${ut("year","year")}</div></div>
+  </div>
+  <div class="block"><h2>Now let's break that down</h2>
+    <table class="ledger"><tbody>
+      ${L("Premium you write", money(r.ap), "", "top")}
+      ${L("Doesn't place", "−"+money(notPlaced), `About ${Math.round((1-pl)*100)}% of what you write won't issue`)}
+      ${L("Placed premium", money(r.placed), "", "sub")}
+      ${L("× your payout rate", `${(r.rate*100).toFixed(1)}%`, `What ${incLabel(inc.type).toLowerCase()} pays at the ${r.level}% comp level`)}
+      ${L("Commission you earn", money(r.comm), "Everything this month's business pays you", "sub")}
+      ${L("Banked for later", "−"+money(r.later), `The 25% tail, paid about ${money(r.later/3)} a month in months 10, 11 and 12`)}
+      ${L("Paid to you now", money(r.advance), "The 75% advance", "sub")}
+      ${L("Lead spend", "−"+money(r.leadCost), `${Math.round(ENGINE.defaults.leadPct*100)}% of premium, about ${money(r.leadCost/wk)} a week`)}
+      ${L("Your take-home", money(r.net), "", "total")}
+      ${L("Hold in reserve", money(r.reserve), `${Math.round(ENGINE.defaults.reservePct*100)}% of take-home, set aside for chargebacks`, "note")}
+      ${b.bonus ? L("Producer bonus, on top", "+"+money(b.bonus), "Paid on placed volume", "note") : ""}
+    </tbody></table>
+  </div>
+  <div class="block"><h2>Your cash flow</h2>
+    <div class="bars">${bars.map(x=>`<div class="bcol"><span class="bamt">${money(x.now+x.tail)}</span><div class="bstack" style="height:${Math.max(4,(x.now+x.tail)/max*100)}%"><i class="btail" style="flex:${x.tail}"></i><i class="bnow" style="flex:${x.now}"></i></div><span class="bm">${x.m}</span></div>`).join("")}</div>
+    <p class="fine"><span class="lg now"></span> Take-home from each month's advances <span class="lg tail"></span> The banked 25% tail arriving. The tail starts in month 10. Keep writing at this pace and from month 12 on you take home about ${money(r.net + r.later)} a month.</p>
+  </div>
+  <div class="block"><h2>How to make more</h2><ul class="levers">${more.map(x=>`<li><span class="gain">+${money(x.gain)} <small>a month</small></span><div><b>${x.title}</b><span>${x.text}${x.recruit ? ` <a href="${PLANNING_SRC}#agencybuild" target="_blank" rel="noopener">Build it out in the Agency Builder ↗</a>` : ""}</span></div></li>`).join("")}</ul>
+  <p class="fine">Extra take-home a month on top of your goal, worked out with the same numbers as above. The override is an illustration; what you earn depends on your contract and theirs.</p></div>
+  <p class="carried"><b>Next:</b> ${money(r.ap)} a month and your ${money(r.avg)} average policy carry straight into your week.</p>`;
+}
+
+/* ---------- compact activity planner ----------
+   Same formulas and starting ratios as the Activity Planner (tools/activity-planner.html):
+   dials per contact 50, contact to presentation 20%, close 25%, 20 s a dial,
+   5 min a contact, 30 min a presentation, 60 min a sale, 6 days, 10 hours.
+   Success Plan defaults (Jesse, 3 Oct): 2 weeks off, 1 hour of admin, 10-hour days, 15 s a dial. */
+const ACT0 = {d2c:50, c2p:20, close:25, days:6, weeksOff:2, hours:10, admin:1, sec:15, mode:"phone", unit:"day"};
+const actState = () => ({...ACT0, ...(S.act||{})});
+function actRun(a, ap, prem){
+  const weeks = 52 - a.weeksOff;
+  const salesWk = ap * 12 / prem / weeks;
+  const presWk = salesWk / (a.close/100), contWk = presWk / (a.c2p/100), dialWk = contWk * a.d2c;
+  const per = d => ({week:d, day:d / a.days, month:d * weeks / 12, year:d * weeks});
+  const mC = 5, mP = 30, mS = 60;   /* everyone sells by phone or Zoom */
+  const day = {dials:dialWk/a.days, cont:contWk/a.days, pres:presWk/a.days, sales:salesWk/a.days};
+  const talkMin = Math.max(0, day.cont - day.pres) * mC + Math.max(0, day.pres - day.sales) * mP + day.sales * mS;
+  const dialMin = day.dials * a.sec / 60, adminMin = a.admin * 60;
+  const needMin = talkMin + dialMin + adminMin, availMin = a.hours * 60;
+  return {weeks, salesWk, dial:per(dialWk), cont:per(contWk), pres:per(presWk), sales:per(salesWk), day, talkMin, dialMin, adminMin, needMin, availMin};
+}
+function leadQuestions(){
+  return [
+    {q:"How are you going to reach your goal?", path:true,
+     r:[{t:"Start with the Winning System and scale up", msg:"<b>Smart start.</b> You risk $500 once, learn on aged leads, and let the business pay for every buy after that."},
+        {t:"Go straight in and buy what my goal needs from week one", msg:"<b>Full speed.</b> You front the first week's buy yourself. Work every lead hard, because you're paying for skill you're still building."}]},
+    {q:"Aged leads run about $1 to $3 each. Fresh leads run about $25 to $45. Why does a new agent typically start on aged leads?",
+     o:["Aged leads close better than fresh ones","While you're still building your skill, it's smarter to practice on less expensive leads","Fresh leads don't work for new agents","Aged leads don't need follow-up"], a:1,
+     why:"Your first hundred conversations are practice. Make them on $3 leads, not $35 ones. Once your script is sharp, every new dollar goes into fresh."},
+    {q:"True or false: the more you spend on leads, the more you make.",
+     o:["True, always","True, but only if you work every lead you buy: call, follow up, and keep calling","False, leads don't matter","True, but only with fresh leads"], a:1,
+     why:"A lead you don't call is money spent, not money made. Spend only what you'll work, and work everything you spend."},
+    {q:"Your deposit on a sale is an advance. What happens if the policy lapses early?",
+     o:["Nothing, it's yours","The carrier charges back what you haven't earned yet","You get a bonus","The lead company refunds you"], a:1,
+     why:"An advance is paid before you've earned it. Place policies that fit and follow up, so the money stays yours."}
+  ];
+}
+function weekQuestions(){
+  const ap = num(S.plan.ap), inc = incState();
+  const x = ap ? actRun(actState(), ap, num(S.plan.prem) || 1500) : null;
+  const goal = inc.period === "year" ? `${money(inc.goal)} a year` : S.plan.goal ? `${money(S.plan.goal)} a month` : "your goal";
+  const dials = x ? Math.ceil(x.day.dials).toLocaleString("en-US") : "your";
+  const qs = [{
+    q:`When you think about reaching ${goal} by making ${dials} dials a day, can you see yourself doing it?`,
+    r:[
+      {t:"100%. Let's go.", msg:"<b>Yes! That's the energy.</b> Let's build the rest of your plan."},
+      {t:"I think so. I'm working on believing it.", msg:"<b>Great. Belief is a skill.</b> Focus on your mindset, reread your why every morning, and let your numbers prove it to you."},
+      {t:"Not yet. I can't picture it right now.", tone:"soft", msg:"<b>That's honest, and that's fine.</b> Keep going, and make this the first thing you talk through with your mentor."},
+      {t:"No. I could never work that hard.", tone:"soft", msg:"<b>Then sit down with your mentor before you go further.</b> Use the sliders above to find a plan you can run. Every version takes real work, and if none of them feels doable, this business may not be the right fit."}
+    ]
+  }];
+  if(x && x.needMin > x.availMin * 1.15) qs.push({
+    q:"Your plan above says Not realistic. What will you do about it?",
+    r:[
+      {t:"Adjust my numbers with the sliders until it says Realistic", msg:"<b>Right move.</b> Work the sliders and your week until the badge turns green. That's the plan you can actually run."},
+      {t:"Work with my mentor to make it work", msg:"<b>Good call.</b> Bring this page to your mentor and build the week together."},
+      {t:"Build an agency so I'm not the only one producing", msg:`<b>That's how big goals get hit.</b> <a href="${PLANNING_SRC}#agencybuild" target="_blank" rel="noopener">Open the Agency Builder ↗</a> to see what a team adds.`},
+      {t:"Ignore it and dial harder", ok:false, msg:"<b>A plan you can't keep is a plan you'll quit.</b> Pick another answer, then use the sliders to build a week you can run."}
+    ]
+  });
+  return qs;
+}
+function weekHTML(){
+  const a = actState();
+  const sl = (k, label, min, max, step, suffix, note) => `<div class="sl"><div class="slh"><label for="a-${k}">${label}</label><output id="o-${k}">${a[k]}${suffix}</output></div>
+    <input type="range" id="a-${k}" data-act="${k}" min="${min}" max="${max}" step="${step}" value="${a[k]}" data-suffix="${suffix}">${note?`<small>${note}</small>`:""}</div>`;
+  const nb = (k, label, suffix) => `<div class="fld"><label for="a-${k}">${label}</label><div class="inbox"><input id="a-${k}" data-act="${k}" type="text" inputmode="numeric" value="${a[k]}">${suffix?`<span>${suffix}</span>`:""}</div></div>`;
+  return `${S.plan.ap ? "" : `<div class="fields">${fieldHTML({k:"ap", label:"Monthly production goal (annual premium)", pre:"$", ph:"24,000"})}</div>`}
+  <div id="wkRecap"></div>
+  <div id="wkHead"></div>
+  <div class="wk">
+    <div class="wk-in">
+      <h3>Your numbers</h3>
+      ${sl("d2c","Dials to reach one person",10,150,1,"","Fresher leads take fewer dials.")}
+      ${sl("c2p","Conversations that become a presentation",5,80,1,"%")}
+      ${sl("close","Presentations that close",5,80,1,"%")}
+      <p class="fine">Starting numbers from the Activity Planner. Swap in your own from the last 30 days as soon as you have them.</p>
+      <h3>Your week</h3>
+      <div class="fields three">${nb("days","Days a week")}${nb("weeksOff","Weeks off a year")}${nb("hours","Hours a day","hrs")}${nb("admin","Admin a day","hrs")}${nb("sec","Seconds a dial","sec")}</div>
+      <p class="fine">Admin covers apps, follow-up and underwriting calls. A power dialer clears most no-answers in 20 to 35 seconds.</p>
+      <button type="button" class="linkbtn" id="actReset">Reset to starting numbers</button>
+    </div>
+    <div class="wk-out" id="wkOut"></div>
+  </div>
+  <div id="wkMore"></div>`;
+}
+function runWeek(){
+  const out = $("#wkOut"); if(!out) return;
+  const ap = num(S.plan.ap), prem = num(S.plan.prem) || 1500, a = actState();
+  if(!ap){ $("#wkRecap").innerHTML = ""; $("#wkHead").innerHTML = ""; out.innerHTML = `<p class="need">Set your income goal in step ${stepNo("income")}, or type your monthly production above.</p>`; $("#wkMore").innerHTML = ""; return; }
+  const x = actRun(a, ap, prem), inc = incState();
+  /* recap: production from the top down to one day */
+  const yr = ap * 12, wkAP = yr / x.weeks, dayAP = wkAP / a.days;
+  const tile = (v, l, key) => `<div class="num${key?" key":""}"><b>${v}</b><span>${l}</span></div>`;
+  $("#wkRecap").innerHTML = `<div class="block"><h2>To recap, your production</h2><div class="nums ladder">
+    ${inc.period === "year" ? tile(money(yr), "a year") : ""}${tile(money(ap), "a month", inc.period !== "year")}${tile(money(wkAP), "a week")}${tile(money(dayAP), "a day", true)}${inc.period === "year" ? "" : tile(money(yr), "a year")}
+  </div><div class="persp"><p><b>${money(dayAP)} a day</b> in annual premium is just <b>one client paying ${money(dayAP/12)} a month.</b></p><p>When you put it in perspective, you can see how reachable your goal really is.</p><small>Over ${x.weeks} working weeks, ${a.days} days a week.</small></div></div>`;
+  /* verdict: same thresholds as the Activity Planner, plus admin time */
+  const red = x.needMin > x.availMin * 1.15, amber = !red && x.needMin > x.availMin;
+  const v = red ? ["vr","Not realistic yet"] : amber ? ["va","Stretch"] : ["vg","Realistic"];
+  const hh = m => (m/60).toFixed(1);
+  const goalTxt = inc.period === "year" ? `${money(inc.goal)} a year` : `${money(S.plan.goal || 0)} a month`;
+  const reasons = [
+    `${hh(x.needMin)} hours a day against the ${a.hours} you work. ${red||amber ? "" : `That leaves ${hh(x.availMin - x.needMin)} hours of room.`}`,
+    `${r1(x.day.pres)} presentations a day${x.day.pres > 5 ? ", which is a full calendar" : " fits a normal calendar"}.`,
+    `${Math.ceil(x.day.dials/((60*a.hours - x.talkMin - x.adminMin)/60)||0).toLocaleString("en-US")} dials an hour in your dialing time.`
+  ];
+  $("#wkHead").innerHTML = `<div class="headline ${v[0]}"><div><p class="hl"><b>${Math.ceil(x.day.dials).toLocaleString("en-US")} dials a day</b> gets you ${S.plan.goal ? goalTxt : "your goal"}.</p>
+    <ul>${reasons.map(r=>`<li>${r}</li>`).join("")}</ul></div>${red ? `<a class="badge fixlink" href="#fixit">${v[1]} <span aria-hidden="true">↓</span> Fix it</a>` : `<span class="badge">${v[1]}</span>`}</div>
+  ${red ? `<div class="fixit" id="fixit"><h3><span class="fixarrow" aria-hidden="true">↓</span> This plan won't fit your day yet. Let's fix it.</h3>
+    <p>A plan you can't run is a plan to fail. Use <b>Your numbers</b> and <b>Your week</b> below until the badge says Realistic:</p>
+    <ul><li><b>Reach more people per dial:</b> slide <i>Dials to reach one person</i> to the left</li><li><b>Turn more conversations into presentations:</b> slide that percentage to the right</li><li><b>Close more of your presentations:</b> slide that percentage to the right</li><li><b>Flex your workday:</b> add hours or another day under <i>Your week</i></li></ul>
+    <p class="howto">Every slider updates this page live. Keep adjusting until the badge at the top says <b>Realistic</b>.</p></div>`
+  : amber ? `<p class="tight"><b>A little tight.</b> Nudge one slider below or add an hour, and it fits.</p>` : ""}`;
+  /* the chain, top to bottom */
+  const u = a.unit, uL = {day:"Per day", week:"Per week", month:"Per month"};
+  const rows = [
+    ["Dials", x.dial, `${a.d2c} dials to reach one person`],
+    ["Conversations", x.cont, `${a.c2p}% become a presentation`],
+    ["Presentations", x.pres, `${a.close}% close`],
+    ["Policies written", x.sales, `${money(prem)} average premium`, true]
+  ];
+  const bar = (m, total) => `${Math.max(0, m/total*100)}%`;
+  const scale = Math.max(12*60, x.needMin, x.availMin);
+  out.innerHTML = `<div class="chain"><div class="chainh"><h3>From dial to policy</h3><div class="seg small" role="group" aria-label="Show per">${["day","week","month"].map(k=>`<button type="button" data-aunit="${k}" aria-pressed="${u===k}">${uL[k]}</button>`).join("")}</div></div>
+    ${rows.map(([n, r, note, key])=>`<div class="crow${key?" key":""}"><div><b>${n}</b><small>${note}</small></div><span>${n === "Dials" ? Math.ceil(r[u]).toLocaleString("en-US") : r1(r[u])}</span></div>`).join("")}</div>
+  <div class="workday"><h3>A typical workday <span>${hh(x.needMin)} of ${a.hours} hrs</span></h3>
+    <div class="wbar"><i class="wd" style="width:${bar(x.dialMin, scale)}"></i><i class="wt" style="width:${bar(x.talkMin, scale)}"></i><i class="wa" style="width:${bar(x.adminMin, scale)}"></i><em style="left:${bar(x.availMin, scale)}">${a.hours} hrs</em></div>
+    <p class="fine"><span class="lg wd"></span> Dialing ${hh(x.dialMin)} hrs <span class="lg wt"></span> Conversations and appointments ${hh(x.talkMin)} hrs <span class="lg wa"></span> Admin ${hh(x.adminMin)} hrs</p></div>
+  ${red ? `<div class="bigg"><div><b>It looks like you have big goals.</b><span>One of the fastest ways to get there is to build an agency alongside your own production, so you're not the only one dialing.</span></div><a class="btn btn-gold" href="${PLANNING_SRC}#agencybuild" target="_blank" rel="noopener">Open the Agency Builder ↗</a></div>` : ""}
+`;
+  /* how to make more: same dials, better skills */
+  let more = "";
+  if(ENGINE){
+    const base = netAt(ap).net;
+    const lv = [
+      ["Close 5 more in every 100 presentations", ap * (a.close + 5) / a.close],
+      ["Turn 5 more conversations in 100 into presentations", ap * (a.c2p + 5) / a.c2p],
+      [`Reach someone every ${Math.max(1, a.d2c - 10)} dials instead of ${a.d2c}`, ap * a.d2c / Math.max(1, a.d2c - 10)]
+    ].map(([label, ap2]) => ({label, gain:netAt(ap2).net - base, ap2})).sort((p,q) => q.gain - p.gain);
+    more = `<div class="block"><h2>How to make more</h2><ul class="levers">${lv.map(l=>`<li><span class="gain">+${money(l.gain)} <small>a month</small></span><div><b>${l.label}</b><span>Same ${Math.ceil(x.day.dials).toLocaleString("en-US")} dials a day, ${money(l.ap2 - ap)} more premium a month.</span></div></li>`).join("")}</ul><p class="fine">Skills, not hours. Each one is extra take-home on top of your goal.</p></div>`;
+  }
+  $("#wkMore").innerHTML = more;
+  if(STEPS[S.cur]?.id === "week" && $("#stage").querySelector(":scope > .check")){ refreshPassed(STEPS[S.cur]); save(); partialRender(); }
+}
+
+function fieldHTML(f){
+  const v = S.plan[f.k] ?? "";
+  return `<div class="fld"><label for="f-${f.k}">${f.label}</label>
+    <div class="inbox">${f.pre?`<span>${f.pre}</span>`:""}<input id="f-${f.k}" data-plan="${f.k}" type="text" inputmode="decimal" placeholder="${esc(f.ph||"")}" value="${esc(commas(v))}">${f.post?`<span>${f.post}</span>`:""}</div>
+    ${f.note?`<small>${f.note}</small>`:""}</div>`;
+}
+function ownNumbersHTML(){
+  return `<details class="own"><summary>Use my own numbers</summary><div class="fields">
+    ${fieldHTML({k:"roi", label:"Return on lead spend, months 1 to 3", post:"x", ph:String(SZ.roi), note:"Premium written for every $1 of leads."})}
+    ${fieldHTML({k:"roi2", label:"Return from month 4 on", post:"x", ph:String(SZ.roi2), note:"Once your close has improved."})}
+    ${fieldHTML({k:"aP", label:"Aged lead price", pre:"$", ph:String(SZ.aP)})}
+    ${fieldHTML({k:"fP", label:"Fresh lead price", pre:"$", ph:String(SZ.fP)})}
+    ${fieldHTML({k:"ct", label:"Your commission level", post:"%", ph:String(SZ.ct)})}
+    ${fieldHTML({k:"adv", label:"Advance", post:"%", ph:String(SZ.adv)})}
+  </div><p class="fine">After 30 days, put in your own return: premium written divided by what you spent on leads.</p></details>`;
+}
+const SZ_NOTE = `<p class="fine">Winning System planning figures: every $1 of leads writes about $5 in annual premium (a 5x return), so $500 a week of leads becomes $2,500 a week written. From month 4 the plan assumes a 7x return, because three consistent months have raised your close. Each sale pays premium × 90% commission × 75% advance, deposited the same week. We plan with aged leads at $3 and fresh at $25. Deposits are advances: a policy that lapses inside the chargeback window is taken back. These are planning numbers, not a promise.</p>`;
+
+function goalFieldHTML(){
+  return S.plan.ap ? "" : `<div class="fields">${fieldHTML({k:"ap", label:"Monthly production goal (AP)", pre:"$", ph:"10,000", note:`Fills in from the Income Calculator in step ${stepNo("income")}.`})}</div>`;
+}
+function leadsCalcHTML(){
+  return `<div class="calc">${goalFieldHTML()}<div id="leadOut"></div>${ownNumbersHTML()}${SZ_NOTE}</div>`;
+}
+function runLeads(){
+  const el = $("#leadOut"); if(!el) return;
+  const p = planNumbers(), z = p.z;
+  if(!p.ap){ el.innerHTML = `<p class="need">Set your goal in step ${stepNo("income")}, or type your monthly production goal above.</p>`; return; }
+  const aged = week(p.salesWk * z.aL * z.aP, 0, z), fresh = week(0, p.salesWk * z.fL * z.fP, z), mix = mixFor(p.salesWk, z);
+  const card = (name, w, why, on) => `<div class="tier${on?" goal":""}"><h3>${name}</h3>
+    <div class="big">${Math.ceil(w.leads).toLocaleString("en-US")} <small>leads / week</small></div>
+    <ul><li><b>${money(w.spend)}</b> a week in leads</li><li><b>${r1(w.pres)}</b> presentations, <b>${r1(w.sales)}</b> sales</li>${w.aged&&w.fresh?`<li>${Math.ceil(w.aLeads)} aged + ${Math.ceil(w.fLeads)} fresh</li>`:""}</ul>
+    <p class="why">${why}</p></div>`;
+  el.innerHTML = `<p class="need">Your goal: <b>${money(p.ap)}</b> a month in production is about <b>${r1(p.salesWk)} sales a week</b> at a ${money(z.prem)} average premium.</p>
+  <div class="tiers">
+    ${card("All aged", aged, "Cheapest per lead. Hundreds of dials, which is where you learn the script.")}
+    ${card("All fresh", fresh, "Real-time leads. Fewer dials, more presentations per lead.")}
+    ${card("Winning System mix", mix, "Aged held at $500 a week for volume, the rest in fresh. This is how the system scales.", true)}
+  </div>`;
+}
+
+function spendCalcHTML(){
+  return `<div class="calc">${goalFieldHTML()}<div id="tierOut"></div>${SZ_NOTE}
+    <div class="nav"><span class="fine">Copy your whole plan to paste into your notes or text to your upline.</span><span><span class="copied" id="copied"></span> <button class="btn btn-ghost" type="button" id="copyPlan">Copy my plan</button></span></div>
+  </div>`;
+}
+function rampTable(rows){
+  return `<div class="tablewrap"><table class="ramp"><thead><tr><th>Month</th><th>Lead spend / week</th><th>Leads / week</th><th>Return</th><th>Premium written</th><th>Deposits</th><th>Business profit</th></tr></thead><tbody>
+  ${rows.map(r=>`<tr class="${r.goalMonth?"goalrow":""}"><td>${r.m}${r.goalMonth?`<small>${r.m===1?"your goal":"ramped to your goal"}</small>`:""}</td><td>${money(r.spend)}<small>${r.fresh?`${money(r.aged)} aged + ${money(r.fresh)} fresh`:"aged"}</small></td><td>${Math.round(r.leads).toLocaleString("en-US")}</td><td>${r.roi}x</td><td>${money(r.ap)}</td><td>${money(r.dep)}</td><td class="pos">+${money(r.profit)}</td></tr>`).join("")}
+  </tbody></table></div>`;
+}
+function runSpend(){
+  const el = $("#tierOut"); if(!el) return;
+  const p = planNumbers(), z = p.z;
+  if(!p.ap){ el.innerHTML = `<p class="need">Set your goal in step ${stepNo("income")}, or type your monthly production goal above.</p>`; return; }
+  const rows = wsRamp(p.ap, z), last = rows[rows.length-1], st = straightPlan(p.ap, z);
+  const ch = S.plan.choice === "straight" ? "straight" : "scale";
+  const ways = [["aged", "Cheapest per lead. Hundreds of dials, which is where you build your skill."],
+                ["fresh", "Real-time leads. Fewer dials, more presentations per lead."],
+                ["mix", "Aged held at $500 a week for volume, the rest in fresh. The one we recommend."]];
+  const small = p.ap <= SZ.line;
+  el.innerHTML = `<p class="need">Your goal: <b>${money(p.ap)}</b> a month in production, about <b>${r1(p.salesWk)} sales a week</b> at a ${money(z.prem)} average policy.</p>
+  ${small ? `<p class="carried"><b>Good news:</b> your goal fits inside the first month of the Winning System. Either path starts you at about ${money(st.spend)} a week.</p>`
+          : p.ap > 30000 ? `<p class="bigtxt"><b>You have bigger goals than the 90-day ramp.</b> The Winning System takes you to $30,000 a month in 90 days. Month 4 ramps you up to your ${money(p.ap)}. Or go straight to what your goal needs from week one.</p>` : ""}
+  <div class="tiers two">
+    <button type="button" class="tier pick${ch==="scale"?" goal":""}" data-choice="scale"><span class="path">Path 1</span><h3>The Winning System</h3>
+      <div class="big">$500 <small>of your own money, ever</small></div>
+      <ul><li>$10K, then $20K, then $30K a month</li><li>Start at <b>$500</b> a week of aged leads, add <b>$500 of fresh</b> each month</li><li>At your goal in month <b>${last.m}</b></li></ul>
+      <p class="why">Learn on aged leads, let the business fund every buy after week 1, and grow into your goal.</p></button>
+    <button type="button" class="tier pick${ch==="straight"?" goal":""}" data-choice="straight"><span class="path">Path 2</span><h3>Straight to your goal</h3>
+      <div class="big">${money(st.spend)} <small>a week from week 1</small></div>
+      <ul><li>About <b>${Math.round(st.leads).toLocaleString("en-US")}</b> leads a week</li><li>Your money: <b>${money(st.spend)}</b> up front</li><li>At your goal in month 1</li></ul>
+      <p class="why">What your goal takes from day one at a 5x return. Fastest, and you front the first week's full buy.</p></button>
+  </div>
+  ${ch === "scale"
+    ? `<div class="block"><h2>Your Winning System ramp</h2>${rampTable(rows)}
+       <p class="fine">${last.m > 3 ? `Months 1 to 3 are the Winning System. Month 4 ramps you up to your goal at a ${z.roi2}x return, which assumes three consistent months have raised your close. ` : ""}Business profit is cumulative: deposits minus lead spend, ${money(last.profit)} by month ${last.m}. Your own money: $500, once.</p></div>`
+    : `<div class="block"><h2>Pick how you'll spend ${money(st.spend)} a week</h2><div class="tiers">
+        ${ways.map(([k, why]) => { const w = straightPlan(p.ap, z, k); return `<button type="button" class="tier pick${st.kind===k?" goal":""}" data-mix="${k}"><h3>${MIXES[k]}</h3><div class="big">${Math.round(w.leads).toLocaleString("en-US")} <small>leads a week</small></div><p class="why">${why}</p></button>`; }).join("")}
+      </div></div><div class="block"><h2>Your first month: ${MIXES[st.kind].toLowerCase()}</h2>${rampTable([st])}</div>`}
+  ${ownNumbersHTML()}`;
+}
+function planText(){
+  const p = planNumbers(), z = p.z;
+  const lines = ["My Optimum Success Plan"];
+  if((S.why?.main||"").trim()) lines.push(`My why: ${S.why.main.trim()}`);
+  if(p.goal) lines.push(`Take-home goal: ${money(p.goal)} a month`);
+  if(p.ap) lines.push(`Production goal: ${money(p.ap)} a month (about ${r1(p.salesWk)} sales a week)`);
+  if(p.ap){
+    if(S.plan.choice === "straight"){ const s = straightPlan(p.ap, z); lines.push(`Straight to my goal, ${MIXES[s.kind].toLowerCase()}: ${money(s.spend)} a week in leads (${buyText(s)}), about ${Math.round(s.leads)} leads, ${money(s.ap)} written a month`); }
+    else { lines.push("The Winning System:"); wsRamp(p.ap, z).forEach(r => lines.push(`Month ${r.m}${r.goalMonth && r.m > 3 ? " (ramped to my goal)" : ""}: ${money(r.spend)} a week in leads, ${money(r.ap)} written, +${money(r.profit)} business profit`)); }
+  }
+  lines.push("Every call: the Script Navigator and the Product Wizard, plus great customer service to keep every policy on the books.");
+  return lines.join("\n");
+}
+
+/* ---------- embedded planning tools ----------
+   The Income Calculator, Activity Planner and Commission Estimator run inside
+   this page, loaded from the live planning page (no copies). This page offers
+   the same two things the planning shell does - window.go(view) and
+   window.__actHandoff - so the tools' own buttons and handoffs just work. */
+const PLANNING_SRC = /(^|\.)ffloptimum\.com$/.test(location.hostname) ? "https://tools.ffloptimum.com/planning/" : "../site/planning/";
+const VIEW_TITLES = {income:"Income Calculator", activity:"Activity Planner", commission:"Commission Estimator"};
+let TOOLS = null;
+window.__actHandoff = null;
+(function loadTools(){
+  const f = document.createElement("iframe");
+  f.hidden = true; f.setAttribute("aria-hidden","true"); f.src = PLANNING_SRC;
+  f.addEventListener("load", () => { try{ TOOLS = f.contentWindow.TOOLS || null; }catch(e){ TOOLS = null; } if(TOOLS){ bootEngine(); render(); } });
+  document.body.appendChild(f);
+})();
+const VIEW_STEP = {income:"income", activity:"week", commission:"pay"};
+window.go = function(view){
+  if(view === "agencybuild" || view === "home"){ window.open(PLANNING_SRC + "#" + view, "_blank", "noopener"); return; }
+  const h = window.__actHandoff;
+  if(h && +h.ap > 0){ S.plan.ap = Math.round(+h.ap); if(+h.prem > 0) S.plan.prem = Math.round(+h.prem); save(); }
+  const i = STEPS.findIndex(s => s.id === VIEW_STEP[view]);
+  if(i < 0) return;
+  if(i <= unlockedUpTo()){ goStep(i); return; }
+  const hint = $("#gateHint"), chk = document.querySelector(".check");
+  if(hint){ hint.textContent = "Your numbers are saved. Answer the quick check, then Next carries them into your week."; hint.classList.add("warn"); }
+  chk?.scrollIntoView({behavior:"smooth", block:"center"});
+};
+function embedHTML(s){
+  if(!TOOLS || !TOOLS[s.embed]) return `<div class="open"><p><b>Open ${VIEW_TITLES[s.embed]}</b>Opens in a new tab.</p><a class="btn btn-gold" href="${PLANNING_SRC}#${s.embed}" target="_blank" rel="noopener">Open ${VIEW_TITLES[s.embed]}</a></div>`;
+  return `<div class="toolwrap"><div class="toolbar"><b>${VIEW_TITLES[s.embed]}</b><a href="${PLANNING_SRC}#${s.embed}" target="_blank" rel="noopener">Open full screen ↗</a></div><iframe class="toolframe" id="toolframe" title="${VIEW_TITLES[s.embed]}"></iframe></div>`;
+}
+let sizer = null, reader = null;
+function mountTool(s){
+  clearInterval(sizer); clearInterval(reader);
+  const f = $("#toolframe"); if(!f || !TOOLS) return;
+  if(s.embed === "activity" && S.plan.ap) window.__actHandoff = {ap:S.plan.ap, prem:S.plan.prem || 1500};
+  const bytes = Uint8Array.from(atob(TOOLS[s.embed]), c => c.charCodeAt(0));
+  f.srcdoc = new TextDecoder("utf-8").decode(bytes);
+  sizer = setInterval(() => { try{ const d = f.contentDocument; if(d && d.body){ const h = Math.max(d.body.scrollHeight, d.documentElement.scrollHeight); if(Math.abs(f.offsetHeight - h) > 4) f.style.height = h + "px"; } }catch(e){} }, 400);
+  if(s.live) reader = setInterval(() => readIncome(f), 700);
+}
+function readIncome(f){
+  try{
+    const w = f.contentWindow, d = f.contentDocument; if(!w || !d) return;
+    const txt = id => (d.getElementById(id)?.textContent || "").trim();
+    const next = {
+      ap:   w.__apVal ? Math.round(w.__apVal) : null,
+      prem: w.__premVal ? Math.round(w.__premVal) : null,
+      goal: num(d.getElementById("goal")?.value),
+      ppw:  num(txt("perWeek")),
+      leadWeekCalc: num(txt("leadWeek"))
+    };
+    let changed = false;
+    for(const [k,v] of Object.entries(next)) if(v && S.plan[k] !== v){ S.plan[k] = v; changed = true; }
+    if(changed){ save(); paintLive(true); }
+  }catch(e){}
+}
+function liveHTML(){ return `<div class="block"><h2>Your numbers</h2><div class="live" id="live"></div><p class="fine">Filled in from the calculator as you type. They carry into your week, your leads and your lead budget.</p></div>`; }
+function paintLive(flash){
+  const el = $("#live"); if(!el) return;
+  const p = S.plan;
+  el.innerHTML = [
+    [p.goal ? money(p.goal) : "—", "Take-home goal"],
+    [p.ap ? money(p.ap) : "—", "Premium to write a month", true],
+    [p.ppw ? r1(p.ppw) : "—", "Policies per week"],
+    [p.prem ? money(p.prem) : "—", "Average premium"]
+  ].map(([b,s,k])=>`<div class="num${k?" key":""}${flash?" flash":""}"><b>${b}</b><span>${s}</span></div>`).join("");
+  if(flash) setTimeout(()=>el.querySelectorAll(".flash").forEach(n=>n.classList.remove("flash")), 600);
+}
+
+/* ---------- screens ---------- */
+function welcome(){
+  const total = STEPS.reduce((a,s)=>a+s.mins,0);
+  const parts = Object.entries(PARTS).map(([k,p]) => {
+    const items = STEPS.map((s,i)=>[s,i]).filter(([s])=>s.part===k);
+    return `<div class="part"><h3>Part ${p.n} · ${p.name}</h3><ol class="path">${items.map(([s,i])=>`<li><span class="n">${i+1}</span><span><b>${s.title.replace(/\.$/,"")}</b><small>${stepTool(s)}</small></span><span class="min">${s.mins} min</span></li>`).join("")}</ol></div>`;
+  }).join("");
+  return `
+  <aside class="walk-ad"><div class="poster-mini" aria-hidden="true">${posterHTML()}</div>
+    <div class="wa-head"><span class="k">What you walk away with</span>
+    <p class="big">A clear plan for success, on one page.</p></div>
+    <p class="wa-body">It's worth a few minutes of your time. Put your plan together and you'll walk away with a plan you can print or save to your phone, so it stays at the front of your mind and, quite literally, in front of your eyes. Think of it as a new kind of vision board: your why and your numbers, where you'll see them every day.</p></aside>
+  <div class="eyebrow">Start here</div>
+  <h1>Your path from new agent to your first policy.</h1>
+  <p class="lead">This plan takes you through that process using Optimum's free tools to build your future, and the Winning System to scale your business from day one. Each step tells you exactly what to do, then ends with a quick check. Get it right and the next step opens. Every tool stays in the bar at the top.</p>
+  <div class="parts">${parts}</div>
+  <p class="tip"><b>Before you start:</b> open this on a computer if you can. Your numbers carry from one step to the next, so you never type them twice.</p>
+  <div class="nav"><span class="hint">About ${total} minutes. Stop any time and pick up where you left off.</span><button class="btn btn-main" type="button" data-go="${S.passed.length ? unlockedUpTo() : 0}">${S.passed.length ? "Pick up where I left off" : "Start step 1"}</button></div>`;
+}
+
+function flowHTML(on){
+  return `<div class="flow" aria-label="How a call comes together">${FLOW.map(([b,s],i)=>`<div class="${i===on?"on":""}"><b>${b}</b><span>${s}</span></div>`).join("")}</div>`;
+}
+
+function quizHTML(s){
+  const ans = S.answers[s.id] || {}, qs = qsOf(s);
+  return `<section class="check">
+    <h2>${s.quizTitle || "Quick check"}${qs.length>1?` · ${qs.length} questions`:""}</h2>
+    ${qs.map((q,qi)=>{
+      const pick = ans[qi], opts = q.r ? q.r.map(x=>x.t) : q.o;
+      return `<fieldset class="q" data-q="${qi}"><legend>${q.q}</legend>
+        ${opts.map((o,oi)=>{
+          const good = q.r ? q.r[oi].ok !== false : oi===q.a;
+          const st = pick===oi ? (q.r ? (good?"chosen":"wrong") : (good?"right":"wrong")) : "";
+          return `<label class="opt ${st}"><input type="radio" name="${s.id}-${qi}" value="${oi}" ${pick===oi?"checked":""}><span>${o}</span></label>`;
+        }).join("")}
+        ${pick===undefined ? "" : q.r
+          ? `<p class="fb ${q.r[pick].ok===false?"wrong":q.r[pick].tone||"right"}">${q.r[pick].msg}</p>`
+          : pick===q.a ? `<p class="fb right"><b>That's it.</b> ${q.why}</p>` : `<p class="fb wrong"><b>Not quite. Try another answer.</b></p>`}
+      </fieldset>`;
+    }).join("")}
+  </section>`;
+}
+/* what GOAT sets up: real screenshots of Jesse's own pages, as examples */
+const STOREFRONT = [
+  ["goat-website.jpg", "Agent website", "left top", "Your photo, bio, carriers and state licenses pulled from NIPR, so a client can check you out before they buy."],
+  ["goat-card.jpg", "Digital business card", "center top", "One tap saves your name, direct line and NPN to the client's phone, and shows you're verified and licensed."],
+  ["goat-calendar.jpg", "Booking calendar", "left top", "A link clients use to grab a time with you. No back-and-forth texting."],
+  ["goat-funnel.jpg", "Free sales funnels", "center top", "Ready-made product pages, like final expense, where a client can request a quote from you directly."]
+];
+function storefrontHTML(){
+  return `<div class="store">${STOREFRONT.map(([img, name, pos, text]) => `<figure>
+    <a class="shot" href="img/${img}" target="_blank" rel="noopener" title="See the full ${name.toLowerCase()}"><img src="img/${img}" alt="Example ${name.toLowerCase()}" loading="lazy" style="object-position:${pos}"></a>
+    <figcaption><b>${name}</b>${text}</figcaption></figure>`).join("")}</div>
+  <p class="fine">Examples from a real Optimum agent's GOAT pages. Yours carry your name, photo and licenses. Click one to see it full size.</p>`;
+}
+function whyHTML(s){
+  const w = S.why || {};
+  return `<div class="block why">${s.why.map(f=>`<div class="fld"><label for="w-${f.k}">${f.q}${f.req?"":` <small>optional</small>`}</label>
+    ${f.line ? `<input id="w-${f.k}" data-why="${f.k}" type="text" autocomplete="given-name" placeholder="${esc(f.ph)}" value="${esc(w[f.k]||"")}">`
+             : `<textarea id="w-${f.k}" data-why="${f.k}" rows="${f.req?4:3}" placeholder="${esc(f.ph)}">${esc(w[f.k]||"")}</textarea>`}</div>`).join("")}</div>`;
+}
+/* ---------- the printable Success Plan ---------- */
+function posterHTML(){
+  const w = S.why || {}, p = planNumbers(), z = p.z;
+  const has = v => (v||"").trim();
+  const ph = (v, fallback) => has(v) ? esc(v.trim()) : `<span class="ph">${fallback}</span>`;
+  const name = has(w.name) ? `${esc(w.name.trim())}'s` : "My";
+  const gw = goalWeek(p);
+  const scale = p.ap && p.ap > SZ.line && S.plan.choice !== "straight";
+  const rows = p.ap ? (S.plan.choice === "straight" ? [straightPlan(p.ap, z)] : wsRamp(p.ap, z)) : null;
+  const x = p.ap ? actRun(actState(), p.ap, num(S.plan.prem) || 1500) : null;
+  const dayAP = x ? p.ap * 12 / x.weeks / actState().days : null;
+  const tile = (v, l) => `<div class="pt"><b>${v}</b><span>${l}</span></div>`;
+  const date = new Date().toLocaleDateString("en-US", {month:"long", day:"numeric", year:"numeric"});
+  return `<article class="poster">
+    <header><div><span class="pk">Optimum · Agent Success Plan</span><h2>${name} Success Plan</h2></div><span class="pdate">${date}</span></header>
+    <section class="phero">
+      <div><span class="pl">I'm building toward</span><b>${p.goal ? money(p.goal * 12) : "—"}</b><span>take-home a year · ${p.goal ? money(p.goal) : "—"} a month</span></div>
+      <div><span class="pl">By writing</span><b>${p.ap ? money(p.ap * 12) : "—"}</b><span>in premium a year · ${p.ap ? money(p.ap) : "—"} a month</span></div>
+    </section>
+    <section class="pwhy"><span class="pl">My why</span><p class="pmain">${ph(w.main, "Your why, in your own words.")}</p>
+      <div class="pwhy3">
+        <div><span class="pl">I'm doing it for</span><p>${ph(w.who, "The people counting on you.")}</p></div>
+        <div><span class="pl">In 12 months</span><p>${ph(w.picture, "What your life looks like.")}</p></div>
+        <div><span class="pl">On the hard days</span><p>${ph(w.hard, "The sentence you'll need.")}</p></div>
+      </div></section>
+    <section><span class="pl">Every day I show up for</span><div class="pnums">
+      ${tile(x ? Math.ceil(x.day.dials).toLocaleString("en-US") : "—", "dials a day")}
+      ${tile(x ? r1(x.day.pres) : "—", "presentations a day")}
+      ${tile(p.salesWk ? r1(p.salesWk) : "—", "policies a week")}
+      ${tile(dayAP ? money(dayAP) : "—", "premium a day")}
+      ${tile(gw ? money(gw.spend) : "—", "in leads a week")}
+    </div></section>
+    ${rows ? (S.plan.choice === "straight"
+      ? `<section class="pramp"><span class="pl">My lead plan: I'm going straight to my goal</span><div class="plead"><div class="start"><b>${money(rows[0].spend)}</b><span>a week in leads from week 1</span><small>${MIXES[rows[0].kind]}: ${buyText(rows[0])}</small></div>
+         <div class="pline"><p>About <b>${Math.round(rows[0].leads).toLocaleString("en-US")} leads a week</b>, writing <b>${money(rows[0].ap)} a month</b>.</p><p>My first week's buy is my own money. After that, the business pays for its own leads.</p></div></div></section>`
+      : `<section class="pramp"><span class="pl">${rows.length > 1 ? "My lead plan: how I'm ramping up to my goal with the Winning System" : "My lead plan"}</span><div class="plead"><div class="start"><b>$500</b><span>a week of aged leads to start</span><small>$500 of my own money, once</small></div>
+         <div class="prow">${rows.map(r=>`<div class="${r.goalMonth?"goal":""}"><b>Month ${r.m}${r.goalMonth && r.m > 1 ? " · my goal" : ""}</b><span>${money(r.spend)} a week</span><span>${r.fresh?`${money(r.aged)} aged + ${money(r.fresh)} fresh`:"aged"}</span><span>${money(r.ap)} written</span></div>`).join("")}</div></div></section>`) : ""}
+    <section class="pflow"><span class="pl">Every call</span><div class="prow"><div><b>Script Navigator</b><span>Run the call, build the profile</span></div><div><b>Product Wizard</b><span>Or My POP Pro for health</span></div><div><b>Great service</b><span>Keeps every policy on the books</span></div></div></section>
+    <section class="prhythm"><span class="pl">My week, every week</span><p>Buy leads on the same day · Work every lead · Run the Navigator · Place what fits · Follow up so it sticks</p></section>
+    <footer>Built with Optimum's free tools · tools.ffloptimum.com</footer>
+  </article>`;
+}
+function whyCardHTML(){
+  const w = S.why || {}; if(!(w.main||"").trim()) return "";
+  const line = (k, label) => (w[k]||"").trim() ? `<p><b>${label}</b> ${esc(w[k].trim())}</p>` : "";
+  return `<div class="whycard"><div class="k">Your why</div><p class="main">${esc(w.main.trim())}</p>${line("who","For:")}${line("picture","In 12 months:")}${line("hard","On the hard days:")}</div>`;
+}
+function confirmHTML(s){
+  const got = S.confirms[s.id] || [];
+  return `<section class="check"><h2>Check off when it's done</h2>
+    <ul class="list">${s.confirm.map((c,k)=>`<li><label><input type="checkbox" data-confirm="${k}" ${got.includes(k)?"checked":""}><span>${c}</span></label></li>`).join("")}</ul></section>`;
+}
+const remainingText = s => {
+  if(s.why) return "Write your why in a sentence or two to open the next step.";
+  if(s.confirm){ const left = s.confirm.length - (S.confirms[s.id]||[]).length; return `Check off ${left} more to open the next step.`; }
+  const qs = qsOf(s), left = qs.filter((q,qi)=> !qPass(q, (S.answers[s.id]||{})[qi])).length;
+  return left===qs.length ? (qs.length>1?`Answer the ${qs.length} questions above to open the next step.`:"Answer the question above to open the next step.") : `${left} more question${left>1?"s":""} to go before the next step opens.`;
+};
+
+const openBox = (s, link) => `<div class="open"><p><b>${s.tool.head || `Open ${s.tool.name}`}</b>${s.tool.blurb}</p><a class="btn btn-gold" href="${link}" target="_blank" rel="noopener">${s.tool.cta || `Open ${s.tool.name}`}</a></div>`;
+function stepHTML(i){
+  const s = STEPS[i], nxt = STEPS[i+1];
+  if(s.checklist) return launchHTML(s, i);
+  const link = s.tool && LINKS[s.tool.link];
+  const ok = isDone(s);
+  return `
+  <div class="eyebrow">Part ${PARTS[s.part].n} · ${PARTS[s.part].name}<span class="t">Step ${i+1} of ${STEPS.length} · about ${s.mins} min</span></div>
+  <h1>${s.title}</h1>${s.subtitle ? `<p class="sub2">${s.subtitle}</p>` : ""}
+  ${s.flow!==undefined ? flowHTML(s.flow) : ""}
+  <p class="lead">${s.lead}</p>
+  ${s.todo ? `<div class="block"><h2>Do this</h2><ol class="todo">${s.todo.map(t=>`<li><span>${t}</span></li>`).join("")}</ol></div>` : ""}
+  ${s.carried && S.plan.ap ? `<p class="carried"><b>Carried from step ${stepNo("income")}:</b> ${money(S.plan.ap)} a month in premium at a ${money(S.plan.prem||1500)} average. It's already in the planner below.</p>` : ""}
+  ${s.embed ? embedHTML(s) : ""}
+  ${s.preview ? storefrontHTML() : ""}
+  ${s.shots ? `<div class="shots${s.shots.length>1?" two":""}">${s.shots.map(([img, cap, key])=>`<figure><a class="shot big" href="${LINKS[key]}" target="_blank" rel="noopener"><img src="img/${img}" alt="${cap}" loading="lazy"></a><figcaption>${cap}</figcaption></figure>`).join("")}</div>` : ""}
+  ${s.points ? `<ul class="pts">${s.points.map(x=>`<li>${x}</li>`).join("")}</ul>` : ""}
+  ${link && !s.toolAfter ? openBox(s, link) : ""}
+  ${s.tool2 ? openBox({tool:s.tool2}, LINKS[s.tool2.link]).replace('class="open"','class="open alt"') : ""}
+  ${s.live ? liveHTML() : ""}
+  ${s.fields ? `<div class="block"><h2>Your numbers</h2><div class="calc"><div class="fields">${s.fields.map(fieldHTML).join("")}</div></div></div>` : ""}
+  ${s.calc==="income" ? incomeCalcHTML() : ""}
+  ${s.calc==="week" ? weekHTML() : ""}
+  ${s.calc==="leads" ? `<div class="block"><h2>Your leads</h2>${leadsCalcHTML()}</div>` : ""}
+  ${s.calc==="spend" ? `<div class="block"><h2>Your two paths</h2>${spendCalcHTML()}</div>` : ""}
+  ${link && s.toolAfter ? openBox(s, link) : ""}
+  ${s.tip ? `<p class="tip"><b>Tip:</b> ${s.tip}</p>` : ""}
+  ${s.why ? whyHTML(s) : s.confirm ? confirmHTML(s) : quizHTML(s)}
+  <div class="nav">
+    <button class="btn btn-ghost" type="button" data-go="${i-1}">Back</button>
+    <span class="hint" id="gateHint">${ok ? "" : remainingText(s)}</span>
+    <button class="btn btn-main${ok?"":" locked"}" type="button" ${ok?`data-go="${i+1}"`:`data-gate="1"`}>${s.nextLabel || `Next: ${nxt.short}`}</button>
+  </div>`;
+}
+
+function launchHTML(s, i){
+  if(S.launched) return `
+    <div class="done-mark" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+    <div class="eyebrow">Launched</div>
+    <h1>You're launched.</h1>
+    <p class="lead">Here's your Success Plan. Print it and hang it where you make your calls.</p>
+    <div class="poster-screen">${posterHTML()}</div>
+    <div class="nav"><span class="hint">Prints on one letter page. Choose "Save as PDF" to keep a copy.</span><button class="btn btn-main" type="button" id="printPlan">Print my Success Plan</button></div>
+    <p class="lead">From here it's rhythm. The agents who last run the same week, every week:</p>
+    <ul class="rhythm"><li>Buy leads weekly</li><li>Work them daily</li><li>Run the Navigator</li><li>Place what fits</li><li>Follow up so it sticks</li></ul>
+    <p class="tip"><b>Next:</b> come back to step ${stepNo("spend")} every week when you buy your leads, and to step ${stepNo("spend")} after 30 days to put in your own leads per sale.</p>
+    <div class="nav"><button class="btn btn-ghost" type="button" data-go="-1">Back to the start</button><span><span class="copied" id="copied"></span> <button class="btn btn-ghost" type="button" id="copyPlan">Copy my plan</button> <button class="btn btn-ghost" type="button" id="unlaunch">Review my checklist</button></span></div>`;
+  const all = s.checklist.every((_,k)=>S.checks.includes(k));
+  return `
+  <div class="eyebrow">Part ${PARTS[s.part].n} · ${PARTS[s.part].name}<span class="t">Step ${i+1} of ${STEPS.length} · about ${s.mins} min</span></div>
+  <h1>${s.title}</h1>
+  <p class="lead">${s.lead}</p>
+  <p class="tip"><b>Almost there:</b> check off every item and your Success Plan unlocks to print.</p>
+  <div class="block"><h2>Launch checklist</h2>
+    <ul class="list">${s.checklist.map((c,k)=>`<li><label><input type="checkbox" data-k="${k}" ${S.checks.includes(k)?"checked":""}><span>${c}</span></label></li>`).join("")}</ul>
+  </div>
+  <div class="nav">
+    <button class="btn btn-ghost" type="button" data-go="${i-1}">Back</button>
+    <span class="hint">${all ? "" : `${S.checks.length} of ${s.checklist.length} done`}</span>
+    <button class="btn btn-main" type="button" id="launchBtn" ${all?"":"disabled"}>I'm launched</button>
+  </div>`;
+}
+
+let showCover = true;
+function cover(){
+  const total = STEPS.reduce((a,s)=>a+s.mins,0);
+  const started = S.passed.length > 0 || S.cur >= 0;
+  return `<span class="kicker">Start here</span>
+  <h1>Your Optimum Success Plan</h1>
+  <div class="rule"></div>
+  <p class="sub">Let's get concrete on why you're in this business, the income you want, and the plan it takes to get there. We're in this together. By the end you'll have it all written down, so clear you can print your Success Plan and put it on the wall.</p>
+  <button class="btn btn-main" type="button" id="coverGo">${started ? "Pick up where I left off" : "Create my plan"}</button>
+  <p class="meta">About ${total} minutes · Works on your phone · Finish with a one-page plan for your wall</p>`;
+}
+function render(){
+  const stg = $("#stage");
+  $("#dock").hidden = showCover; $("#footRow").hidden = showCover;
+  stg.classList.toggle("cover", showCover);
+  if(showCover){ stg.innerHTML = cover(); return; }
+  renderRail();
+  stg.innerHTML = S.cur < 0 ? welcome() : stepHTML(S.cur);
+  stg.style.animation = "none"; void stg.offsetWidth; stg.style.animation = "";
+  runLeads(); runSpend(); paintLive(false); runIncome(); runWeek();
+  const cur = STEPS[S.cur];
+  if(!showCover && S.cur >= 0 && cur && cur.embed) mountTool(cur); else { clearInterval(sizer); clearInterval(reader); }
+}
+
+/* Redraw only the quick check and the step buttons, so an embedded tool
+   keeps what the agent typed while they answer. */
+function partialRender(){
+  renderRail();
+  const tmp = document.createElement("div"); tmp.innerHTML = stepHTML(S.cur);
+  [":scope > .check", ":scope > .nav"].forEach(sel => {
+    const a = $("#stage").querySelector(sel), b = tmp.querySelector(sel);
+    if(a && b) a.replaceWith(b);
+  });
+}
+
+/* ---------- events ---------- */
+$("#stage").addEventListener("click", e => {
+  const g = e.target.closest("[data-go]"); if(g && !g.disabled){ goStep(+g.dataset.go); return; }
+  const gate = e.target.closest("[data-gate]");
+  if(gate){
+    const s = STEPS[S.cur];
+    let target = null;
+    if(s.quiz || s.quizFn){ const a = S.answers[s.id]||{}; const qi = qsOf(s).findIndex((q,k)=> !qPass(q, a[k])); target = document.querySelector(`.q[data-q="${qi}"]`); }
+    else target = document.querySelector(".check");
+    if(target){ target.scrollIntoView({behavior:"smooth", block:"center"}); target.classList.add("nudge"); setTimeout(()=>target.classList.remove("nudge"), 1200); }
+    const h = $("#gateHint"); if(h){ h.textContent = remainingText(s); h.classList.add("warn"); }
+    return;
+  }
+  if(e.target.closest("#coverGo")){ showCover = false; render(); window.scrollTo({top:0}); return; }
+  if(e.target.id === "launchBtn"){ S.launched = true; save(); render(); window.scrollTo({top:0}); bigCelebrate(); }
+  if(e.target.id === "unlaunch"){ S.launched = false; save(); render(); }
+  const per = e.target.closest("[data-period]");
+  if(per){ S.inc = {...incState(), period:per.dataset.period, unit:null}; save(); per.parentNode.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed", String(b===per))); runIncome(); return; }
+  const md = e.target.closest("[data-mode]");
+  if(md){ S.act = {...actState(), mode:md.dataset.mode}; save(); md.parentNode.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed", String(b===md))); runWeek(); return; }
+  const au = e.target.closest("[data-aunit]");
+  if(au){ S.act = {...actState(), unit:au.dataset.aunit}; save(); runWeek(); return; }
+  if(e.target.id === "actReset"){ S.act = {}; save(); render(); return; }
+  const un = e.target.closest("[data-unit]");
+  if(un){ S.inc = {...incState(), unit:un.dataset.unit}; save(); runIncome(); return; }
+  const fx = e.target.closest(".fixlink");
+  if(fx){ e.preventDefault(); $("#fixit")?.scrollIntoView({behavior:"smooth", block:"start"}); return; }
+  const mk = e.target.closest("[data-mix]");
+  if(mk){ S.plan.mix = mk.dataset.mix; save(); runSpend(); return; }
+  const pick = e.target.closest("[data-choice]");
+  if(pick){ S.plan.choice = pick.dataset.choice; if(STEPS[S.cur]?.id === "spend"){ S.answers.spend = {...(S.answers.spend||{}), 0: pick.dataset.choice === "straight" ? 1 : 0}; refreshPassed(STEPS[S.cur]); } save(); runSpend(); partialRender(); return; }
+  if(e.target.id === "printPlan"){ window.print(); return; }
+  if(e.target.id === "copyPlan"){
+    const t = planText(), c = $("#copied");
+    const ok = () => { if(c) c.textContent = "Copied"; setTimeout(()=>{ if(c) c.textContent = ""; }, 2000); };
+    try{ navigator.clipboard.writeText(t).then(ok, () => { prompt("Copy your plan:", t); }); }catch(err){ prompt("Copy your plan:", t); }
+  }
+});
+$("#stage").addEventListener("input", e => {
+  if(e.target.matches('input[inputmode="numeric"],input[inputmode="decimal"]')) liveCommas(e.target);
+  const ak = e.target.dataset.act;
+  if(ak){ const v = num(e.target.value); if(v != null){ S.act = {...actState(), [ak]: v}; save(); const o = $("#o-"+ak); if(o) o.textContent = v + (e.target.dataset.suffix||""); runWeek(); } return; }
+  const ik = e.target.dataset.inc;
+  if(ik){ S.inc = {...incState(), [ik]: ik==="type" ? e.target.value : (num(e.target.value) ?? "")}; save(); runIncome(); return; }
+  const wk = e.target.dataset.why;
+  if(wk){ S.why = {...(S.why||{}), [wk]: e.target.value}; const s = STEPS[S.cur]; refreshPassed(s); save(); partialRender(); return; }
+  const k = e.target.dataset.plan; if(!k) return;
+  S.plan[k] = e.target.value; save(); runLeads(); runSpend(); runWeek();
+});
+$("#stage").addEventListener("change", e => {
+  const t = e.target;
+  if(t.dataset.inc){ const k = t.dataset.inc; S.inc = {...incState(), [k]: k==="type" ? t.value : (num(t.value) ?? "")}; save(); runIncome(); return; }
+  if(t.type === "radio"){
+    const s = STEPS[S.cur], qi = +t.closest(".q").dataset.q;
+    S.answers[s.id] = {...(S.answers[s.id]||{}), [qi]: +t.value};
+    if(s.id === "spend" && qi === 0){ S.plan.choice = +t.value === 1 ? "straight" : "scale"; runSpend(); }
+    refreshPassed(s); save(); partialRender();
+    document.querySelector(`.q[data-q="${qi}"] input:checked`)?.focus({preventScroll:true});
+  }
+  if(t.type === "checkbox" && t.dataset.confirm !== undefined){
+    const s = STEPS[S.cur], k = +t.dataset.confirm, got = S.confirms[s.id] || [];
+    S.confirms[s.id] = t.checked ? [...new Set([...got, k])] : got.filter(x => x !== k);
+    refreshPassed(s); save(); partialRender();
+  }
+  else if(t.type === "checkbox" && t.dataset.k !== undefined){
+    const k = +t.dataset.k;
+    S.checks = t.checked ? [...new Set([...S.checks, k])] : S.checks.filter(x => x !== k);
+    save(); render();
+  }
+});
+$("#resetAll").addEventListener("click", () => { S = blank(); save(); showCover = true; render(); window.scrollTo({top:0}); });
+
+/* Printing (button or Cmd+P) prints the Success Plan, once it's earned. */
+addEventListener("beforeprint", () => { $("#printArea").innerHTML = S.launched ? posterHTML() : ""; });
+
+/* Local preview only: when the file changes on disk, offer a reload so an open tab never shows an old version. */
+if(/^(localhost|127\.0\.0\.1)$/.test(location.hostname)){
+  let stamp = null;
+  setInterval(() => fetch(location.pathname, {method:"HEAD", cache:"no-store"}).then(r => {
+    const m = r.headers.get("last-modified"); if(!m) return;
+    if(stamp === null){ stamp = m; return; }
+    if(m !== stamp && !$("#updBar")){
+      const b = document.createElement("button"); b.id = "updBar"; b.type = "button";
+      b.textContent = "This page was just updated. Click to reload.";
+      b.style.cssText = "position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:999;background:#C9A24E;color:#16203C;border:0;border-radius:999px;padding:12px 22px;font:700 14px Inter,sans-serif;box-shadow:0 10px 24px rgba(22,32,60,.25);cursor:pointer";
+      b.onclick = () => location.reload(); document.body.appendChild(b);
+    }
+  }).catch(()=>{}), 4000);
+}
+
+/* deep link: #step-3 opens step 3 if it's unlocked */
+const m = /^#step-(\d)$/.exec(location.hash);
+if(m){ showCover = false; const i = +m[1]-1; if(i>=0 && i<=unlockedUpTo()) S.cur = i; }
+else if(location.hash === "#start"){ showCover = false; S.cur = -1; }
+if(S.cur > unlockedUpTo()) S.cur = unlockedUpTo();
+render();
+</script>
+<script data-goatcounter="https://ffloptimum.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
