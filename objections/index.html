@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Objection Flashcards &mdash; Free for insurance agents</title>
-<meta name="twitter:description" content="Pick the call, tap a card, see the exact words that work. Free, no sign-up.">
-<meta name="twitter:title" content="Objection Flashcards: free for insurance agents">
-<meta property="og:image:height" content="630">
 <meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:title" content="Objection Flashcards: free for insurance agents">
+<meta name="twitter:description" content="Pick the call, tap a card, see the exact words that work. Free, no sign-up.">
 <meta name="description" content="Objection flashcards for life insurance agents. Pick the call, tap a card, see the exact words that work. Free, no sign-up.">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
@@ -49,8 +49,6 @@ header .in{max-width:1000px;margin:0 auto;padding:0 20px;display:flex;gap:14px;a
 .sep{color:var(--gold);margin:0 4px}
 .goat{display:inline-block;background:var(--gold);color:var(--navy);font-size:11.5px;font-weight:700;padding:9px 15px;border-radius:999px;text-decoration:none;line-height:1.3;border:0;cursor:pointer;font-family:var(--sans)}
 .goat:hover{background:var(--blue);color:#fff}
-.hmore{font-size:12px;color:#C9CEDB;text-decoration:none;white-space:nowrap}
-.hmore:hover{color:var(--gold)}
 /* shared header, strip + modals — generated from shell-template.html */
   :root{--blue:#2C4A7C;--golddk:#A8853A;--muted:#8B8A82;--rule:#E3DFD4;--rule-soft:#EDE9DF;--sans:'Inter',-apple-system,'Segoe UI',Roboto,sans-serif;--serif:'Source Serif 4',Georgia,serif;--slate:#4A4A44}
   header{background:var(--navy);color:#fff;flex:0 0 auto;padding:12px 20px 0;position:relative;z-index:2}
@@ -60,6 +58,12 @@ header .in{max-width:1000px;margin:0 auto;padding:0 20px;display:flex;gap:14px;a
   .bt{font-family:var(--serif);font-weight:700;font-size:20px;color:#fff;letter-spacing:-.01em;white-space:nowrap}
   .bs{font-size:12px;font-weight:500;color:rgba(255,255,255,.62);margin-top:3px}
   .bs .sep{color:rgba(255,255,255,.35);margin:0 4px}
+  .hmore{margin-left:8px;flex:0 0 auto;font-size:12px;font-weight:600;color:#fff;text-decoration:none;white-space:nowrap;
+    border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:7px 14px}
+  .hmore:hover{border-color:#fff}
+@media(max-width:640px){
+  .brandrow>.hmore{flex:1 0 100%;text-align:center;margin:6px 0 2px}
+  }
   .bs a{color:var(--gold);font-family:var(--serif);font-weight:700;font-size:13.5px;text-decoration:none}
   .bs a:hover{color:#fff}
   .goat{margin-left:auto;appearance:none;cursor:pointer;background:var(--gold);color:var(--navy);
