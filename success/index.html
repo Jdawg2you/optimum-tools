@@ -873,7 +873,13 @@ function bigCelebrate(){
 function goStep(i){
   if(i > unlockedUpTo()) return;
   S.cur = i; save(); render();
-  window.scrollTo({top:0, behavior:"smooth"});
+  toTop();
+}
+/* Every step opens at the top. A smooth scroll gets cancelled when the new step finishes
+   drawing its numbers, so jump instantly, then again once the page has settled. */
+function toTop(){
+  const up = () => window.scrollTo({top:0, left:0, behavior:"instant"});
+  up(); requestAnimationFrame(up); setTimeout(up, 80); setTimeout(up, 250);
 }
 
 /* ---------- floating dock ---------- */
