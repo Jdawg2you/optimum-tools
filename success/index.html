@@ -1125,7 +1125,7 @@ function runIncome(){
       ${L("Paid to you now", money(r.advance), "The 75% advance", "sub")}
       ${L("Lead spend", "−"+money(r.leadCost), `${Math.round(ENGINE.defaults.leadPct*100)}% of premium, about ${money(r.leadCost/wk)} a week`)}
       ${L("Your take-home", money(r.net), "", "total")}
-      ${L("Hold in reserve", money(r.reserve), `${Math.round(ENGINE.defaults.reservePct*100)}% of take-home, set aside for chargebacks`, "note")}
+      ${L("Business that will not stick", "−"+money(r.ap - r.placed), `${Math.round((1-(1-ENGINE.defaults.wontPlace))*100)}% of what you write never issues, pays or sticks past chargeback — already taken off above`, "note")}
       ${b.bonus ? L("Producer bonus, on top", "+"+money(b.bonus), "Paid on placed volume", "note") : ""}
     </tbody></table>
   </div>
