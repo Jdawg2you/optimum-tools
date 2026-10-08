@@ -109,7 +109,7 @@ header .in{max-width:1000px;margin:0 auto;padding:0 20px;display:flex;gap:14px;a
   .recopen{appearance:none;cursor:pointer;font-family:'Inter',-apple-system,'Segoe UI',Roboto,sans-serif}
   .recstrip{background:#EFEADD;border-bottom:1px solid #E3DFD4;padding:9px 20px;text-align:center;
     font-size:13px;color:#4A4A44;font-family:'Inter',-apple-system,'Segoe UI',Roboto,sans-serif}
-  .recstrip .recopen{background:transparent;border:0;color:#A8853A;font-size:13px;font-weight:800;
+  .recstrip .recopen{background:transparent;border:0;color:#7A5F1F;font-size:13px;font-weight:800;
     text-decoration:underline;padding:0 0 0 5px}
 @media(max-width:640px){
   .recstrip{font-size:12px;padding:8px 14px;line-height:1.5}
@@ -337,7 +337,11 @@ addEventListener('hashchange', () => { const h = fromHash(); if(h && h !== activ
  document.getElementById('recClose').addEventListener('click',sh);
  rm.querySelector('.backdrop').addEventListener('click',sh);
  document.addEventListener('keydown',function(e){if(e.key==='Escape')sh();});
- document.querySelectorAll('.recopen').forEach(function(b){b.addEventListener('click',op);});})();
+ /* Delegated, not bound per element. The hub renders its Grow banner AFTER this
+    script runs, so a .recopen button created later never got a listener and its
+    "Learn more" did nothing. Delegation covers every .recopen, now and later. */
+ document.addEventListener('click',function(e){
+   var b=e.target.closest&&e.target.closest('.recopen'); if(b){e.preventDefault();op();}});})();
 </script>
 
 <!-- ===== GoatCounter — page counts only ==========================================
