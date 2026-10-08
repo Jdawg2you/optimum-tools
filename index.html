@@ -33,6 +33,20 @@
   --ink:#1B1B1B; --slate:#4A4A44; --muted:#8B8A82;
   --navy:#16203C; --navy-deep:#101832; --blue:#2C4A7C; --bluesoft:#EDF1F8;
   --gold:#C9A24E; --golddk:#A8853A; --goldsoft:#F4EBD5; --goldline:#E6D6AE;
+  /* --golddk is 2.88:1 on cream and 3.45:1 on white, under the 4.5:1 minimum for
+     body text. Small text and links use --goldink instead: 5.02 / 5.08 / 6.03 on
+     cream, goldsoft and white. Headings and icons keep the brighter golds. */
+  --goldink:#7A5F1F;
+  --goldbright:#E2BC63;        /* gold glyphs on navy only - never on cream */
+  --rail:212px;                /* the left column's width, shared by rail and header */
+  --headh:62px;                /* one bar height, shared by the header and the rail's logo block */
+  /* ported from the reference implementation Jesse supplied. Its palette turned out
+     to be within 6/255 of ours on every colour - the gap was never hue, it was these
+     three missing tokens plus the gradients and type scale below. */
+  --navy-light:#243653;        /* sidebar gradient, the recruit strip, hover states */
+  --secondary:#526077;         /* body copy: a blue-grey, where ours was brown-grey */
+  --shadow:0 3px 12px rgba(23,33,61,.07);
+  --shadow-hover:0 8px 20px rgba(23,33,61,.12);
   --green:#3F7A56; --greensoft:#EDF4EF; --rust:#A8452F; --rustsoft:#F8EEEB;
   --serif:'Source Serif 4',Georgia,'Times New Roman',serif;
   --sans:'Inter',-apple-system,'Segoe UI',Roboto,sans-serif;
@@ -41,30 +55,35 @@
 *{box-sizing:border-box}
 html,body{margin:0;padding:0;max-width:100%;overflow-x:hidden}
 body{background:var(--cream);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
-svg{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+svg{fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .mock{background:var(--navy-deep);color:#C9CEDB;font-size:11.5px;text-align:center;padding:6px 16px}
 .mock b{color:var(--gold)}
 
 /* ---- header ---- */
 .top{background:var(--navy);color:#fff}
-.top-in{max-width:1280px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:14px}
-.mark{font-family:var(--serif);font-weight:700;letter-spacing:.22em;font-size:16px;line-height:1.1}
-.mark span{display:block;font-family:var(--sans);font-weight:600;font-size:9px;letter-spacing:.3em;color:var(--gold);margin-top:3px}
+.top-in{max-width:1280px;margin:0 auto;padding:18px 24px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.mark{font-family:var(--serif);font-weight:700;letter-spacing:.3em;font-size:20px;line-height:1.1;text-align:center;color:#fff}
+.mark span{display:block;font-family:var(--sans);font-weight:600;font-size:10px;letter-spacing:.34em;color:var(--gold);margin-top:5px}
+@media(max-width:900px){ .mark{font-size:17px;letter-spacing:.26em} .mark span{font-size:9px} }
 .goatpill{background:var(--gold);color:var(--navy);font-size:11.5px;font-weight:700;padding:9px 15px;border-radius:999px;text-decoration:none;line-height:1.3}
 .goatpill:hover{background:var(--blue);color:#fff}
 .recstrip{background:var(--goldsoft);border-bottom:1px solid var(--goldline);text-align:center;padding:8px 16px;font-size:12.5px;color:#4a3c14}
-.recstrip a{color:var(--golddk);font-weight:600}
+.recstrip a{color:var(--goldink);font-weight:600}
 
 /* ---- shell ---- */
 .shell{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:232px minmax(0,1fr);gap:0;align-items:start}
-.side{position:sticky;top:0;padding:22px 14px 40px;align-self:start}
-.nav{display:flex;flex-direction:column;gap:3px}
-.nav button{display:flex;align-items:center;gap:11px;width:100%;text-align:left;font:inherit;font-size:14px;font-weight:600;
-  color:var(--slate);background:none;border:0;border-radius:11px;padding:11px 13px;cursor:pointer}
-.nav button svg{width:20px;height:20px;color:var(--golddk);flex:none;stroke-width:1.9}
-.nav button:hover{background:var(--fill);color:var(--ink)}
-.nav button[aria-current="true"]{background:var(--navy);color:#fff}
+.side{position:sticky;top:0;padding:18px 12px 40px;align-self:start;background:var(--navy);
+  border-radius:0 18px 18px 0;min-height:100%}
+.nav{display:flex;flex-direction:column;gap:2px}
+.nav button{display:flex;align-items:center;gap:12px;width:100%;text-align:left;font:inherit;font-size:14.5px;font-weight:600;
+  color:#C9CEDB;background:none;border:0;border-radius:10px;padding:12px 14px;cursor:pointer;position:relative}
+.nav button svg{width:24px;height:24px;color:#E7EBF2;flex:none;stroke-width:1.7}
+.nav button:hover{background:rgba(255,255,255,.07);color:#fff}
+.nav button:hover svg{color:var(--gold)}
+.nav button[aria-current="true"]{background:rgba(255,255,255,.1);color:#fff}
 .nav button[aria-current="true"] svg{color:var(--gold)}
+.nav button[aria-current="true"]::before{content:"";position:absolute;left:0;top:9px;bottom:9px;width:3px;
+  border-radius:0 3px 3px 0;background:var(--gold)}
 .main{padding:26px 24px 70px;min-width:0}
 
 h1{font-family:var(--serif);font-size:clamp(30px,3.6vw,46px);line-height:1.06;letter-spacing:-.028em;margin:0 0 8px}
@@ -76,19 +95,82 @@ h1{font-family:var(--serif);font-size:clamp(30px,3.6vw,46px);line-height:1.06;le
 .search input::placeholder{color:var(--muted)}
 .search input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,162,78,.16)}
 
+/* One icon treatment across the page: a navy disc with a gold glyph. It is what
+   stops twenty-two cards reading as interchangeable, without adding any images. */
+.icb{width:46px;height:46px;border-radius:50%;background:var(--navy);color:var(--gold);
+  display:flex;align-items:center;justify-content:center;flex:none}
+.icb svg{width:21px;height:21px;stroke-width:1.9}
+.icb.lg{width:58px;height:58px} .icb.lg svg{width:26px;height:26px}
+.icb.sm{width:38px;height:38px} .icb.sm svg{width:18px;height:18px}
+
 h2.sec{font-family:var(--serif);font-size:23px;margin:0 0 14px;letter-spacing:-.01em}
-.feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,238px),1fr));gap:16px;margin-bottom:22px}
-.fcard{background:var(--card);border:1px solid var(--rule);border-radius:14px;padding:26px 20px 20px;text-align:center;
-  display:flex;flex-direction:column;align-items:center;text-decoration:none;color:inherit;transition:.14s}
+.grid.two{grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr))}
+.sec-group{margin-bottom:28px}
+.growban{width:100%;text-align:left;font:inherit;cursor:pointer}
+.feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,272px),1fr));gap:16px;margin-bottom:22px}
+.fcard{background:var(--card);border:1px solid var(--rule);border-radius:16px;padding:22px 22px 22px;text-align:left;
+  display:flex;flex-direction:column;align-items:flex-start;text-decoration:none;color:inherit;transition:.14s}
+.fcard .fhead{display:flex;align-items:center;gap:15px;width:100%;margin-bottom:12px}
 .fcard:hover{border-color:var(--goldline);box-shadow:0 12px 30px rgba(27,27,27,.08);transform:translateY(-2px)}
 .fcard .ftx{display:flex;flex-direction:column;flex:1;width:100%}
-.fcard .ic{color:var(--gold);margin-bottom:14px}
-.fcard .ic svg{width:52px;height:52px;stroke-width:1.75}
-.fcard .n{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--navy);margin-bottom:5px;letter-spacing:-.01em}
-.fcard .d{font-size:13.5px;color:var(--slate);margin-bottom:16px;flex:1;font-weight:500}
-.fcard .btn{background:var(--navy);color:#fff;font-size:13px;font-weight:600;padding:11px 20px;border-radius:9px;width:100%}
+.fcard .icb{margin:0}
+.fcard .n{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--navy);margin:0;letter-spacing:-.01em;line-height:1.2}
+.fcard .d{font-size:13.5px;color:var(--slate);margin:0 0 18px;flex:1;font-weight:500;line-height:1.5}
+.fcard .btn{background:var(--navy);color:#fff;font-size:13.5px;font-weight:600;padding:12px 22px;border-radius:9px;align-self:flex-start}
 .fcard:hover .btn{background:var(--blue)}
 
+.startline{display:flex;gap:14px;flex-wrap:wrap;margin:0 0 24px}
+.startline a{flex:1 1 230px;min-width:0;display:flex;align-items:center;gap:11px;
+  background:var(--card);border:1px solid var(--rule);border-radius:14px;padding:19px 22px;
+  text-decoration:none;transition:border-color .15s,transform .15s}
+.startline a:hover{border-color:var(--gold);transform:translateY(-1px)}
+.startline a:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.startline a{gap:16px}
+.startline .icb{width:56px;height:56px}
+.startline .icb svg{width:25px;height:25px}
+.startline .sl-t{min-width:0}
+.startline .sl-q{display:block;font-family:var(--serif);font-size:17px;font-weight:700;color:var(--navy);letter-spacing:-.01em}
+.startline .sl-a{display:block;font-size:13.5px;color:var(--goldink);font-weight:600;margin-top:2px}
+.recent{margin:0 0 30px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.recent h2{font-family:var(--serif);font-size:20px;margin:0;letter-spacing:-.01em;flex:none}
+.recent .rc-row{display:flex;gap:9px;flex-wrap:wrap;flex:1;min-width:0}
+@media(max-width:900px){ .recent{display:block} .recent h2{margin-bottom:11px} }
+.recent a{display:inline-flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--rule);
+  border-radius:999px;padding:10px 17px;text-decoration:none;font-size:13.5px;font-weight:600;color:var(--ink)}
+.recent a:hover{border-color:var(--gold)}
+.recent a svg{width:16px;height:16px;color:var(--goldink);stroke-width:2;flex:none}
+@media(max-width:900px){ .startline a{flex:1 1 100%} }
+.demo{display:grid;grid-template-columns:minmax(0,.86fr) minmax(0,1.3fr);gap:28px;align-items:center;margin:0 0 36px}
+.demo h2{font-family:var(--serif);font-size:clamp(24px,2.5vw,31px);line-height:1.1;letter-spacing:-.02em;margin:0 0 10px;color:var(--navy)}
+.demo p{font-size:14.5px;color:var(--slate);margin:0 0 18px}
+.demo .play{display:inline-flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--navy);
+  border-radius:11px;padding:12px 20px;text-decoration:none;color:var(--navy);font-size:14px;font-weight:700}
+.demo .play:hover{background:var(--navy);color:#fff}
+.demo .play svg{width:19px;height:19px;flex:none}
+.prev{background:var(--card);border:1px solid var(--rule);border-radius:16px;padding:16px;min-width:0;
+  box-shadow:0 12px 34px rgba(27,27,27,.07)}
+.prev .ph{display:flex;align-items:center;gap:9px;font-size:13.5px;font-weight:700;color:var(--navy);margin-bottom:13px}
+.prev .ph svg{width:17px;height:17px;color:var(--goldink)}
+.prev .pb{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1fr);gap:14px}
+.prev ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:3px}
+.prev li{display:flex;align-items:center;gap:9px;font-size:12.5px;color:var(--muted);padding:6px 8px;border-radius:8px}
+.prev li i{width:19px;height:19px;border-radius:50%;background:var(--fill);color:var(--muted);font-style:normal;
+  font-size:10.5px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:none}
+.prev li.on{background:var(--goldsoft);color:var(--navy);font-weight:600}
+.prev li.on i{background:var(--gold);color:var(--navy)}
+.prev .say{background:var(--fill);border:1px solid var(--rule-soft);border-radius:10px;padding:11px 12px}
+.prev .say b{display:block;font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--slate);margin-bottom:5px}
+.prev .say p{font-size:12.5px;color:var(--ink);margin:0;line-height:1.45}
+.prev .opts{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.prev .opts span{border:1px solid var(--rule);border-radius:7px;padding:6px 10px;font-size:11.5px;font-weight:600;color:var(--slate);background:var(--card)}
+.prev .note{text-align:right;font-size:10.5px;color:var(--slate);font-style:italic;margin-top:9px}
+.prevpic{width:100%;height:auto;display:block;border-radius:12px;border:1px solid var(--rule)}
+.prev.pic{padding:10px}
+.demo.rev{grid-template-columns:minmax(0,1.3fr) minmax(0,.86fr)}
+.demo.rev > div:first-child{order:2} .demo.rev > .prev{order:1}
+@media(max-width:900px){ .demo.rev{grid-template-columns:1fr}
+  .demo.rev > div:first-child{order:1} .demo.rev > .prev{order:2} }
+@media(max-width:900px){ .demo{grid-template-columns:1fr;gap:18px} }
 .banner{background:var(--navy);border:2px solid var(--gold);border-radius:16px;padding:28px 28px;display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-bottom:34px;box-shadow:0 10px 30px rgba(22,32,60,.16)}
 .banner .ic{color:var(--gold);flex:none} .banner .ic svg{width:42px;height:42px}
 .banner .tx{flex:1;min-width:190px;border-left:1px solid rgba(255,255,255,.22);padding-left:22px}
@@ -104,7 +186,7 @@ h2.sec{font-family:var(--serif);font-size:23px;margin:0 0 14px;letter-spacing:-.
 .chips button:hover{border-color:var(--gold);color:var(--ink)}
 .chips button[aria-pressed="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
 
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,296px),1fr));gap:13px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:13px}
 .row{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--rule);border-radius:13px;
   padding:15px 16px;text-decoration:none;color:inherit;transition:.13s}
 a.row:hover{border-color:var(--goldline);box-shadow:0 8px 22px rgba(27,27,27,.07)}
@@ -116,7 +198,7 @@ a.row:hover{border-color:var(--goldline);box-shadow:0 8px 22px rgba(27,27,27,.07
 .row .go{color:var(--gold);flex:none} .row .go svg{width:19px;height:19px;stroke-width:2.2}
 .row.dim{background:var(--fill);border-style:dashed}
 .row.dim .ic{color:var(--muted)}
-.tagp{font-size:9px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:2px 7px;border-radius:6px;
+.tagp{white-space:nowrap;font-size:9px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:2px 7px;border-radius:6px;
   background:var(--gold);color:#2a2205;margin-left:8px;vertical-align:2px}
 .tagp.soon{background:var(--bluesoft);color:var(--blue)}
 .tagp.ph{background:var(--card);color:var(--muted);border:1px solid var(--rule)}
@@ -131,16 +213,26 @@ a.row:hover{border-color:var(--goldline);box-shadow:0 8px 22px rgba(27,27,27,.07
   .side{display:none}
   .main{padding:18px 16px calc(var(--bar) + 26px)}
   h1{font-size:clamp(26px,7.4vw,32px)}
-  .lede{display:none}
+  .lede{font-size:15px;margin-bottom:16px}
   .search{margin-bottom:24px}
   h2.sec{font-size:19.5px;margin-bottom:10px}
   /* featured become quick-launch rows, exactly like the rest of the list */
   .feat{grid-template-columns:1fr;gap:9px;margin-bottom:9px}
-  .fcard{flex-direction:row;align-items:center;text-align:left;padding:13px 14px;gap:12px;border-radius:13px}
-  .fcard .ic{margin-bottom:0;flex:none} .fcard .ic svg{width:30px;height:30px;stroke-width:1.9}
-  .fcard .ftx{text-align:left;min-width:0}
+  /* On a phone the card is one row: badge, then the name over the description, then
+     the arrow. The desktop markup puts the badge and the name together in .fhead, so
+     that wrapper has to dissolve here - left as a flex row it squeezed the
+     description into a one-word-per-line column. */
+  .fcard{text-align:left;padding:12px 13px;border-radius:13px;
+    display:grid;grid-template-columns:auto minmax(0,1fr) auto;
+    column-gap:12px;row-gap:1px;align-items:center}
+  .fcard .fhead{display:contents}
+  .fcard .icb.lg{width:42px;height:42px;grid-column:1} .fcard .icb.lg svg{width:20px;height:20px}
+  .fcard .n{grid-column:2;grid-row:1;align-self:end;font-size:16px;line-height:1.25}
+  .fcard .ftx{text-align:left;min-width:0;grid-column:2;grid-row:2;align-self:start}
+  .fcard .arr{grid-column:3;grid-row:1/3;align-self:center;display:block;color:var(--gold)}
+  .fcard .arr svg{width:19px;height:19px}
   .fcard .n{font-size:17px;margin-bottom:1px}
-  .fcard .d{font-size:12.5px;margin-bottom:0;font-weight:500}
+  .fcard .d{font-size:12.5px;margin:0;font-weight:500;line-height:1.4}
   .fcard .btn{display:none}
   .fcard .arr{display:block;color:var(--gold);flex:none}
   .banner{padding:17px 16px;gap:14px;border-radius:14px;margin-bottom:28px;border-width:2px}
@@ -187,22 +279,34 @@ a.row:hover{border-color:var(--goldline);box-shadow:0 8px 22px rgba(27,27,27,.07
 .g4 .gd{font-size:12.5px;color:#5a4a1e;line-height:1.5}
 .goatblock .cap{font-size:11.5px;color:#6b5a2a;margin:0 0 16px}
 .goatfoot{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.goatblock .cta{display:inline-block;background:var(--navy);color:#fff;font-size:14px;font-weight:700;padding:13px 24px;
+/* Gold, as in Jesse's screenshots - this is the one action in the panel and a navy
+   button put it on the same footing as every other navy control on the page. */
+.goatblock .cta{display:inline-block;font-size:14px;font-weight:800;padding:13px 24px;
   border-radius:9px;text-decoration:none;white-space:nowrap}
-.goatblock .cta:hover{background:var(--blue)}
-.goatblock .note{font-size:12px;color:#6b5a2a;flex:1;min-width:200px}
+.goatblock .cta:hover{color:var(--navy)}
+.goatblock .note{font-size:12.5px;line-height:1.45;color:#6b5a2a;flex:1;min-width:260px}
 .goatblock .hide{background:none;border:0;font:inherit;font-size:12px;color:#6b5a2a;text-decoration:underline;cursor:pointer;padding:0}
 .goatblock .hide:hover{color:var(--navy)}
 
 /* collapsed: one line, still gold, one tap from the whole thing */
-.goatbar{display:flex;align-items:center;gap:11px;width:100%;text-align:left;font:inherit;cursor:pointer;
+.goatbar{display:flex;align-items:center;gap:14px;width:100%;text-align:left;font:inherit;cursor:pointer;
   background:var(--goldsoft);border:1.5px solid var(--goldline);border-radius:12px;padding:12px 16px;margin-bottom:26px}
 .goatbar:hover{border-color:var(--gold);background:#f8f0dc}
-.goatbar .star{color:var(--golddk);flex:none;font-size:14px}
-.goatbar .t{flex:1;min-width:0;font-size:13px;color:#5a4a1e}
-.goatbar .lbl{font-family:var(--serif);font-size:16.5px;font-weight:700;color:var(--navy);letter-spacing:-.01em;margin-right:4px}
-.goatbar .sm{font-size:13px;color:#5a4a1e}
-.goatbar .more{font-size:12.5px;font-weight:700;color:var(--golddk);white-space:nowrap}
+/* Jesse's banner: beefier, outlined, a bigger and more vibrant star, a rule between
+   the label and the list, and a Show me that is OUTLINED with a down arrow so it
+   plainly means "this expands downward" rather than "this navigates away". */
+.goatbar{border:2px solid var(--goldline);padding:14px 16px}
+.goatbar .star{color:var(--gold);flex:none;font-size:21px;line-height:1;
+  text-shadow:0 1px 2px rgba(168,133,58,.35)}
+.goatbar .lbl{font-family:var(--serif);font-size:19px;font-weight:700;color:var(--navy);
+  letter-spacing:-.01em;flex:none}
+.goatbar .bardiv{flex:none;width:1px;align-self:stretch;background:var(--goldline);margin:2px 0}
+.goatbar .sm{flex:1;min-width:0;font-size:14px;color:#5a4a1e}
+.goatbar .more{flex:none;white-space:nowrap;font-size:14px;font-weight:800;color:var(--navy);
+  border:1.8px solid var(--gold);border-radius:9px;padding:10px 18px;background:transparent}
+.goatbar .more .mv{display:inline;margin-left:4px;font-weight:700}
+.goatbar:hover{border-color:var(--gold)}
+.goatbar:hover .more{background:var(--goldsoft)}
 
 /* a small dialog for the things that are a conversation, not a tool */
 .sheet{position:fixed;inset:0;z-index:100;background:rgba(16,24,50,.86);display:grid;place-items:center;padding:20px;overflow:auto}
@@ -302,7 +406,7 @@ a.row:hover{border-color:var(--goldline);box-shadow:0 8px 22px rgba(27,27,27,.07
   .recopen{appearance:none;cursor:pointer;font-family:'Inter',-apple-system,'Segoe UI',Roboto,sans-serif}
   .recstrip{background:#EFEADD;border-bottom:1px solid #E3DFD4;padding:9px 20px;text-align:center;
     font-size:13px;color:#4A4A44;font-family:'Inter',-apple-system,'Segoe UI',Roboto,sans-serif}
-  .recstrip .recopen{background:transparent;border:0;color:#A8853A;font-size:13px;font-weight:800;
+  .recstrip .recopen{background:transparent;border:0;color:#7A5F1F;font-size:13px;font-weight:800;
     text-decoration:underline;padding:0 0 0 5px}
 @media(max-width:640px){
   .recstrip{font-size:12px;padding:8px 14px;line-height:1.5}
@@ -336,21 +440,483 @@ a.row:hover{border-color:var(--goldline);box-shadow:0 8px 22px rgba(27,27,27,.07
   header .brandrow{margin-bottom:0}
   @media(max-width:640px){ header{padding-bottom:10px} }
 
+
+/* ---- the mockup's proportions, measured off the image ---------------------
+   Its sidebar begins at the very top (y=5), its navy band over the content is
+   33px not 74, its search box is 35px not 50, and by the 986px fold it is
+   already showing tool cards. Ours was burning ~40% more vertical space. */
+.shell{align-items:stretch}
+.side{position:sticky;top:0;padding:0 12px 40px;background:var(--navy);border-radius:0;min-height:100vh}
+.sidehead{padding:20px 10px 22px}
+.sidehead .mark{text-align:left;font-size:19px;letter-spacing:.26em}
+.sidehead .mark span{font-size:9.5px;letter-spacing:.3em;text-align:left}
+.topbar{display:flex;justify-content:flex-end;align-items:center;min-height:33px;margin:0 0 2px;padding:9px 0 0}
+.main{padding:0 26px 70px;min-width:0}
+h1{font-size:clamp(26px,2.9vw,38px);margin:10px 0 4px}
+.lede{font-size:clamp(14px,1.25vw,17px);margin:0 0 11px}
+.search{margin-bottom:13px;max-width:none}
+.search input{padding:7px 14px 7px 40px;border-radius:10px;font-size:13.5px}
+.search svg{left:14px;width:16px;height:16px}
+h2.sec{font-size:20px;margin:0 0 9px}
+.startline{gap:12px;margin:0 0 13px}
+.startline a{padding:13px 16px;gap:13px}
+.startline .icb{width:46px;height:46px} .startline .icb svg{width:21px;height:21px}
+.startline .sl-q{font-size:15.5px}
+.startline .sl-a{font-size:12.5px}
+.recent{margin:0 0 18px;gap:13px}
+.recent h2{font-size:18px}
+.recent a{padding:7px 13px;font-size:12.5px}
+.feat{gap:13px;margin-bottom:17px}
+.fcard{padding:16px 17px}
+.fcard .fhead{gap:12px;margin-bottom:9px}
+.fcard .icb.lg{width:48px;height:48px} .fcard .icb.lg svg{width:22px;height:22px}
+.fcard .n{font-size:17px}
+.fcard .d{font-size:12.5px;margin:0 0 13px}
+.fcard .btn{font-size:12.5px;padding:9px 17px}
+.banner{padding:17px 20px;gap:16px;margin-bottom:22px;border-radius:14px}
+.banner .ic svg{width:34px;height:34px}
+.banner .n{font-size:20px} .banner .d{font-size:13px}
+.banner .btnwrap{font-size:13.5px;padding:11px 20px}
+.banner .tx{padding-left:17px}
+.demo{gap:22px;margin:0 0 24px}
+.demo h2{font-size:clamp(20px,2vw,26px);margin:0 0 7px}
+.demo p{font-size:13px;margin:0 0 13px}
+.demo .play{padding:10px 17px;font-size:13px}
+.row{padding:13px 14px}
+.icb.sm{width:40px;height:40px} .icb.sm svg{width:19px;height:19px}
+@media(max-width:900px){
+  .side{display:none}
+  .main{padding-left:0;padding-right:0}
+  .topbar{justify-content:center;padding:10px 16px 0}
+  h1{margin-top:16px}
+}
+
+
+/* ---- ported from the reference implementation --------------------------------
+   Their fonts are Georgia/Arial and their own comment says those are placeholders
+   with no real metadata, so we keep Source Serif 4 and Inter. What we take is the
+   structure: the diagonal two-tone card fills, the 52px gradient orb, the type
+   scale, the shadows, and a navy recruit strip instead of our cream one.
+   Their offer previews are schematic fakes; ours are real screenshots, so those
+   stay ours. */
+h1{font-size:clamp(28px,3.2vw,42px);line-height:1.12;letter-spacing:-1px;margin:10px 0 4px}
+/* Jesse: "Your next call. Your next goal. Your tools." was reading as a caption.
+   Up to the reference's own 19px and the darker ink, so it carries the h1. */
+/* Scoped to .main so it beats the shell's own trailing .lede rule on specificity
+   rather than on source order - that rule is appended after this one. */
+.main .lede{font-size:clamp(16px,1.5vw,19px);color:var(--ink);opacity:.82;margin:8px 0 14px;
+  font-weight:500;letter-spacing:-.1px}
+h2.sec{font-size:25px;line-height:1.2;letter-spacing:-.4px;margin:0 0 14px}
+.recent h2{font-size:20px}
+
+/* The recruit strip, the top bar and the rail are ONE navy surface, flat.
+   Jesse: "the blue at the top and the blue on the left navigation and the blue in
+   that bar should all be the exact same blue." No gradients on any of the three -
+   a gradient is what made them read as three different blues. */
+.recstrip{background:var(--navy);color:#fff;border-bottom:0;
+  display:flex;align-items:center;justify-content:center;gap:18px;min-height:36px;padding:8px 16px;font-size:14.5px}
+.recstrip a,.recstrip .recopen{color:var(--gold);font-weight:700;text-decoration:underline;text-underline-offset:3px;font-size:14.5px}
+
+/* the navy rail. The active item is a solid gold block, not an outline: Jesse asked
+   for "fully highlighted in gold" so the current page is unmistakable. */
+.side{background:var(--navy)}
+.nav button{border-left:4px solid transparent;border-radius:8px;padding:14px 16px;margin-bottom:8px;
+  color:#E7EBF2;font-size:14px;gap:14px}
+.nav button:hover{background:#304360;color:#fff}
+/* ---- one gold treatment -----------------------------------------------------
+   A diagonal sheen across the gold with a lit top edge, so it catches light rather
+   than reading as a flat swatch. Jesse asked for this on every gold button, so it
+   lives in one place and each control opts in. Mock-up buttons inside the four
+   previews deliberately do NOT use it - those are pictures of someone else's page,
+   not our controls. */
+.gold-sheen,
+.nav button[aria-current="true"],
+.goatpill,
+.banner .btnwrap,
+.goatbar:hover .more{
+  background:linear-gradient(103deg,#B88F3C 0%,#D7B264 34%,#F0D694 52%,#D0A855 68%,#BC933F 100%);
+  background-size:220% 100%; background-position:28% 0; color:var(--navy);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.55), inset 0 -1px 0 rgba(90,66,16,.32),
+             0 2px 8px rgba(23,33,61,.22)}
+@media(prefers-reduced-motion:no-preference){
+  .gold-sheen,.nav button[aria-current="true"],.goatpill,.banner .btnwrap{
+    transition:background-position .5s ease, transform .18s ease}
+  .gold-sheen:hover,.nav button[aria-current="true"]:hover,.goatpill:hover,
+  a.banner:hover .btnwrap{background-position:68% 0}
+}
+
+.nav button[aria-current="true"]{
+  margin-left:-14px; padding-left:30px; width:calc(100% + 14px);
+  border-radius:0 9px 9px 0; border-left-color:transparent; font-weight:800}
+.nav button[aria-current="true"] svg{color:var(--navy)}
+.nav button[aria-current="true"]::before{display:none}
+
+/* one orb treatment: 52px, gold glyph. The glyph gold is a step brighter than the
+   brand gold used on cream - on navy the darker tone goes muddy, which is what
+   Jesse was seeing on Share and Agency Builder ("more vibrant"). */
+/* Jesse: the glyphs looked lacklustre in the circle. It was never the glyphs - the
+   pack's are fine - they were drawn small and thin inside a 52px disc. Same icons,
+   more of the circle and a heavier stroke. */
+.icb{width:52px;height:52px;background:linear-gradient(145deg,var(--navy-light),var(--navy));
+  color:var(--goldbright);border:1px solid rgba(226,188,99,.30)}
+.icb svg{color:var(--goldbright);stroke-width:2.1}
+.icb svg{width:31px;height:31px}
+.icb.lg{width:52px;height:52px} .icb.lg svg{width:31px;height:31px}
+.icb.sm{width:52px;height:52px} .icb.sm svg{width:31px;height:31px}
+
+/* the diagonal two-tone fill is the signature of their cards */
+.row{background:linear-gradient(150deg,var(--card) 78%,#FAF7F0 78%);box-shadow:var(--shadow);
+  padding:18px;gap:14px;border-radius:12px;align-items:center}
+.row:hover{transform:translateY(-2px);border-color:var(--goldline);box-shadow:var(--shadow-hover)}
+.row .n{font-family:var(--sans);font-size:17px;line-height:1.25;letter-spacing:-.2px}
+.row .d{font-size:13px;line-height:1.45;color:var(--secondary);margin-top:6px}
+.fcard{background:linear-gradient(150deg,var(--card) 78%,#FAF7F0 78%);box-shadow:var(--shadow);
+  padding:22px;border-radius:12px}
+.fcard:hover{transform:translateY(-2px);border-color:var(--goldline);box-shadow:var(--shadow-hover)}
+.fcard .n{font-family:var(--sans);font-size:17px;line-height:1.25;letter-spacing:-.2px}
+.fcard .d{font-size:13px;line-height:1.45;color:var(--secondary)}
+.fcard .btn{width:100%;margin-top:12px;font-size:13px;min-height:42px;border-radius:8px}
+.startline a{background:linear-gradient(150deg,#fff 75%,#F8F5ED 75%);box-shadow:var(--shadow);
+  padding:18px;gap:16px;border-radius:12px}
+.startline a:hover{transform:translateY(-2px);border-color:var(--goldline);box-shadow:var(--shadow-hover)}
+.startline .sl-q{font-size:21px;line-height:1.2}
+.startline .sl-a{font-size:13px;margin-top:5px}
+.banner{background:linear-gradient(150deg,var(--navy) 70%,var(--navy-light) 70%);
+  border:1px solid var(--gold);border-radius:12px;padding:22px;gap:18px;box-shadow:var(--shadow)}
+.banner .n{font-size:25px}
+.banner .d{color:#D1D8E4;font-size:14px}
+.banner .btnwrap{border-radius:8px;min-height:42px;display:inline-flex;align-items:center}
+.recent a{box-shadow:none;border-radius:999px;padding:8px 13px;font-size:12px}
+
+/* ---- header and rail, as the reference builds them ------------------------- */
+/* The header spans the main column only - it begins where the rail ends. It used to
+   run the full width at z-30 over a z-20 rail, so scrolling slid the wordmark across
+   the Home button. Now neither can overlap the other. */
+.sticky-head{position:sticky;top:0;z-index:30;margin-left:var(--rail);
+  padding:0;background:var(--navy)}
+.top{background:var(--navy);color:#fff}
+.top-in{max-width:none;margin:0;height:54px;padding:0 28px;display:flex;align-items:center;
+  justify-content:flex-end;gap:16px}
+/* The real lockup, not type standing in for it. The source art is black on white,
+   so it was recoloured once at build time - gold orb untouched, black to cream,
+   white to transparent - and that is what reads on the navy header. */
+.mark{text-align:left;display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+.mark img{display:block;height:28px;width:auto}
+.mark span{font-family:var(--sans);font-weight:600;font-size:9px;letter-spacing:3px;
+  color:var(--gold);line-height:1;margin:0;text-align:left}
+.goatpill{color:var(--navy);min-height:42px;display:inline-flex;align-items:center;
+  padding:10px 18px;border-radius:8px;font-size:14px;font-weight:700}
+.shell{max-width:none;display:block}
+.side{position:fixed;top:0;bottom:0;left:0;width:var(--rail);z-index:20;
+  border-radius:0;min-height:0;height:100vh;overflow-y:auto;background:var(--navy);
+  /* Painted from the very top rather than from under the header. The old rule pinned
+     this at top:102px, so the moment the header was any other height - the strip
+     wrapping to two lines at some widths does exactly that - a cream sliver opened
+     above the rail. That was Jesse's "goes cream" on scroll. Now the navy is
+     continuous from y=0 and the header simply sits on top of it (z-index 30 > 20);
+     only the nav CONTENT is offset, by a height JS measures off the real header. */
+  padding:0 12px 40px;display:flex;flex-direction:column}
+
+/* The logo sits at the head of the rail and is sized to the column, not tucked into
+   a corner of a wide bar - Jesse: "the logo needs to fit the width of that column". */
+/* The mark links to the public Optimum site, so it needs its own link reset. */
+.sidemark{flex:none;padding:18px 6px 20px;display:flex;flex-direction:column;
+  align-items:flex-start;gap:7px;text-decoration:none;border-radius:8px}
+.sidemark:hover{background:rgba(255,255,255,.05)}
+.sidemark:focus-visible,.mark:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.mark{text-decoration:none}
+.sidemark img{display:block;width:100%;max-width:168px;height:auto}
+.sidemark span{font-family:var(--serif);font-weight:700;font-size:20px;letter-spacing:.01em;
+  color:var(--gold);line-height:1.05;width:100%;max-width:168px;box-sizing:border-box;
+  text-align:center}
+.mark-phone{display:none}
+.sidehead{display:none}
+.main{margin-left:var(--rail);padding:20px 28px 48px;max-width:1420px}
+.topbar{display:none}
+@media(max-width:1100px){ :root{--rail:176px} .main{padding:20px 22px 40px} }
+/* the header must clear the rail's own scrollbar track as well as its fill */
+.sticky-head{box-shadow:0 1px 0 rgba(0,0,0,.25)}
+html{background:var(--navy)}
+
+@media(min-width:901px){
+  .sticky-head{display:flex;align-items:center;gap:20px;min-height:var(--headh);padding:0 28px}
+  .top{order:2;flex:none;background:none}
+  .top-in{height:auto;padding:0}
+  .recstrip{order:1;flex:1;min-width:0;min-height:0;padding:0;background:none;
+    justify-content:center;gap:14px}
+  /* below this the pill and the strip stop fitting side by side, so they stack again */
+  @media(max-width:1150px){
+    .sticky-head{display:block;padding:0}
+    .top{background:var(--navy)} .top-in{height:54px;padding:0 24px}
+    .recstrip{padding:8px 16px;min-height:36px}
+  }
+}
+
+@media(max-width:900px){
+  /* No rail on a phone, so the header runs full width and carries the logo again. */
+  :root{--rail:0px}
+  .sidemark{display:none}
+  .mark-phone{display:flex}
+  .top-in{height:54px;padding:0 16px;justify-content:space-between}
+  .mark img{height:22px} .mark span{font-size:8px;letter-spacing:2px}
+  .goatpill{font-size:11px;min-height:34px;padding:8px 10px}
+  .side{display:none}
+  .main{margin:0;padding:14px 16px 96px;max-width:none}
+  .recstrip{min-height:34px;gap:8px;font-size:10px;padding:6px 8px}
+}
+/* the offer bar is a white card with a gold border, not a gold fill */
+.goatbar,.goatblock{background:var(--card);border:1px solid var(--goldline);border-radius:12px;
+  box-shadow:var(--shadow)}
+
+/* ---- the measurements the reference actually specifies ---------------------
+   These replace compressions I had guessed from a scaled image. Their search box
+   is 48px, not the 37 I had squeezed it to; the intro and section rhythm come
+   from their --section-gap. */
+.search{height:48px;border-radius:12px;margin-bottom:22px;max-width:none;display:flex;align-items:center;padding:0 16px;background:var(--card);border:1px solid var(--rule);box-shadow:0 1px 3px rgba(23,33,61,.04);position:relative}
+.search input{height:100%;padding:0 0 0 28px;font-size:15px;border-radius:0;background:none;border:0}
+.search input:focus{box-shadow:none;border:0}
+.search:focus-within{outline:3px solid var(--focus);outline-offset:3px;border-color:var(--rule)}
+.search svg{left:16px;width:20px;height:20px}
+.lede{font-size:18px;margin:8px 0 0}
+h1{margin:0}
+.intro-sp{margin-bottom:22px}
+.sec-group{margin-bottom:28px}
+.feat{margin-bottom:28px}
+
+/* the open panel's own header, mirroring the collapsed bar */
+.goathead{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:0 0 11px;margin:0 0 15px;border-bottom:1px solid var(--goldline)}
+.goathead .gh-l{display:flex;align-items:center;gap:9px;font-weight:700;
+  color:var(--goldink);font-size:14px}
+.goathead .star{color:var(--gold);font-size:15px}
+.gh-hide{appearance:none;background:none;border:0;cursor:pointer;font:inherit;
+  color:var(--goldink);font-weight:600;font-size:13.5px;padding:2px 4px}
+.gh-hide:hover{text-decoration:underline}
+
+#offer:not(:empty){margin:0 0 20px}
+@media(max-width:900px){
+  /* The phone treatment Jesse sent: a card, not a strip - star and title on one
+     line, the four things beneath, and a gold Show me button holding the right. */
+  .goatbar{display:grid;grid-template-columns:auto minmax(0,1fr) auto;
+    align-items:center;gap:4px 10px;padding:13px;border-width:2px}
+  .goatbar .star{font-size:17px;align-self:start;margin-top:1px}
+  .goatbar .bardiv{display:none}
+  .goatbar .lbl{grid-column:2}
+  .goatbar .lbl{display:block;font-size:18px;margin:0 0 3px;grid-column:2}
+  .goatbar .sm{display:block;font-size:12.5px;line-height:1.35;grid-column:2}
+  /* Outlined on the phone too. Jesse's latest direction is that Show me is an
+     outlined control with a down arrow, so both widths read the same way. */
+  .goatbar .more{grid-column:3;grid-row:1;font-weight:800;font-size:13px;
+    padding:9px 14px;border-radius:9px;border:1.8px solid var(--gold);
+    color:var(--navy);background:transparent}
+  .goatbar .more .mv{display:inline}
+}
+@media(max-width:900px){ #offer:not(:empty){margin-bottom:16px} }
+
+/* ---- the four offer previews ---------------------------------------------- */
+.offer-item h3{margin:14px 0 0;font-family:var(--serif);font-size:19px;font-weight:700;
+  letter-spacing:-.01em;color:var(--navy);line-height:1.2}
+.offer-item p{margin:7px 0 0;color:var(--secondary);font-size:14px;line-height:1.45}
+
+.pv{position:relative;border:1px solid var(--rule);border-radius:10px;overflow:hidden;
+  background:#fff;box-shadow:0 2px 8px rgba(23,33,61,.10);aspect-ratio:300/232;
+  display:flex;flex-direction:column;font-size:10px;line-height:1.3}
+.pv svg:not(.pv-scene){fill:none;stroke:currentColor;stroke-width:2;
+  stroke-linecap:round;stroke-linejoin:round}
+/* The drawn scenes sit behind their panel's text. No blanket stroke reset here:
+   the icon rule above already excludes .pv-scene, and a reset killed the family
+   figures, whose bodies ARE strokes - only their filled heads survived. */
+.pv-scene{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+
+/* 1. agent website */
+.pv-bar{display:flex;align-items:center;justify-content:space-between;gap:6px;
+  padding:6px 8px;background:#fff;border-bottom:1px solid var(--rule);flex:none;z-index:1}
+.pv-brand{display:flex;align-items:center;gap:5px;font-weight:800;color:var(--navy);font-size:9px}
+.pv-av{width:12px;height:12px;border-radius:50%;background:var(--navy);flex:none}
+.pv-nav{display:flex;gap:7px;color:var(--secondary);font-size:7.5px;font-weight:600}
+.pv-nav i{font-style:normal}
+.pv-hero{flex:1;position:relative;min-height:0;display:flex}
+/* a scrim so the headline holds up over the brightest part of the sky */
+.pv-hero::after{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(100deg,rgba(8,14,30,.74) 0%,rgba(8,14,30,.34) 52%,rgba(8,14,30,0) 100%)}
+.pv-heroin{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;
+  padding:11px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.45)}
+.pv-heroin b{font-family:var(--serif);font-size:16px;line-height:1.12;letter-spacing:-.01em;font-weight:700}
+.pv-heroin small{display:block;font-size:8px;opacity:.95;margin-top:4px;font-weight:500}
+.pv-btn{display:inline-block;align-self:flex-start;margin-top:9px;background:var(--gold);
+  color:var(--navy);font-weight:800;font-size:8.5px;padding:5px 10px;border-radius:4px;
+  box-shadow:0 1px 3px rgba(0,0,0,.3)}
+.pv-btn.wide{align-self:stretch;text-align:center;padding:7px 10px;font-size:10px;margin-top:6px}
+.pv-tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:#fff;
+  padding:8px 4px;flex:none;border-top:1px solid var(--rule);z-index:1}
+.pv-tiles span{display:flex;flex-direction:column;align-items:center;gap:3px;
+  font-size:6.5px;font-weight:600;color:var(--secondary);text-align:center;line-height:1.1}
+.pv-tiles svg{width:14px;height:14px;color:var(--navy)}
+
+/* 2. digital business card. Full-bleed navy like the reference Jesse sent; what he
+      wanted tighter was the CONTENT, which was small and spread out - the type is
+      up, the avatar is a solid disc, and the action bar carries real weight. */
+.pv-cardwrap{display:flex;flex-direction:column;padding:0;background:var(--navy)}
+.pv-card{flex:1;display:flex;flex-direction:column;min-height:0}
+.pv-id{flex:1;display:flex;flex-direction:column;justify-content:center;
+  padding:14px 13px;color:#fff;background:linear-gradient(160deg,#2B4064,#131D36)}
+.pv-ring{width:40px;height:40px;border-radius:50%;border:2.5px solid var(--gold);
+  background:#fff;display:grid;place-items:center;color:var(--navy);margin-bottom:10px}
+.pv-ring svg{width:21px;height:21px}
+.pv-id b{display:block;font-size:15px;font-weight:800;letter-spacing:-.01em}
+.pv-id small{display:block;font-size:9px;opacity:.92;margin-top:3px;font-weight:500}
+.pv-rule{display:block;width:48px;height:3px;background:var(--gold);border-radius:2px;margin-top:10px}
+.pv-acts{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#fff;
+  padding:10px 3px;flex:none}
+.pv-acts span{display:flex;flex-direction:column;align-items:center;gap:4px;
+  font-size:8px;font-weight:800;color:var(--navy);position:relative}
+.pv-acts svg{width:17px;height:17px;color:var(--golddk);stroke-width:2.2}
+/* Save is ringed so it is unmistakably the action - Jesse asked for the red circle */
+.pv-save svg{color:#C0392B}
+.pv-save::before{content:"";position:absolute;top:-4px;left:50%;transform:translateX(-50%);
+  width:25px;height:25px;border:1.6px solid #C0392B;border-radius:50%}
+
+/* 3. booking calendar - heavier than it was, per Jesse */
+.pv-cal{padding:10px;gap:2px;background:#fff}
+.pv-cal>b{font-size:11.5px;color:var(--navy);font-weight:800;letter-spacing:-.01em}
+.pv-cal>small{display:block;font-size:8px;color:var(--secondary);margin-bottom:6px;font-weight:500}
+.pv-calrow{display:grid;grid-template-columns:minmax(0,1fr) 48px;gap:7px;flex:1;min-height:0}
+.pv-month{display:flex;flex-direction:column;min-height:0}
+.pv-mhead{display:flex;align-items:center;justify-content:space-between;
+  font-size:9.5px;font-weight:800;color:var(--navy);margin-bottom:5px}
+.pv-mhead em{font-style:normal}
+.pv-grid{display:grid;grid-template-columns:repeat(7,1fr);grid-auto-rows:1fr;gap:1px 0;
+  text-align:center;font-size:7.5px;flex:1;min-height:0}
+.pv-grid i{font-style:normal;color:var(--ink);font-weight:600;aspect-ratio:1;max-height:100%;
+  margin:0 auto;display:grid;place-items:center;border-radius:50%;padding:0 .3em}
+.pv-grid .pv-dow{color:var(--navy);font-weight:800}
+.pv-grid .pv-off{color:#C3C8D2;font-weight:500}
+.pv-grid .pv-on{background:var(--navy);color:#fff;font-weight:800}
+.pv-times{display:flex;flex-direction:column;gap:3px}
+.pv-times span{border:1px solid var(--rule);border-radius:4px;padding:4px 2px;text-align:center;
+  font-size:7px;font-weight:700;color:var(--ink);background:#F7F8FA}
+.pv-times .pv-on{background:var(--navy);color:#fff;border-color:var(--navy)}
+
+/* 4. sales funnel */
+.pv-funnel{color:#fff}
+.pv-funnel::after{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,rgba(8,12,26,.42) 0%,rgba(8,12,26,0) 34%,rgba(8,12,26,.30) 58%,rgba(8,12,26,.80) 100%)}
+.pv-back{position:relative;z-index:2;font-size:7.5px;font-weight:600;opacity:.95;padding:8px 10px 0;flex:none;
+  text-shadow:0 1px 2px rgba(0,0,0,.5)}
+.pv-fbody{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:flex-end;
+  padding:10px;min-height:0;text-shadow:0 1px 3px rgba(0,0,0,.5)}
+.pv-fbody b{font-family:var(--serif);font-size:14.5px;line-height:1.12;font-weight:700}
+.pv-fbody small{display:block;font-size:8px;opacity:.95;margin-top:4px;font-weight:500}
+.pv-field{display:block;background:#fff;color:var(--secondary);font-size:8.5px;font-weight:500;
+  padding:6px 8px;border-radius:4px;margin-top:8px;text-shadow:none;
+  box-shadow:0 1px 3px rgba(0,0,0,.25)}
+
+/* Phones: one column, each preview full width above its own title. The card keeps
+   its inset so it still reads as a card, just a wider one. */
+@media(max-width:900px){
+  .g4{grid-template-columns:1fr;gap:24px}
+  .offer-item h3{font-size:20px;margin-top:12px}
+  .offer-item p{font-size:14px}
+  .pv{aspect-ratio:320/212;font-size:12px}
+  .pv-cardwrap{padding:12px 22%}
+  .pv-heroin b,.pv-fbody b{font-size:20px}
+  .pv-heroin small,.pv-fbody small{font-size:10px}
+  .pv-btn{font-size:10px;padding:6px 12px} .pv-btn.wide{font-size:12px;padding:8px 12px}
+  .pv-brand{font-size:11px} .pv-nav{font-size:9px;gap:9px} .pv-av{width:15px;height:15px}
+  .pv-tiles span{font-size:8px} .pv-tiles svg{width:17px;height:17px}
+  .pv-id b{font-size:17px} .pv-id small{font-size:10px}
+  .pv-ring{width:42px;height:42px} .pv-ring svg{width:22px;height:22px}
+  .pv-acts span{font-size:9px} .pv-acts svg{width:19px;height:19px}
+  .pv-save::before{width:29px;height:29px}
+  .pv-cal>b{font-size:14px} .pv-cal>small{font-size:10px}
+  .pv-mhead{font-size:11.5px} .pv-grid{font-size:9.5px}
+  .pv-calrow{grid-template-columns:minmax(0,1fr) 58px}
+  .pv-times span{font-size:8.5px}
+  .pv-field{font-size:10px}
+  .pv-back{font-size:9px}
+}
+
+/* The MyPopPro block, minimised. Jesse called the full-width version "gigantic":
+   it was taking a screen of its own below the grid for one link. Now a short row -
+   the graphic shrinks to a thumbnail and the copy sits beside it.
+   .demo.rev reorders with `order`, so the IMAGE occupies grid track 1, not track 2;
+   sizing track 2 shrinks the text and leaves the graphic full width. */
+.demo.tight{padding:16px 18px;gap:18px;align-items:center}
+.demo.rev.tight{grid-template-columns:240px minmax(0,1fr)}
+.demo.tight h2{font-size:19px;margin:0 0 4px;letter-spacing:-.2px}
+.demo.tight p{font-size:13px;margin:0 0 10px;color:var(--secondary)}
+.demo.tight .play{padding:9px 14px;font-size:13px}
+.demo.tight .prevpic{width:100%;height:auto;aspect-ratio:720/378;object-fit:cover;border-radius:8px}
+
+@media(max-width:900px){
+  .demo.rev.tight{grid-template-columns:1fr}
+  .demo.tight{gap:12px;padding:14px}
+  .demo.tight .prevpic{aspect-ratio:16/7}
+  /* The Success Plan banner, compressed to a single row: bullseye, two short lines,
+     arrow. The standalone CTA block goes - the whole row is the link. */
+  .banner{grid-template-columns:auto minmax(0,1fr) auto;display:grid;align-items:center;
+    gap:12px;padding:13px 14px}
+  .banner .ic,.banner .icb{width:40px;height:40px} .banner .ic svg,.banner .icb svg{width:21px;height:21px}
+  .banner .n{font-size:16px;line-height:1.2} .banner .d{font-size:12px;line-height:1.35;margin-top:2px}
+  .banner .btnwrap{display:none}
+  .banner .arr{display:inline-flex;width:24px;height:24px;color:var(--gold)}
+  .banner .arr svg{width:24px;height:24px}
+  /* the recruiting banner has no arrow, so it keeps its button */
+  .banner.growban .btnwrap{display:inline-flex;font-size:12px;padding:0 10px;min-height:34px}
+}
+
+/* ---- phone overrides, last in the sheet on purpose -------------------------
+   The density rules above are unconditional, and a media query adds no
+   specificity - so anything declared after an @media block beats it. These have
+   to sit at the very end or the desktop sizes leak onto the phone, which is what
+   made the quick-launch cards 131px tall instead of ~85. */
+@media(max-width:900px){
+  .fcard{padding:12px 13px;display:grid;grid-template-columns:auto minmax(0,1fr) auto;
+    column-gap:12px;row-gap:1px;align-items:center;border-radius:13px}
+  .fcard .fhead{display:contents;margin:0}
+  .fcard .icb.lg{width:42px;height:42px;grid-column:1;grid-row:1/3;align-self:center}
+  .fcard .icb.lg svg{width:20px;height:20px}
+  .fcard .n{grid-column:2;grid-row:1;align-self:end;font-size:16px;line-height:1.25;margin:0}
+  .fcard .ftx{grid-column:2;grid-row:2;align-self:start;display:block;flex:none;width:auto;min-width:0}
+  .fcard .d{font-size:12.5px;margin:0;font-weight:500;line-height:1.4;flex:none}
+  .fcard .btn{display:none}
+  .fcard .arr{grid-column:3;grid-row:1/3;align-self:center;display:block;color:var(--gold)}
+  .fcard .arr svg{width:19px;height:19px}
+  .feat{grid-template-columns:1fr;gap:9px;margin-bottom:14px}
+  .startline a{padding:13px 14px}
+  .search input{padding:11px 14px 11px 40px}
+}
 </style>
 </head>
 <body>
-
-<div class="top"><div class="top-in">
-  <div class="mark">OPTIMUM<span>AGENT TOOLS</span></div>
-  <a class="goatpill" href="https://goatleads.com/registration/new?affiliate_id=66c4aa379e0123651ad2f0e6" target="_blank" rel="noopener">&#9733; FREE Agent Website, Digital Business Card &amp; Booking Calendar</a>
-</div></div>
+<!-- The reference puts the header across the full width - a 68px topbar and a 34px
+     recruit strip - and then fixes the navy rail beneath it at top:102px. An earlier
+     read of the mockup image had me run the rail to the page top; the code says
+     otherwise. -->
+<!-- The rail is its own full-height column and carries the logo at its head. The
+     header starts where the rail ends, so the two sit side by side instead of the
+     header layering over the rail - which is what made scrolling feel wrong, with
+     the wordmark passing across the Home button. -->
+<aside class="side">
+  <a class="sidemark" href="https://www.ffloptimum.com/"><img src="img/optimum-mark.png" alt="Optimum" width="1300" height="300">
+    <span>Agent Tools</span></a>
+  <nav class="nav" id="nav" aria-label="Sections"></nav>
+</aside>
+<header class="sticky-head">
+  <div class="top"><div class="top-in">
+    <a class="mark mark-phone" href="https://www.ffloptimum.com/"><img src="img/optimum-mark.png" alt="Optimum" width="1300" height="300">
+      <span>Agent Tools</span></a>
+    <a class="goatpill" href="https://goatleads.com/registration/new?affiliate_id=66c4aa379e0123651ad2f0e6" target="_blank" rel="noopener">&#9733; FREE Agent Website, Digital Business Card &amp; Booking Calendar</a>
+  </div></div>
 <div class="recstrip">Free for every agent, period.<button type="button" class="recopen" aria-haspopup="dialog">Not a Family First Life agent?</button></div>
-
+</header>
 <div class="shell">
-  <aside class="side"><nav class="nav" id="nav" aria-label="Sections"></nav></aside>
   <main class="main">
-    <h1 id="head">Your tools. Ready when you are.</h1>
-    <p class="lede">Built for agents. Free to use.</p>
+    <!-- The free-for-agents offer leads the page, above the heading and the search.
+         Jesse, 8 Oct: "that banner should be above everything as per the mock-up." -->
+    <div id="offer"></div>
+    <h1 id="head">What do you need today?</h1>
+    <p class="lede">Your next call. Your next goal. Your tools.</p>
     <div class="search">
       <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5L21 21"/></svg>
       <input id="q" type="search" placeholder="Find a tool…" aria-label="Find a tool">
@@ -405,14 +971,22 @@ a.row:hover{border-color:var(--goldline);box-shadow:0 8px 22px rgba(27,27,27,.07
  document.getElementById('recClose').addEventListener('click',sh);
  rm.querySelector('.backdrop').addEventListener('click',sh);
  document.addEventListener('keydown',function(e){if(e.key==='Escape')sh();});
- document.querySelectorAll('.recopen').forEach(function(b){b.addEventListener('click',op);});})();
+ /* Delegated, not bound per element. The hub renders its Grow banner AFTER this
+    script runs, so a .recopen button created later never got a listener and its
+    "Learn more" did nothing. Delegation covers every .recopen, now and later. */
+ document.addEventListener('click',function(e){
+   var b=e.target.closest&&e.target.closest('.recopen'); if(b){e.preventDefault();op();}});})();
 </script>
 
 <script>
-const M = {"_comment": "One manifest. The hub renders from this; the landing page and portal can render from the same file. Add a tool once, every surface updates. status: live | soon | placeholder", "cats": [{"k": "all", "label": "All tools", "ic": "grid"}, {"k": "sell", "label": "Sell", "ic": "cash"}, {"k": "grow", "label": "Grow", "ic": "people"}, {"k": "res", "label": "Resources", "ic": "book"}], "tools": [{"n": "Script Navigator", "d": "The whole call, start to finish, branching as it goes.", "u": "https://script.ffloptimum.com/", "status": "live", "ic": "compass", "cat": "sell", "feature": 1}, {"n": "Product Wizard", "d": "Age and health conditions in, the products they can actually buy out.", "u": "https://wizard.ffloptimum.com/", "status": "live", "ic": "wand", "cat": "sell", "feature": 2}, {"n": "POP Pro", "d": "Build their package of protection on the call.", "u": "https://mypoppro.com/", "status": "live", "ic": "shield", "cat": "sell", "feature": 3}, {"n": "Share Family First Life", "d": "Two ready-to-send messages and a video. Tap, pick a contact, send.", "u": "https://tools.ffloptimum.com/share/", "status": "live", "tag": "FFL agents", "ic": "megaphone", "cat": "grow"}, {"n": "State licensing guide", "d": "All 50 states — hours, exams, fingerprints and fees, sortable cheapest to highest.", "u": "https://portal.ffloptimum.com/state-requirements.html", "status": "live", "tag": "Sort coming", "owner": "build", "note": "Fees are already in it. Needs the cheapest-to-highest sort added as a feature on the existing page.", "ic": "map", "cat": "res"}, {"n": "FFL Annual Convention", "d": "Irving Convention Center. Keynote: Stephen A. Smith.", "u": "https://familyfirstlife.com/annualconvention/", "status": "live", "tag": "Event", "owner": "live", "note": "Verified live — Irving Convention Center, Stephen A. Smith keynote.", "ic": "ticket", "cat": "res"}, {"n": "Millionaire Maker — Shawn Meaike", "d": "Coaching on building a business worth owning.", "u": "https://whop.com/close-and-conquer/millionaire-maker-coaching/", "status": "live", "ic": "mic", "cat": "res"}, {"n": "FFL Builders Call recordings", "d": "Every builders call, on demand.", "u": "https://www.youtube.com/playlist?list=PLSrliQxrlhfx5ni9rhfQK9OmYd6YLnqLE", "status": "live", "ic": "play", "cat": "res"}, {"n": "FFL National channel", "d": "SRS calls and more.", "u": "https://www.youtube.com/@FFLNational/videos", "status": "live", "ic": "play", "cat": "res"}, {"n": "Your Agent Success Plan", "d": "Nine steps from nothing to your first appointments — your income goal, the leads it takes, and the exact tools in order.", "u": "/success/", "status": "soon", "big": true, "tag": "Guided path", "owner": "build", "note": "Built in the other thread. Embeds the real Income Calculator, Activity Planner and Commission Estimator so numbers carry across. Needs a route on tools.ffloptimum.com — same-origin is required for the embedding to work.", "ic": "hammer", "cat": "plan", "banner": true}, {"n": "Income Calculator", "d": "What you want to earn, turned into what you have to write.", "u": "https://tools.ffloptimum.com/planning/#income", "status": "live", "owner": "build", "note": "Rebuild specced 3 Oct: pick your market (FE / mortgage / IUL / term / health) instead of abstract product types, tax gross-up, costs, cash trough, and rates read from the real comp grid instead of the invented curve it runs on today.", "ic": "target", "cat": "sell"}, {"n": "Activity Planner", "d": "Dials, contacts, appointments — the week behind the number.", "u": "https://tools.ffloptimum.com/planning/#activity", "status": "live", "ic": "calendar", "cat": "sell"}, {"n": "Agency Builder", "d": "What a team changes about the maths.", "u": "https://tools.ffloptimum.com/planning/#agencybuild", "status": "live", "ic": "people", "cat": "grow", "guess": true}, {"n": "Commission Estimator", "d": "What one policy pays you, by carrier and level.", "u": "https://tools.ffloptimum.com/planning/#commission", "status": "live", "ic": "cash", "cat": "sell"}, {"n": "FFL Comp Grid", "d": "Your contract level, your carriers, what every product pays — and what the next level is worth.", "u": "https://portal.ffloptimum.com/comp-grid.html", "status": "live", "tag": "FFL agents", "owner": "live", "note": "Public, framed for FFL agents — your call, 2 Oct. Worth adding a noindex tag so it is shareable but not searchable.", "ic": "grid", "cat": "sell"}, {"n": "Chargebacks, explained", "d": "Advances are a loan. What happens when a policy lapses.", "u": "https://tools.ffloptimum.com/chargebacks/", "status": "live", "ic": "warn", "cat": "sell"}, {"n": "Policy benefits guide", "d": "Term vs whole life vs IUL, in words a client follows.", "u": "https://portal.ffloptimum.com/policy-benefits.html", "status": "live", "ic": "book", "cat": "res"}, {"n": "Tools of the trade", "d": "The headset, the tablet, the kit that holds up on 200 dials a day.", "u": "", "status": "live", "tag": null, "owner": "you", "note": "Waiting on your gear list. Then Amazon affiliate links.", "ic": "headphones", "cat": "res", "guess": true, "modal": "gear"}, {"n": "Thinking about health?", "d": "No private health at your agency? There is still a way to learn it.", "u": "", "status": "live", "tag": null, "owner": "you", "note": "Copy only, no build — but lead with 'check with your agency first', and it is limited by the four states you hold health authority in.", "ic": "plus", "cat": "res", "guess": true, "modal": "health"}, {"n": "Objection Flashcards", "d": "Pick the call, tap a card, see the exact words — and why they work.", "u": "https://tools.ffloptimum.com/objections/", "status": "live", "tag": "New", "owner": "live", "note": "Shipped 2 Oct, fixed 3 Oct: Mortgage and IUL decks added (32 cards across three sheets) and the 'Not a Family First Life agent?' strip and modal restored — they did not ship the first time. Generated from the three cheat sheets, so none can drift.", "ic": "cards", "cat": "sell", "guess": true}, {"n": "Final Expense & Veteran objections", "d": "The full cheat sheet — opening and closing, with the words and why they work.", "u": "https://script.ffloptimum.com/vet/objections/", "status": "live", "cat": "sell", "ic": "chat"}, {"n": "Mortgage Protection objections", "d": "The full cheat sheet for mortgage protection calls.", "u": "https://script.ffloptimum.com/mortgage/objections/", "status": "live", "cat": "sell", "ic": "chat"}, {"n": "IUL objections", "d": "The full cheat sheet for IUL calls.", "u": "https://script.ffloptimum.com/iul/objections/", "status": "live", "cat": "sell", "ic": "chat"}], "phases": [{"k": "Live today", "d": "An agent can use all of this right now, on a phone, with no sign-up.", "items": ["Objection Flashcards — FEX & Veteran, Mortgage and IUL, 32 cards", "Script Navigator", "Product Wizard", "POP Pro", "Comp Grid and Commission Estimator with the real 38-product grid", "Income, Activity and Agency planners", "Chargebacks", "State licensing", "Share Family First Life", "GOAT, convention, calls and recordings"]}, {"k": "Next — nothing blocking me", "d": "I can build these without waiting on anyone.", "items": ["This page itself, rendered from the manifest, replacing the current landing page", "Income Calculator rebuild — market-based products, tax and costs, real comp rates", "Cheapest-to-highest sort on the state licensing page", "A real 'what moves the needle' section — sensitivity, not an advert", "noindex on the comp pages so they stay shareable but unsearchable"]}, {"k": "Blocked on you", "d": "Each of these is one answer away.", "items": ["Health — we hold no health commission data at all; Bundle Village's numbers are unsourced", "Mortgage-protection blend — what mix of term, whole life and IUL?", "Tools of the trade — your gear list", "Important links — your weekly five", "The Success Plan's route under tools.ffloptimum.com"]}], "order": {"sell": ["Income Calculator", "Activity Planner", "Commission Estimator", "Objection Flashcards", "Final Expense & Veteran objections", "Mortgage Protection objections", "IUL objections", "FFL Comp Grid", "Chargebacks, explained"], "grow": ["Share Family First Life", "Agency Builder"], "res": ["State licensing guide", "FFL Annual Convention", "Millionaire Maker — Shawn Meaike", "FFL Builders Call recordings", "FFL National channel", "Policy benefits guide", "Tools of the trade", "Thinking about health?"], "all": ["Income Calculator", "Activity Planner", "Commission Estimator", "Objection Flashcards", "Final Expense & Veteran objections", "Mortgage Protection objections", "IUL objections", "FFL Comp Grid", "Chargebacks, explained", "Share Family First Life", "Agency Builder", "State licensing guide", "FFL Annual Convention", "Millionaire Maker — Shawn Meaike", "FFL Builders Call recordings", "FFL National channel", "Policy benefits guide", "Tools of the trade", "Thinking about health?"]}, "goat": {"eyebrow": "Start with this one", "head": "Four things every agent should have on day one.", "sub": "Free through Optimum — whoever you write business under. About five minutes to set up.", "url": "https://goatleads.com/registration/new?affiliate_id=66c4aa379e0123651ad2f0e6", "cta": "Sign up for free", "note": "(register on GOAT with this link to receive promos, specials and free agent tools)", "caption": "Examples from a real Optimum agent’s GOAT pages. Yours carry your name, photo and licenses. Click one to see it full size.", "hide": "Close", "short": "Agent website, business card, booking calendar and sales funnels.", "items": [{"k": "website", "n": "Agent website", "d": "Your photo, bio, carriers and state licenses pulled from NIPR, so a client can check you out before they buy."}, {"k": "card", "n": "Digital business card", "d": "Send it to a client and one tap on Save drops your name, direct line and NPN straight into their phone."}, {"k": "calendar", "n": "Booking calendar", "d": "A link clients use to grab a time with you. No back-and-forth texting."}, {"k": "funnel", "n": "Free sales funnels", "d": "Post the link and it captures the lead for you — a client taps Request a Quote and it comes to you."}], "label": "Free for agents"}, "goatimg": {"website": "/goat/website.jpg", "card": "/goat/card.jpg", "calendar": "/goat/calendar.jpg", "funnel": "/goat/funnel.jpg"}, "gear": {"title": "Tools of the trade", "sub": "The kit that holds up on a day of dials. These are affiliate links — Optimum may earn a commission, at no cost to you.", "items": [{"n": "Wireless headset with mic", "d": "Noise-cancelling, for a full day on the phone.", "u": "https://www.amazon.com/dp/B0GFDWXFJW?tag=mobile0329694-20&language=en_US&linkCode=ll1&ref_=as_li_ss_tl&th=1"}, {"n": "reMarkable Paper Pro", "d": "Colour e-ink tablet with the Marker Plus — notes that feel like paper.", "u": "https://www.amazon.com/dp/B0DG9ZXWMK?tag=mobile0329694-20&linkCode=sl1&language=en_US&ref_=as_li_ss_tl&th=1"}], "pending": "Book list to come — see the note below."}, "health": {"title": "Thinking about private health?", "lead": "Start with your own agency. If they write private health and want to grow it, that is the right door and you should walk through it first.", "body": ["If your agency does not do private health and is not looking to, and you want somewhere to learn it and grow, let me know and my team can help you out.", "That stands whether or not you are with Family First Life. We are not trying to move anybody — we would just rather you had somewhere to go than let the opportunity sit there."], "cta": "Start the conversation", "url": "https://www.ffloptimum.com/#apply", "foot": "Check with your agency first. Health authority is state by state, so the answer depends on where you are licensed."}}, ICONS = {"compass": "M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM16 8l-2.2 5.8L8 16l2.2-5.8L16 8z", "chat": "M21 12a8 8 0 0 1-8 8H8l-5 3 1.2-4.2A8 8 0 1 1 21 12z", "wand": "M3.5 20.5L14 10M17.2 3l1.1 2.6 2.6 1.1-2.6 1.1-1.1 2.6-1.1-2.6L13.5 6.7l2.6-1.1L17.2 3zM7 3.4l.6 1.5 1.5.6-1.5.6L7 7.6l-.6-1.5L4.9 5.5l1.5-.6L7 3.4z", "shield": "M12 3l8 3v6c0 5-3.5 8.2-8 9.5C7.5 20.2 4 17 4 12V6l8-3zM9 12l2 2 4-4", "cards": "M7 8h11a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-9a2 2 0 0 1 2-2zM8 5h10M9.5 2.5h7", "cash": "M3 7h18a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1zM12 9.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z", "grid": "M3 4h18v16H3zM3 9.5h18M3 15h18M9 4v16M15 4v16", "warn": "M12 3.5L22 20H2L12 3.5zM12 9v5M12 17h.01", "target": "M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 7.5a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9zM12 11.2a.8.8 0 1 0 0 1.6.8.8 0 0 0 0-1.6z", "calendar": "M4 5h16a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zM3 10h18M8 3v4M16 3v4", "people": "M9 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM2.5 20c0-3.6 2.9-5.5 6.5-5.5s6.5 1.9 6.5 5.5M16.5 11.5a3 3 0 1 0 0-6M18 14.8c2.1.6 3.5 2.2 3.5 4.7", "megaphone": "M4 10v4a1 1 0 0 0 1 1h3l6 4V5L8 9H5a1 1 0 0 0-1 1zM18 8.5a5 5 0 0 1 0 7", "map": "M9 4L3 6.5v14L9 18l6 2.5 6-2.5v-14L15 6.5 9 4zM9 4v14M15 6.5v14", "building": "M4 21V5a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v16M14 10h5a1 1 0 0 1 1 1v10M7 8h3M7 12h3M7 16h3M17 14h1M17 18h1M2 21h20", "book": "M4 4.5A1.5 1.5 0 0 1 5.5 3H19v16H5.5A1.5 1.5 0 0 0 4 20.5v-16zM4 19.5A1.5 1.5 0 0 1 5.5 18H19v3H5.5A1.5 1.5 0 0 1 4 19.5z", "star": "M12 3l2.9 5.9 6.5.9-4.7 4.6 1.1 6.4-5.8-3-5.8 3 1.1-6.4L2.6 9.8l6.5-.9L12 3z", "headphones": "M4 16v-4a8 8 0 0 1 16 0v4M4 15h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-4zM20 15h-2a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-4z", "plus": "M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 8v8M8 12h8", "link": "M10 13.5a4 4 0 0 0 5.7 0l2.8-2.8a4 4 0 1 0-5.7-5.7l-1.4 1.4M14 10.5a4 4 0 0 0-5.7 0l-2.8 2.8a4 4 0 1 0 5.7 5.7l1.4-1.4", "ticket": "M3 8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2a2 2 0 0 0 0-4V8zM14 6v12", "mic": "M12 3a3 3 0 0 1 3 3v5a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3zM5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M9 21h6", "play": "M4 5.5a1.5 1.5 0 0 1 2.3-1.3l11 6.5a1.5 1.5 0 0 1 0 2.6l-11 6.5A1.5 1.5 0 0 1 4 18.5v-13z", "flag": "M5.5 21V3.5M5.5 4.2h11.8l-2.4 3.9 2.4 3.9H5.5", "hammer": "M12.8 10.2L4.1 18.9a2.05 2.05 0 1 0 2.9 2.9l8.7-8.7M10.9 7.1l3.2-3.2a1.4 1.4 0 0 1 2 0l3.2 3.2a1.4 1.4 0 0 1 0 2l-3.2 3.2z"};
+const M = {"_comment": "One manifest. The hub renders from this; the landing page and portal can render from the same file. Add a tool once, every surface updates. status: live | soon | placeholder", "cats": [{"k": "all", "label": "All tools", "ic": "home"}, {"k": "sell", "label": "Sell", "ic": "sell"}, {"k": "grow", "label": "Grow", "ic": "trend"}, {"k": "res", "label": "Resources", "ic": "resource"}], "tools": [{"n": "Script Navigator", "d": "The whole call, start to finish, branching as it goes.", "u": "https://script.ffloptimum.com/", "status": "live", "ic": "compass", "cat": "sell", "feature": 1, "cta": "Open call script"}, {"n": "Product Wizard", "d": "Age and health conditions in, the products that fit them out.", "u": "https://wizard.ffloptimum.com/", "status": "live", "ic": "wizard", "cat": "sell", "feature": 2, "cta": "Find product options"}, {"n": "MyPopPro", "d": "Build their package of protection on the call.", "u": "https://mypoppro.com/", "status": "live", "ic": "shield", "cat": "sell", "feature": 3, "cta": "Build a package"}, {"n": "Share Family First Life", "d": "Two ready-to-send messages and a video. Tap, pick a contact, send.", "u": "https://tools.ffloptimum.com/share/", "status": "live", "tag": "FFL agents", "ic": "megaphone", "cat": "grow", "cta": "Share the opportunity"}, {"n": "State licensing guide", "d": "All 50 states — hours, exams, fingerprints and fees, sortable cheapest to highest.", "u": "https://portal.ffloptimum.com/state-requirements.html", "status": "live", "ic": "map", "cat": "res"}, {"n": "FFL Annual Convention", "d": "Irving Convention Center. Keynote: Stephen A. Smith.", "u": "https://familyfirstlife.com/annualconvention/", "status": "live", "tag": "Event", "owner": "live", "note": "Verified live — Irving Convention Center, Stephen A. Smith keynote.", "ic": "ticket", "cat": "res"}, {"n": "Millionaire Maker — Shawn Meaike", "d": "Coaching on building a business worth owning.", "u": "https://whop.com/close-and-conquer/millionaire-maker-coaching/", "status": "live", "ic": "microphone", "cat": "res"}, {"n": "FFL Builders Call recordings", "d": "Every builders call, on demand.", "u": "https://www.youtube.com/playlist?list=PLSrliQxrlhfx5ni9rhfQK9OmYd6YLnqLE", "status": "live", "ic": "video", "cat": "res"}, {"n": "Simple Retirement Solutions", "d": "FFL SRS call recordings — learn IULs and annuities.", "u": "https://www.youtube.com/@FFLNational/videos", "status": "live", "ic": "play", "cat": "res"}, {"n": "Your Agent Success Plan", "d": "Nine steps from nothing to your first appointments — your income goal, the leads it takes, and the exact tools in order.", "u": "/success/", "status": "live", "big": true, "tag": "Guided path", "ic": "target", "cat": "plan", "banner": true}, {"n": "Income Calculator", "d": "What you want to earn, turned into what you have to write.", "u": "https://tools.ffloptimum.com/planning/#income", "status": "live", "owner": "build", "note": "Rebuild specced 3 Oct: pick your market (FE / mortgage / IUL / term / health) instead of abstract product types, tax gross-up, costs, cash trough, and rates read from the real comp grid instead of the invented curve it runs on today.", "ic": "calculator", "cat": "sell"}, {"n": "Activity Planner", "d": "Dials, contacts, appointments — the week behind the number.", "u": "https://tools.ffloptimum.com/planning/#activity", "status": "live", "ic": "calendar", "cat": "sell"}, {"n": "Agency Builder", "d": "What a team changes about the maths.", "u": "https://tools.ffloptimum.com/planning/#agencybuild", "status": "live", "ic": "grow", "cat": "grow", "guess": true, "cta": "Explore agency growth"}, {"n": "Commission Estimator", "d": "What one policy pays you, by carrier and level.", "u": "https://tools.ffloptimum.com/planning/#commission", "status": "live", "ic": "sell", "cat": "sell"}, {"n": "FFL Comp Grid", "d": "Your contract level, your carriers, what every product pays — and what the next level is worth.", "u": "https://portal.ffloptimum.com/comp-grid.html", "status": "live", "tag": "FFL agents", "owner": "live", "note": "Public, framed for FFL agents — your call, 2 Oct. Worth adding a noindex tag so it is shareable but not searchable.", "ic": "grid", "cat": "sell", "cats": ["sell", "grow", "res"]}, {"n": "Chargebacks, explained", "d": "Advances are a loan. What happens when a policy lapses.", "u": "https://tools.ffloptimum.com/chargebacks/", "status": "live", "ic": "warning", "cat": "sell", "cats": ["sell", "res"]}, {"n": "Policy benefits guide", "d": "Term vs whole life vs IUL, in words a client follows.", "u": "https://portal.ffloptimum.com/policy-benefits.html", "status": "live", "ic": "book", "cat": "res"}, {"n": "Tools of the trade", "d": "The headset, the tablet, the kit that holds up on 200 dials a day.", "u": "", "status": "live", "tag": null, "owner": "you", "note": "Waiting on your gear list. Then Amazon affiliate links.", "ic": "headset", "cat": "res", "guess": true, "modal": "gear"}, {"n": "Add health to what you sell", "d": "What the health side looks like, and how to start writing it.", "u": "", "status": "live", "tag": null, "owner": "you", "note": "Copy only, no build — but lead with 'check with your agency first', and it is limited by the four states you hold health authority in.", "ic": "health", "cat": "res", "guess": true, "modal": "health"}, {"n": "Objection Flashcards", "d": "Pick the call, tap a card, see the exact words — and why they work.", "u": "https://tools.ffloptimum.com/objections/", "status": "live", "tag": "New", "owner": "live", "note": "Shipped 2 Oct, fixed 3 Oct: Mortgage and IUL decks added (32 cards across three sheets) and the 'Not a Family First Life agent?' strip and modal restored — they did not ship the first time. Generated from the three cheat sheets, so none can drift.", "ic": "flashcards", "cat": "sell", "guess": true}, {"n": "Final Expense & Veteran objections", "d": "The full cheat sheet — opening and closing, with the words and why they work.", "u": "https://script.ffloptimum.com/vet/objections/", "status": "live", "cat": "sell", "ic": "chat"}, {"n": "Mortgage Protection objections", "d": "The full cheat sheet for mortgage protection calls.", "u": "https://script.ffloptimum.com/mortgage/objections/", "status": "live", "cat": "sell", "ic": "house"}, {"n": "IUL objections", "d": "The full cheat sheet for IUL calls.", "u": "https://script.ffloptimum.com/iul/objections/", "status": "live", "cat": "sell", "ic": "chat"}], "phases": [{"k": "Live today", "d": "An agent can use all of this right now, on a phone, with no sign-up.", "items": ["Objection Flashcards — FEX & Veteran, Mortgage and IUL, 32 cards", "Script Navigator", "Product Wizard", "MyPopPro", "Comp Grid and Commission Estimator with the real 38-product grid", "Income, Activity and Agency planners", "Chargebacks", "State licensing", "Share Family First Life", "GOAT, convention, calls and recordings"]}, {"k": "Next — nothing blocking me", "d": "I can build these without waiting on anyone.", "items": ["This page itself, rendered from the manifest, replacing the current landing page", "Income Calculator rebuild — market-based products, tax and costs, real comp rates", "Cheapest-to-highest sort on the state licensing page", "A real 'what moves the needle' section — sensitivity, not an advert", "noindex on the comp pages so they stay shareable but unsearchable"]}, {"k": "Blocked on you", "d": "Each of these is one answer away.", "items": ["Health — we hold no health commission data at all; Bundle Village's numbers are unsourced", "Mortgage-protection blend — what mix of term, whole life and IUL?", "Tools of the trade — your gear list", "Important links — your weekly five", "The Success Plan's route under tools.ffloptimum.com"]}], "order": {"sell": ["Income Calculator", "Activity Planner", "Commission Estimator", "Objection Flashcards", "Final Expense & Veteran objections", "Mortgage Protection objections", "IUL objections", "FFL Comp Grid", "Chargebacks, explained"], "grow": ["Share Family First Life", "Agency Builder", "FFL Comp Grid"], "res": ["State licensing guide", "FFL Annual Convention", "Millionaire Maker — Shawn Meaike", "FFL Builders Call recordings", "Simple Retirement Solutions", "Policy benefits guide", "Tools of the trade", "Thinking about health?"], "all": ["Income Calculator", "Activity Planner", "Commission Estimator", "Objection Flashcards", "Final Expense & Veteran objections", "Mortgage Protection objections", "IUL objections", "FFL Comp Grid", "Chargebacks, explained", "Share Family First Life", "Agency Builder", "State licensing guide", "FFL Annual Convention", "Millionaire Maker — Shawn Meaike", "FFL Builders Call recordings", "Simple Retirement Solutions", "Policy benefits guide", "Tools of the trade", "Thinking about health?"]}, "goat": {"eyebrow": "Start with this one", "head": "Four things every agent should have on day one.", "sub": "Free through Optimum — whoever you write business under. About five minutes to set up.", "url": "https://goatleads.com/registration/new?affiliate_id=66c4aa379e0123651ad2f0e6", "cta": "Sign up for free", "note": "Register with this link for promos, specials and free agent tools. Then log in, create your profile, and set up your website, business card and calendar under Settings.", "caption": "Mock-ups of what you get, not screenshots. Yours carry your name, photo and licences.", "hide": "Close", "short": "Website, business card, booking calendar & sales funnels", "items": [{"k": "website", "n": "Agent website", "d": "Show clients your bio, carriers and licenses."}, {"k": "card", "n": "Digital business card", "d": "Share your contact details in one tap."}, {"k": "calendar", "n": "Booking calendar", "d": "Let clients choose an appointment time."}, {"k": "funnel", "n": "Free sales funnels", "d": "Capture quote requests from your shared link."}], "label": "Free for agents"}, "gear": {"title": "Tools of the trade", "sub": "The kit that holds up on a day of dials. These are affiliate links — Optimum may earn a commission, at no cost to you.", "items": [{"n": "Wireless headset with mic", "d": "Noise-cancelling, for a full day on the phone.", "u": "https://www.amazon.com/dp/B0GFDWXFJW?tag=mobile0329694-20&language=en_US&linkCode=ll1&ref_=as_li_ss_tl&th=1"}, {"n": "reMarkable Paper Pro", "d": "Colour e-ink tablet with the Marker Plus — notes that feel like paper.", "u": "https://www.amazon.com/dp/B0DG9ZXWMK?tag=mobile0329694-20&linkCode=sl1&language=en_US&ref_=as_li_ss_tl&th=1"}], "pending": "Book list to come — see the note below."}, "health": {"title": "Thinking about private health?", "lead": "Start with your own agency. If they write private health and want to grow it, that is the right door and you should walk through it first.", "body": ["If your agency does not do private health and is not looking to, and you want somewhere to learn it and grow, let me know and my team can help you out.", "That stands whether or not you are with Family First Life. We are not trying to move anybody — we would just rather you had somewhere to go than let the opportunity sit there."], "cta": "Start the conversation", "url": "https://www.ffloptimum.com/#apply", "foot": "Check with your agency first. Health authority is state by state, so the answer depends on where you are licensed."}, "demo2": {"head": "Show them what they are missing.", "sub": "Lay their cover side by side and the gaps show themselves.", "img": "img/mypoppro-preview.jpg", "alt": "MyPopPro — Package of Protection: compare, layer, protect", "cta": "Open MyPopPro", "tool": "MyPopPro", "compact": true}, "pages": {"overview": {"head": "What do you need today?", "sub": "Your next call. Your next goal. Your tools."}, "sell": {"head": "Sell", "sub": "Prepare for your call. Plan your production."}, "grow": {"head": "Grow", "sub": "Share the opportunity. Build your agency."}, "res": {"head": "Resources", "sub": "Training, reference and tools for your business."}}, "sections": {"sell": [{"h": "On a call", "featured": true, "items": ["Script Navigator", "Product Wizard", "MyPopPro"]}, {"h": "Plan your production", "items": ["Income Calculator", "Activity Planner", "Commission Estimator"]}, {"h": "Practice your responses", "items": ["Objection Flashcards", "Final Expense & Veteran objections", "Mortgage Protection objections", "IUL objections"]}, {"h": "Understand your compensation", "two": true, "items": ["FFL Comp Grid", "Chargebacks, explained"]}], "grow": [{"h": "Build your agency", "featured": true, "two": true, "items": ["Share Family First Life", "Agency Builder"]}, {"h": "Grow your compensation", "items": ["FFL Comp Grid"]}], "res": [{"h": "Licensing & events", "two": true, "items": ["State licensing guide", "FFL Annual Convention"]}, {"h": "Training & recordings", "items": ["Millionaire Maker — Shawn Meaike", "FFL Builders Call recordings", "Simple Retirement Solutions"]}, {"h": "Your reference", "items": ["Policy benefits guide", "Tools of the trade", "Add health to what you sell"]}, {"h": "Understand your compensation", "two": true, "items": ["FFL Comp Grid", "Chargebacks, explained"]}]}, "growBanner": {"head": "Not a Family First Life agent?", "sub": "Explore the opportunity with Optimum.", "cta": "Learn more", "ic": "grow", "modal": "rec"}}, ICONS = {"arrow-right": "<path d=\"M3 12h18M15 6l6 6-6 6\"/>", "book": "<path d=\"M12 5v16M3 4c4-1 7 0 9 2 2-2 5-3 9-2v15c-4-1-7 0-9 2-2-2-5-3-9-2z\"/>", "business-card": "<rect x=\"2\" y=\"5\" width=\"20\" height=\"14\" rx=\"2\"/><circle cx=\"8\" cy=\"10\" r=\"2\"/><path d=\"M5 16a3 3 0 0 1 6 0M14 10h5M14 14h5\"/>", "calculator": "<rect x=\"5\" y=\"2\" width=\"14\" height=\"20\" rx=\"2\"/><path d=\"M8 6h8M8 11h1M12 11h1M16 11h1M8 15h1M12 15h1M16 15h1M8 19h1M12 19h1M16 19h1\"/>", "calendar": "<rect x=\"3\" y=\"5\" width=\"18\" height=\"16\" rx=\"2\"/><path d=\"M7 3v5M17 3v5M3 10h18M7 14h2M12 14h2M7 18h2\"/>", "chat": "<path d=\"M21 11a9 9 0 0 1-9 9H3l2-5a9 9 0 1 1 16-4\"/>", "chevron-down": "<path d=\"m5 9 7 7 7-7\"/>", "close": "<path d=\"m5 5 14 14M19 5 5 19\"/>", "compass": "<circle cx=\"12\" cy=\"12\" r=\"8.6\"/><path d=\"M15.8 8.2 13.5 13.5 8.2 15.8l2.3-5.3z\" fill=\"currentColor\" stroke=\"none\"/>", "email": "<rect x=\"2\" y=\"4\" width=\"20\" height=\"16\" rx=\"2\"/><path d=\"m2 6 10 8L22 6\"/>", "external-link": "<path d=\"M14 3h7v7M21 3l-11 11M10 3H3v18h18v-7\"/>", "flashcards": "<rect x=\"5\" y=\"7\" width=\"15\" height=\"14\" rx=\"2\"/><path d=\"M3 17V5a2 2 0 0 1 2-2h11M8 12h9M8 16h6\"/>", "funnel": "<path d=\"M3 3h18l-7 9v7l-4 2v-9z\"/>", "grid": "<rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"1\"/><path d=\"M9 3v18M15 3v18M3 9h18M3 15h18\"/>", "grow": "<circle cx=\"9\" cy=\"7\" r=\"3\"/><path d=\"M3 21v-3a6 6 0 0 1 12 0v3M16 4a3 3 0 0 1 0 6M18 14a5 5 0 0 1 3 5v2\"/>", "headset": "<path d=\"M3 14v-2a9 9 0 0 1 18 0v2M3 12h4v8H3zM17 12h4v8h-4zM21 20a3 3 0 0 1-3 3h-4\"/>", "health": "<circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 7v10M7 12h10\"/>", "home": "<path d=\"m3 10 9-7 9 7M5 9v12h5v-7h4v7h5V9\"/>", "house": "<path d=\"m3 11 9-8 9 8M5 9v12h14V9M10 21v-7h4v7\"/>", "map": "<path d=\"m3 5 6-2 6 2 6-2v16l-6 2-6-2-6 2zM9 3v16M15 5v16\"/>", "megaphone": "<path d=\"m3 9 5-1 10-5v17L8 15H3zM8 15l2 6H6l-2-6M21 8v7\"/>", "menu": "<path d=\"M3 6h18M3 12h18M3 18h18\"/>", "microphone": "<rect x=\"9\" y=\"2\" width=\"6\" height=\"13\" rx=\"3\"/><path d=\"M6 10v3a6 6 0 0 0 12 0v-3M12 19v3M8 22h8\"/>", "phone": "<path d=\"m7 3 3 5-3 3a15 15 0 0 0 6 6l3-3 5 3-1 4c-9 1-18-8-17-17z\"/>", "play": "<path d=\"m7 3 14 9-14 9z\"/>", "resource": "<path d=\"M12 7.2C10.3 5.9 8.2 5.2 6 5.2H3.6v12.4H6c2.2 0 4.3.7 6 2 1.7-1.3 3.8-2 6-2h2.4V5.2H18c-2.2 0-4.3.7-6 2z\"/><path d=\"M12 7.2v12.4\"/>", "save": "<path d=\"M4 3h14l3 3v15H3V3zM7 3v6h10V3M7 21v-8h10v8\"/>", "script": "<path d=\"M6 3h9l4 4v14H6zM15 3v5h4M9 11h6M9 15h7M9 18h5\"/>", "search": "<circle cx=\"10\" cy=\"10\" r=\"6\"/><path d=\"m15 15 6 6\"/>", "sell": "<circle cx=\"12\" cy=\"12\" r=\"8.6\"/><path d=\"M12 6.9v10.2\"/><path d=\"M14.8 9.5c-.6-.8-1.6-1.2-2.8-1.2-1.6 0-2.8.8-2.8 2s1.2 1.8 2.8 2.1 2.8.9 2.8 2.1-1.2 2-2.8 2c-1.2 0-2.2-.4-2.8-1.2\"/>", "shield": "<path d=\"m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6zM8 12l3 3 5-6\"/>", "star": "<path d=\"m12 2 3 6.5 7 1-5 5 1 7-6-3.5-6 3.5 1-7-5-5 7-1z\"/>", "target": "<circle cx=\"12\" cy=\"12\" r=\"8.6\"/><circle cx=\"12\" cy=\"12\" r=\"4.8\"/><circle cx=\"12\" cy=\"12\" r=\"1.5\" fill=\"currentColor\" stroke=\"none\"/>", "ticket": "<path d=\"M3 5h18v5a2 2 0 0 0 0 4v5H3v-5a2 2 0 0 0 0-4zM15 7v2M15 11v2M15 15v2\"/>", "video": "<rect x=\"3\" y=\"6\" width=\"12\" height=\"12\" rx=\"2\"/><path d=\"m15 10 6-4v12l-6-4\"/>", "warning": "<path d=\"m12 3 10 18H2zM12 9v5M12 17v1\"/>", "website": "<rect x=\"2\" y=\"4\" width=\"20\" height=\"14\" rx=\"2\"/><path d=\"M8 22h8M12 18v4M2 8h20M5 6h1M8 6h1\"/>", "wizard": "<path d=\"M3 6h18M3 12h18M3 18h18\"/><circle cx=\"8\" cy=\"6\" r=\"2\"/><circle cx=\"16\" cy=\"12\" r=\"2\"/><circle cx=\"10\" cy=\"18\" r=\"2\"/>", "person-plus": "<circle cx=\"10\" cy=\"8\" r=\"3.4\"/><path d=\"M3.5 20v-1.5A5.5 5.5 0 0 1 9 13h2M17 14v6M20 17h-6\"/>", "trend": "<path d=\"M3.5 20.5h17\"/><path d=\"M4.5 16.2 9.6 11l3.4 3.4 6.4-6.6\"/><path d=\"M15.2 7.8h4.4v4.4\"/>"};
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const svg = k => ICONS[k] ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="'+ICONS[k]+'"/></svg>' : '';
+/* The icon store holds each glyph's inner markup, not a lone path: 16 of the 38 in
+   Jesse's pack are built from more than one element, and the old single-path
+   renderer would have dropped everything after the first silently. */
+const svg = k => ICONS[k] ? '<svg viewBox="0 0 24 24" aria-hidden="true">'+ICONS[k]+'</svg>' : '';
 const ARROW = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>';
+const ARROW_SM = '<svg viewBox="0 0 24 24" aria-hidden="true" style="width:13px;height:13px"><path d="M7 17L17 7M9 7h8v8"/></svg>';
 const TAG = {live:'', soon:'soon', placeholder:'ph'};
 const phone = () => matchMedia('(max-width:900px)').matches;
 let cat = 'sell', view = 'overview', q = '';
@@ -420,14 +994,20 @@ let cat = 'sell', view = 'overview', q = '';
 const banner = M.tools.find(t => t.banner);
 const featured = M.tools.filter(t => t.feature).sort((a,b)=>a.feature-b.feature);
 const rest = M.tools.filter(t => !t.feature && !t.banner);
-const match = t => (cat==='all' || t.cat===cat) &&
+/* A tool has one home category in `cat`, and may list further ones in `cats`. The
+   Comp Grid lives under Sell but belongs just as much to Grow and Resources; with a
+   single field it could never appear under the Grow chip. `cat` stays the primary,
+   so nothing that reads it needs to change. */
+const inCat = (t, k) => k === 'all' || t.cat === k ||
+  (Array.isArray(t.cats) && t.cats.indexOf(k) >= 0);
+const match = t => inCat(t, cat) &&
   (!q || (t.n+' '+t.d).toLowerCase().includes(q));
 
 function tag(t){ return t.tag ? '<span class="tagp '+(TAG[t.status]||'')+'">'+esc(t.tag)+'</span>' : ''; }
 function row(t, anchor){
   const dim = (t.status==='placeholder' || (t.status==='soon' && !t.u)) ? ' dim' : '';
   const anch = anchor ? ' anchor' : '';
-  const inner = '<span class="ic">'+svg(t.ic)+'</span><span class="tx">'
+  const inner = '<span class="icb sm">'+svg(t.ic)+'</span><span class="tx">'
     + '<span class="n" style="display:block">'+esc(t.n)+tag(t)+'</span>'
     + '<span class="d" style="display:block">'+esc(t.d)+'</span></span>'
     + '<span class="go">'+((t.u||t.modal)?ARROW:'')+'</span>';
@@ -438,10 +1018,141 @@ function row(t, anchor){
 }
 function fcard(t){
   const ext = /^https?:/.test(t.u||'') ? ' target="_blank" rel="noopener"' : '';
-  return '<a class="fcard" href="'+esc(t.u)+'"'+ext+'><span class="ic">'+svg(t.ic)+'</span>'
-    + '<span class="ftx"><span class="n">'+esc(t.n)+'</span><span class="d">'+esc(t.d)+'</span></span>'
-    + '<span class="btn">Launch tool &#8599;</span><span class="arr">'+ARROW+'</span></a>';
+  return '<a class="fcard" href="'+esc(t.u)+'"'+ext+'>'
+    + '<span class="fhead"><span class="icb lg">'+svg(t.ic)+'</span>'
+    + '<span class="n">'+esc(t.n)+tag(t)+'</span></span>'
+    + '<span class="ftx"><span class="d">'+esc(t.d)+'</span></span>'
+    + '<span class="btn">'+esc(t.cta || 'Launch tool')+'</span><span class="arr">'+ARROW+'</span></a>';
 }
+/* Two obvious ways in. Deliberately one quiet line rather than two more big cards:
+   Script Navigator is already the first quick-launch card and the Success Plan already
+   has its own banner, so large duplicates would compete with both. */
+const RECENT_KEY = 'oat.recent', VISIT_KEY = 'oat.visits';
+/* Visit count, so the two entry prompts can retire on a schedule rather than the
+   instant a tool is opened. Jesse: "New here" was disappearing before he had read
+   it, and should "stay consistent for 2 or 3 times". */
+function visits(){ try { return parseInt(localStorage.getItem(VISIT_KEY)||'0',10)||0; } catch(e){ return 0; } }
+function visitBump(){ try { localStorage.setItem(VISIT_KEY, String(visits()+1)); } catch(e){} }
+function recentGet(){
+  try { const v = JSON.parse(localStorage.getItem(RECENT_KEY) || '[]');
+        return Array.isArray(v) ? v.slice(0,4) : []; } catch(e){ return []; }
+}
+function recentPush(name){
+  try { const v = recentGet().filter(x => x !== name); v.unshift(name);
+        localStorage.setItem(RECENT_KEY, JSON.stringify(v.slice(0,4))); } catch(e){}
+}
+function startlineHTML(){
+  const nav = M.tools.find(t => t.n === 'Script Navigator');
+  const plan = banner;
+  /* Each prompt retires itself once the agent has actually opened that tool. A new
+     agent gets the orientation; a working agent gets the screen space back. Same
+     browser-only store the recently-used strip uses, so if it is blocked both
+     prompts simply stay - showing them twice is a smaller failure than hiding the
+     only signpost a first-time visitor has. */
+  const done = recentGet(), seen = visits();
+  /* A prompt retires only once BOTH are true: the agent has opened that tool, and
+     they have been here at least three times. Opening the tool alone used to hide it
+     immediately, which is what made it feel like it vanished. */
+  const retire = t => done.indexOf(t.n) >= 0 && seen >= 3;
+  const showPlan = plan && !retire(plan);
+  const showNav  = nav  && !retire(nav);
+  if (!showPlan && !showNav) return '';
+  let h = '<div class="startline">';
+  if (showPlan) h += '<a href="'+esc(plan.u)+'"><span class="icb">'+svg('target')+'</span>'
+    + '<span class="sl-t"><span class="sl-q">New here?</span>'
+    + '<span class="sl-a">Start your Agent Success Plan &rarr;</span></span></a>';
+  if (showNav) h += '<a href="'+esc(nav.u)+'" target="_blank" rel="noopener"><span class="icb">'+svg('compass')+'</span>'
+    + '<span class="sl-t"><span class="sl-q">Ready to call?</span>'
+    + '<span class="sl-a">Open Script Navigator &rarr;</span></span></a>';
+  return h + '</div>';
+}
+
+/* Recently used. Lives only in this agent's browser - nothing reaches us, and if
+   storage is blocked or cleared the strip simply does not appear. */
+function recentHTML(){
+  const names = recentGet();
+  const hits = names.map(n => M.tools.find(t => t.n === n)).filter(t => t && t.u);
+  /* One is enough. The old threshold of two meant the strip sprang into existence on
+     the second tool with no warning - Jesse: it "seem[s] to appear all of a sudden". */
+  if (!hits.length) return '';
+  return '<div class="recent"><h2>Recently used</h2><div class="rc-row">'
+    + hits.map(t => '<a href="'+esc(t.u)+'"'+(/^https?:/.test(t.u)?' target="_blank" rel="noopener"':'')
+        +'>'+svg(t.ic)+esc(t.n)+ARROW_SM+'</a>').join('') + '</div></div>';
+}
+
+/* A real instructional video - we have no demo film of the navigator, and this is
+   the walkthrough the navigator itself already links to. The flow beside it is drawn
+   in HTML rather than screenshotted: no page weight, and it cannot go stale into a
+   lie because it is labelled as illustrative. */
+function demoHTML(){ if (!M.demo) return '';
+  const d = M.demo; if (!d) return '';
+  const nav = M.tools.find(t => t.n === 'Script Navigator');
+  const steps = d.steps.map((s,i) =>
+    '<li class="'+(i===0?'on':'')+'"><i>'+(i+1)+'</i>'+esc(s)+'</li>').join('');
+  const opts = (d.replies||[]).map(r => '<span>'+esc(r)+'</span>').join('');
+  return '<section class="demo">'
+    + '<div><h2>'+esc(d.head)+'</h2><p>'+esc(d.sub)+'</p>'
+    + '<a class="play" href="'+esc(d.videoUrl)+'" target="_blank" rel="noopener">'
+    + '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M10 8.5l5.5 3.5L10 15.5z"/></svg>'
+    + esc(d.videoLabel)+'</a></div>'
+    + '<div class="prev"><div class="ph">'+svg(nav?nav.ic:'compass')+'Script Navigator</div>'
+    + '<div class="pb"><ol>'+steps+'</ol>'
+    + '<div><div class="say"><b>Agent</b><p>'+esc(d.line)+'</p></div>'
+    + '<div class="opts">'+opts+'</div></div></div>'
+    + '<div class="note">'+esc(d.note)+'</div></div></section>';
+}
+
+/* The second preview uses a real graphic, because we have one for MyPopPro. It is
+   served as a file from /img/ rather than inlined: 34 KB that the browser caches,
+   instead of 45 KB of base64 welded into every page load. */
+/* Removed from the overview at Jesse's request 8 Oct - the "Show them what they are
+   missing" block at the foot of the page is gone. Kept callable in case it is wanted
+   on a category page later; nothing renders it today. */
+function demo2HTML(){
+  const d = M.demo2; if (!d) return '';
+  const tool = M.tools.find(t => t.n === d.tool);
+  if (!tool || !tool.u) return '';
+  return '<section class="demo rev'+(d.compact ? ' tight' : '')+'">'
+    + '<div><h2>'+esc(d.head)+'</h2><p>'+esc(d.sub)+'</p>'
+    + '<a class="play" href="'+esc(tool.u)+'" target="_blank" rel="noopener">'
+    + svg(tool.ic)+esc(d.cta)+'</a></div>'
+    + '<div class="prev pic"><img class="prevpic" src="'+esc(d.img)+'" alt="'+esc(d.alt)
+    + '" width="720" height="378" loading="lazy" decoding="async"></div></section>';
+}
+
+/* The reference groups each category page by what the agent is trying to do rather
+   than listing the category flat. The groupings come from the manifest, so adding a
+   tool still means editing one file. */
+function byName(n){ return M.tools.find(t => t.n === n); }
+function sectionsHTML(key){
+  const secs = (M.sections || {})[key]; if (!secs) return '';
+  return secs.map(g => {
+    /* Search narrows these groups, but the category does not: a tool named in a
+       section is there because the section author put it there. FFL Comp Grid and
+       Chargebacks are category "sell" and Jesse wants them on Resources as well,
+       so filtering by cat here silently dropped both. */
+    const items = g.items.map(byName).filter(Boolean)
+      .filter(t => !q || (t.n+' '+t.d).toLowerCase().includes(q));
+    if (!items.length) return '';
+    const cls = 'grid' + (g.featured ? ' featured' : '') + (g.two ? ' two' : '');
+    return '<section class="sec-group"><h2 class="sec">'+esc(g.h)+'</h2>'
+         + '<div class="'+cls+'">'
+         + items.map(t => g.featured ? fcard(t) : row(t)).join('')
+         + '</div></section>';
+  }).join('');
+}
+function growBannerHTML(){
+  const b = M.growBanner; if (!b) return '';
+  /* .recopen is what the shell's recruiting dialog listens for. Jesse asked that this
+     "Learn more" open the same dialog as the strip at the top of the page rather than
+     the health sheet, and sharing the class is what guarantees they cannot drift. */
+  return '<button type="button" class="banner growban recopen" aria-haspopup="dialog">'
+    + '<span class="ic">'+svg(b.ic)+'</span>'
+    + '<span class="tx"><span class="n" style="display:block">'+esc(b.head)+'</span>'
+    + '<span class="d" style="display:block">'+esc(b.sub)+'</span></span>'
+    + '<span class="btnwrap">'+esc(b.cta)+' &rarr;</span></button>';
+}
+
 function bannerHTML(){
   return '<a class="banner" href="'+esc(banner.u)+'"><span class="ic">'+svg(banner.ic)+'</span>'
     + '<span class="tx"><span class="n" style="display:block">Build your Agent Success Plan</span>'
@@ -455,22 +1166,189 @@ function bannerHTML(){
    state to go stale or to behave differently on a second device. */
 let goatExpanded = false;
 
+const DIMS = {"website": [900, 595], "card": [552, 345], "calendar": [700, 437], "funnel": [481, 300]};
+
+/* ---------------------------------------------------------------------------
+   The four offer previews.
+
+   Drawn rather than photographed: there are no image files to break (the old
+   absolute /goat/*.jpg paths broke on any server not rooted at the site root,
+   which is the "broken link" Jesse hit), and nothing here is licensed from
+   anyone. The two scenes he asked for - mountains behind the website hero, a
+   family behind the funnel - are built as SVG below. If he ever supplies real
+   photographs, each scene is one element to swap.
+   --------------------------------------------------------------------------- */
+
+/* A mountain range at golden hour. Drawn bright on purpose: it sits behind a scrim
+   and under a headline, and an already-dark scene turned to mud at thumbnail size.
+   Composed inside the middle band of the viewBox, because the hero crops this with
+   preserveAspectRatio="slice" and the top and bottom are the first to go. */
+const SCENE_MOUNTAIN =
+  '<svg class="pv-scene" viewBox="0 0 300 150" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'
+  + '<defs>'
+  +   '<linearGradient id="skyM" x1="0" y1="0" x2="0" y2="1">'
+  +     '<stop offset="0" stop-color="#3C63A0"/><stop offset=".34" stop-color="#7E9AC4"/>'
+  +     '<stop offset=".60" stop-color="#E8B987"/><stop offset=".80" stop-color="#F6D49C"/>'
+  +     '<stop offset="1" stop-color="#FAE6C2"/>'
+  +   '</linearGradient>'
+  +   '<linearGradient id="lakeM" x1="0" y1="0" x2="0" y2="1">'
+  +     '<stop offset="0" stop-color="#C79A68"/><stop offset=".45" stop-color="#5B6E93"/>'
+  +     '<stop offset="1" stop-color="#36456A"/>'
+  +   '</linearGradient>'
+  + '</defs>'
+  + '<rect width="300" height="150" fill="url(#skyM)"/>'
+  + '<circle cx="206" cy="84" r="13" fill="#FFF3D4"/>'
+  + '<circle cx="206" cy="84" r="26" fill="#FFE2A8" opacity=".40"/>'
+  /* three ridges, each a clear step darker than the sky behind it */
+  + '<path d="M0 86 46 54 84 78 124 46 166 84 210 58 254 86 300 64V150H0z" fill="#8FA2C4" opacity=".85"/>'
+  + '<path d="M0 100 40 72 82 96 122 68 164 98 204 76 248 100 300 80V150H0z" fill="#5D7098"/>'
+  + '<path d="M0 112 36 86 74 110 116 84 156 112 198 90 242 114 300 96V150H0z" fill="#33446B"/>'
+  /* snow on the two tallest peaks */
+  + '<path d="M116 84l11 8-6 1-5-3-5 4-6-2z" fill="#F2F6FC"/>'
+  + '<path d="M198 90l10 7-6 1-4-2-5 3-5-2z" fill="#E8EEF8" opacity=".9"/>'
+  /* the lake, with the sun laid across it */
+  + '<rect y="122" width="300" height="28" fill="url(#lakeM)"/>'
+  + '<rect x="199" y="122" width="14" height="28" fill="#FFE6B4" opacity=".45"/>'
+  + '<rect y="121" width="300" height="1.6" fill="#FFEFD0" opacity=".55"/>'
+  + '</svg>';
+
+/* A family at sunset, in silhouette, grouped right of centre with the sun behind
+   them - the composition in the reference Jesse sent. Figures are built from round
+   capped strokes rather than filled outlines: at this size that reads as a body,
+   and it keeps the proportions honest (head about a seventh of height, not the
+   third it was on the first attempt). */
+const SCENE_FAMILY = (function(){
+  function fig(x, g, h, stride, reach){
+    var p = '';
+    /* head */
+    p += '<circle cx="'+x+'" cy="'+(g - h*0.93).toFixed(1)+'" r="'+(h*0.072).toFixed(1)+'"/>';
+    /* torso, one thick stroke from shoulders to hips */
+    p += '<path d="M'+x+' '+(g - h*0.85).toFixed(1)+'V'+(g - h*0.46).toFixed(1)+'"'
+       + ' stroke-width="'+(h*0.165).toFixed(1)+'"/>';
+    /* legs, mid-stride */
+    p += '<path d="M'+x+' '+(g - h*0.48).toFixed(1)+'L'+(x - stride).toFixed(1)+' '+g+'"'
+       + ' stroke-width="'+(h*0.068).toFixed(1)+'"/>';
+    p += '<path d="M'+x+' '+(g - h*0.48).toFixed(1)+'L'+(x + stride).toFixed(1)+' '+g+'"'
+       + ' stroke-width="'+(h*0.068).toFixed(1)+'"/>';
+    /* outer arm hangs; inner arm reaches toward the next person's hand */
+    p += '<path d="M'+x+' '+(g - h*0.78).toFixed(1)
+       + 'q'+(-reach*0.5).toFixed(1)+' '+(h*0.14).toFixed(1)
+       + ' '+(-reach).toFixed(1)+' '+(h*0.30).toFixed(1)+'"'
+       + ' stroke-width="'+(h*0.052).toFixed(1)+'"/>';
+    return p;
+  }
+  return '<svg class="pv-scene" viewBox="0 0 300 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'
+    + '<defs><linearGradient id="skyF" x1="0" y1="0" x2="0" y2="1">'
+    +   '<stop offset="0" stop-color="#2F4C85"/><stop offset=".26" stop-color="#7C76A2"/>'
+    +   '<stop offset=".48" stop-color="#D08F5E"/><stop offset=".68" stop-color="#F3BE7B"/>'
+    +   '<stop offset=".86" stop-color="#FBDCA6"/><stop offset="1" stop-color="#E9C68E"/>'
+    + '</linearGradient></defs>'
+    + '<rect width="300" height="200" fill="url(#skyF)"/>'
+    /* The sun sits behind the group, and the group sits in the right third - the
+       composition in the reference. They were centred before, which put two of the
+       three behind the headline and left only one figure showing. */
+    + '<circle cx="232" cy="118" r="44" fill="#FFEEC4" opacity=".40"/>'
+    + '<circle cx="232" cy="118" r="20" fill="#FFF9E6"/>'
+    /* a far treeline, then the ground they walk on */
+    + '<path d="M0 118q52-4 104-1t196 2v10H0z" fill="#6E5C76" opacity=".35"/>'
+    + '<path d="M0 142q84-9 164-4t136 2v64H0z" fill="#241C2E"/>'
+    + '<g fill="#1C1526" stroke="#1C1526" stroke-linecap="round">'
+    +   fig(198, 143, 50, 7,   10)   /* adult, left of the group */
+    +   fig(230, 144, 30, 4.5, -6)   /* child, between them */
+    +   fig(264, 142, 55, 8,  -11)   /* adult, right */
+    + '</g>'
+    + '</svg>';
+})();
+
+const PREVIEW = {
+
+  /* 1. Agent website - site chrome, hero over the mountains, four product tiles */
+  website:
+    '<div class="pv pv-site">'
+    + '<div class="pv-bar"><span class="pv-brand"><i class="pv-av"></i>Your Agency</span>'
+    +   '<span class="pv-nav"><i>Home</i><i>Solutions</i><i>About</i><i>Contact</i></span></div>'
+    + '<div class="pv-hero">' + SCENE_MOUNTAIN + '<div class="pv-heroin">'
+    +   '<b>Protecting<br>What Matters</b>'
+    +   '<small>Insurance solutions for every stage of life.</small>'
+    +   '<span class="pv-btn">Get a Quote</span></div>'
+    + '</div>'
+    + '<div class="pv-tiles">'
+    +   ['Life Insurance','Health Insurance','Medicare','Final Expense']
+         .map(function(t,i){ return '<span><svg viewBox="0 0 24 24">'
+           + ICONS[['shield','health','book','target'][i]] + '</svg>' + t + '</span>'; }).join('')
+    + '</div></div>',
+
+  /* 2. Digital business card - narrower than the others on purpose, so it reads as
+        a card rather than a panel, with the Save action ringed in red because that
+        is the one thing the viewer is meant to do with it. */
+  card:
+    '<div class="pv pv-cardwrap"><div class="pv-card">'
+    + '<div class="pv-id">'
+    +   '<span class="pv-ring"><svg viewBox="0 0 24 24">'+ICONS.grow+'</svg></span>'
+    +   '<b>Your Name</b><small>Licensed Insurance Agent</small><i class="pv-rule"></i>'
+    + '</div>'
+    + '<div class="pv-acts">'
+    +   [['phone','Call'],['email','Email'],['calendar','Book'],['person-plus','Save']]
+         .map(function(a){ return '<span'+(a[1]==='Save'?' class="pv-save"':'')+'>'
+           + '<svg viewBox="0 0 24 24">'+ICONS[a[0]]+'</svg>'+a[1]+'</span>'; }).join('')
+    + '</div></div></div>',
+
+  /* 3. Booking calendar - a real month grid beside selectable times */
+  calendar: (function(){
+    var cells = ['Su','Mo','Tu','We','Th','Fr','Sa']
+      .map(function(d){ return '<i class="pv-dow">'+d+'</i>'; }).join('');
+    /* October 2025 opened on a Wednesday, so the row starts with September's tail. */
+    cells += ['28','29','30'].map(function(d){ return '<i class="pv-off">'+d+'</i>'; }).join('');
+    for (var d = 1; d <= 31; d++)
+      cells += '<i'+(d === 15 ? ' class="pv-on"' : '')+'>'+d+'</i>';
+    return '<div class="pv pv-cal">'
+      + '<b>Schedule an Appointment</b><small>Choose a date and time that works for you.</small>'
+      + '<div class="pv-calrow">'
+      +   '<div class="pv-month"><span class="pv-mhead">&lsaquo;<em>October 2025</em>&rsaquo;</span>'
+      +     '<div class="pv-grid">'+cells+'</div></div>'
+      +   '<div class="pv-times">'
+      +     ['9:00 AM','10:00 AM','11:00 AM','1:00 PM'].map(function(t){
+             return '<span'+(t === '10:00 AM' ? ' class="pv-on"' : '')+'>'+t+'</span>'; }).join('')
+      +   '</div>'
+      + '</div></div>';
+  })(),
+
+  /* 4. Free sales funnels - a quote capture over the family at sunset */
+  funnel:
+    '<div class="pv pv-funnel">' + SCENE_FAMILY
+    + '<span class="pv-back">&larr; Get a Quote</span>'
+    + '<div class="pv-fbody">'
+    +   '<b>Coverage for<br>what matters most.</b>'
+    +   '<small>Life. Health. Medicare. Final Expense.</small>'
+    +   '<span class="pv-field">Zip Code</span>'
+    +   '<span class="pv-btn wide">Request a Quote</span>'
+    + '</div></div>'
+};
+
 function goatHTML(){
   const g = M.goat, im = M.goatimg;
   if (!goatExpanded){
     return '<button type="button" class="goatbar" id="goatShowMe">'
       + '<span class="star">&#9733;</span>'
-      + '<span class="t"><b class="lbl">'+esc(g.label)+'</b> <span class="sm">'+esc(g.short)+'</span></span>'
-      + '<span class="more">Show me &rarr;</span></button>';
+      + '<b class="lbl">'+esc(g.label)+'</b>'
+      + '<span class="bardiv" aria-hidden="true"></span>'
+      + '<span class="sm">'+esc(g.short)+'</span>'
+      + '<span class="more">Show me <span class="mv">&darr;</span></span></button>';
   }
-  return '<section class="goatblock"><div class="eyebrow">'+esc(g.eyebrow)+'</div>'
+  /* The open panel keeps the bar's own header - star and label on the left, Hide on
+     the right - so opening it reads as the same object expanding, not a new block. */
+  return '<section class="goatblock">'
+    + '<div class="goathead"><span class="gh-l"><span class="star">&#9733;</span>'
+    +   esc(g.label)+'</span>'
+    + '<button type="button" class="gh-hide" id="goatHideTop">'+esc(g.hide==='Close'?'Hide':g.hide)
+    +   ' &uarr;</button></div>'
+    + '<div class="eyebrow">'+esc(g.eyebrow)+'</div>'
     + '<h3>'+esc(g.head)+'</h3><p class="sub">'+esc(g.sub)+'</p>'
     + '<div class="g4">' + g.items.map(i =>
-        '<figure data-img="'+i.k+'"><img src="'+im[i.k]+'" loading="lazy" decoding="async" width="552" alt="Example '+esc(i.n).toLowerCase()+'">'
-        + '<div class="gn">'+esc(i.n)+'</div><div class="gd">'+esc(i.d)+'</div></figure>').join('')
+        '<article class="offer-item">'+PREVIEW[i.k]+'<h3>'+esc(i.n)+'</h3><p>'+esc(i.d)+'</p></article>').join('')
     + '</div><p class="cap">'+esc(g.caption)+'</p>'
     + '<div class="goatfoot">'
-    + '<a class="cta" id="goatCta" href="'+esc(g.url)+'" target="_blank" rel="noopener">'+esc(g.cta)+' &rarr;</a>'
+    + '<a class="cta gold-sheen" id="goatCta" href="'+esc(g.url)+'" target="_blank" rel="noopener">'+esc(g.cta)+' &rarr;</a>'
     + '<span class="note">'+esc(g.note)+'</span>'
     + '<button type="button" class="hide" id="goatHide">'+esc(g.hide)+'</button>'
     + '</div></section>';
@@ -508,21 +1386,13 @@ function wireSheets(){
 function wireGoat(){
   const open = document.getElementById('goatShowMe');
   if (open) open.addEventListener('click', () => { goatExpanded = true; render(); });
-  const hide = document.getElementById('goatHide');
-  if (hide) hide.addEventListener('click', () => { goatExpanded = false; render(); });
-  document.querySelectorAll('.g4 figure').forEach(f => f.addEventListener('click', () => {
-    const it = M.goat.items.find(i => i.k === f.dataset.img);
-    const lb = document.createElement('div');
-    lb.className = 'lb'; lb.setAttribute('role','dialog'); lb.setAttribute('aria-label', it.n);
-    lb.innerHTML = '<button type="button" class="x" aria-label="Close">&times;</button>'
-      + '<figure style="margin:0"><img src="'+M.goatimg[it.k]+'" alt="'+esc(it.n)+'">'
-      + '<figcaption>'+esc(it.n)+' &mdash; an example from a real Optimum agent</figcaption></figure>';
-    const shut = () => { lb.remove(); document.removeEventListener('keydown', esckey); };
-    const esckey = e => { if (e.key === 'Escape') shut(); };
-    lb.addEventListener('click', e => { if (e.target === lb || e.target.classList.contains('x')) shut(); });
-    document.addEventListener('keydown', esckey);
-    document.body.appendChild(lb);
-  }));
+  ['goatHide','goatHideTop'].forEach(id => {
+    const b = document.getElementById(id);
+    if (b) b.addEventListener('click', () => { goatExpanded = false; render(); });
+  });
+  /* The offer previews are drawn in markup now, so there is no full-size image to
+     open and no lightbox. The handler that used to do it read M.goatimg, which no
+     longer exists - it is removed rather than left to throw if it ever matched. */
 }
 function ordered(key){
   const names = M.order[key] || [];
@@ -530,30 +1400,49 @@ function ordered(key){
   const out = names.map(n => by[n]).filter(Boolean);
   // anything not in the hand-written order still shows, at the end
   M.tools.forEach(t => { if (!t.feature && !t.banner && names.indexOf(t.n) < 0 &&
-    (key === 'all' || t.cat === key) && out.indexOf(t) < 0) out.push(t); });
+    inCat(t, key) && out.indexOf(t) < 0) out.push(t); });
   return out;
 }
+/* Record every tool launch, so the recently-used strip has something to show. */
+document.addEventListener('click', function(e){
+  const el = e.target.closest('a.row, a.fcard, .startline a, .recent a, a.banner');
+  if (!el) return;
+  const txt = (el.querySelector('.n, .sl-q') || el).textContent.trim();
+  const hit = M.tools.find(t => t.n === txt) ||
+              M.tools.find(t => el.getAttribute('href') && el.getAttribute('href') === t.u);
+  if (hit) recentPush(hit.n);
+}, true);
+
 function render(){
   const overview = (view === 'overview');
+  /* The free-for-agents offer is not an overview feature - the reference carries it
+     on every page, and Jesse asked for it kept. It leads every view except a search. */
   const label = (M.cats.find(c => c.k === cat) || {}).label;
   let list = ordered(overview ? cat : cat).filter(match);
+  const offerEl = document.getElementById('offer');
+  if (offerEl) offerEl.innerHTML = (q ? '' : goatHTML());
   let html = '';
 
   if (overview && !q){
-    html += goatHTML()
+    html += startlineHTML()
+          + recentHTML()
           + '<h2 class="sec">'+(phone() ? 'Quick launch' : 'Ready for your next call')+'</h2>'
           + '<div class="feat">'+featured.map(fcard).join('')+'</div>'
-          + bannerHTML();
+          + bannerHTML()
+          ;
   }
-  html += '<h2 class="sec">'+(q ? 'Results' : (overview ? 'Explore your tools' : label))+'</h2>';
+  /* category pages render as task groups; the overview keeps its single grid */
+  if (!overview && !q && (M.sections||{})[cat]){
+    html += sectionsHTML(cat);
+    if (cat === 'grow') html += growBannerHTML();
+    document.getElementById('body').innerHTML = html;
+    afterRender(overview, q);
+    return;
+  }
+  html += '<h2 class="sec">'+(q ? 'Results' : 'Explore your tools')+'</h2>';
 
   // Navigating into Sell from the side (or the tab bar) puts the three call tools at the top,
   // because the big quick-launch cards are not on screen in that view.
-  if (!overview && cat === 'sell' && !q){
-    html += '<div class="anchlbl">On a call</div><div class="grid" style="margin-bottom:18px">'
-          + featured.map(t => row(t, true)).join('') + '</div>'
-          + '<div class="anchlbl">The rest of Sell</div>';
-  }
   if (overview && !q) html += '<div class="cats">'+M.cats.filter(c=>c.k!=='all').map(c =>
       '<button type="button" data-c="'+c.k+'" aria-pressed="'+(cat===c.k)+'">'+svg(c.ic)+esc(c.label)+'</button>').join('')+'</div>'
     + '<div class="chips">'+M.cats.map(c =>
@@ -562,15 +1451,25 @@ function render(){
   html += list.length ? '<div class="grid">'+list.map(t => row(t)).join('')+'</div>'
                       : '<div class="none">Nothing matches &ldquo;'+esc(q)+'&rdquo;. Try a shorter word.</div>';
   document.getElementById('body').innerHTML = html;
-  document.getElementById('head').textContent = overview
-    ? (phone() ? 'What do you need today?' : 'Your tools. Ready when you are.')
-    : label;
-  document.querySelector('.lede').style.display = overview ? '' : 'none';
-  document.querySelectorAll('[data-c]').forEach(b => b.addEventListener('click', () => { cat = b.dataset.c; render(); }));
+  afterRender(overview, q);
+}
+
+/* Shared by both render paths: the overview's single grid and the category pages'
+   task groups. Each page carries its own heading and sub-heading in the manifest. */
+function afterRender(overview, q){
+  const page = (M.pages || {})[overview ? 'overview' : cat] || {};
+  const label = (M.cats.find(c => c.k === cat) || {}).label;
+  document.getElementById('head').textContent =
+    q ? 'Results' : (page.head || (overview ? 'What do you need today?' : label));
+  const lede = document.querySelector('.lede');
+  lede.textContent = page.sub || '';
+  lede.style.display = (page.sub && !q) ? '' : 'none';
+  document.querySelectorAll('[data-c]').forEach(b =>
+    b.addEventListener('click', () => { cat = b.dataset.c; render(); }));
   wireGoat(); wireSheets();
 }
 function paint(){
-  document.getElementById('nav').innerHTML = [{k:'overview',label:'Overview',ic:'compass'}]
+  document.getElementById('nav').innerHTML = [{k:'overview',label:'Home',ic:'home'}]
     .concat(M.cats.filter(c=>c.k!=='all')).map(c =>
       '<button type="button" data-n="'+c.k+'" aria-current="'
       + ((c.k==='overview') === (view==='overview') && (c.k==='overview' || cat===c.k)) + '">'
@@ -594,6 +1493,7 @@ function paint(){
 }
 document.getElementById('q').addEventListener('input', e => { q = e.target.value.trim().toLowerCase(); render(); });
 matchMedia('(max-width:900px)').addEventListener('change', paint);
+visitBump();
 paint();
 </script>
 <!-- ===== GoatCounter — page counts only ==========================================
