@@ -280,32 +280,38 @@ body{margin:0;background:var(--pagebg);font-family:'Inter',-apple-system,'Segoe 
   @page{margin:12mm}
 }
 
-/* The partnership mark. Page furniture only - it is deliberately NOT inside the
-   print area and not on the cut-apart cards, where the full lockup rendered at
-   18px and turned to a smudge. On screen it has room to be read. */
-.gc-partner{display:flex;align-items:center;justify-content:center;gap:12px;
-  margin:26px auto 0;padding-top:18px;border-top:1px solid var(--line);max-width:1180px}
-.gc-partner .lbl{font-size:10px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;
+/* The partnership mark, in the header's right-hand whitespace. Page furniture
+   only - deliberately outside #m5gc-app so no print rule can pull it onto the
+   record sheet or the cut-apart cards, where the full lockup went to a smudge. */
+.gc-top{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;
+  flex-wrap:wrap;margin-bottom:14px}
+.gc-topl{flex:1;min-width:260px}
+.gc-topl .sub{margin-bottom:0}
+.gc-partner{display:flex;align-items:center;gap:10px;flex:none;padding-top:4px}
+.gc-partner .lbl{font-size:9.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
   color:var(--gcs);white-space:nowrap}
-.gc-partner img{height:40px;width:auto;display:block}
-@media(max-width:620px){ .gc-partner{flex-direction:column;gap:8px} }
+.gc-partner img{height:38px;width:auto;display:block}
+@media(max-width:700px){
+  .gc-top{gap:12px}
+  .gc-partner{padding-top:0}
+  .gc-partner img{height:30px}
+}
 }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div class="gc-noprint">
-    <h1 class="h1">Goal Card</h1>
-    <p class="sub">Plan your blocks, log your dials, and watch your activity build day over day.</p>
+  <div class="gc-top gc-noprint">
+    <div class="gc-topl">
+      <h1 class="h1">Goal Card</h1>
+      <p class="sub">Plan your blocks, log your dials, and watch your activity build day over day.</p>
+    </div>
+    <div class="gc-partner">
+      <span class="lbl">In partnership with</span>
+      <img src="/img/apex-legacy.png" alt="Apex Legacy Group" width="289" height="138">
+    </div>
   </div>
   <div id="m5gc-app"></div>
-  <!-- Page furniture, not card content: it sits outside #m5gc-app so neither the
-       record sheet nor the blank cards can pick it up. Jesse, 19 Oct: the site
-       page only. -->
-  <div class="gc-partner gc-noprint">
-    <span class="lbl">In partnership with</span>
-    <img src="/img/apex-legacy.png" alt="Apex Legacy Group" width="289" height="138">
-  </div>
 </div>
 <script>
 /* ===== Goal Card + Activity Tracker ===== */
