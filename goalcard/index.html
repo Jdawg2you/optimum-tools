@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Goal Card</title>
+<meta name="description" content="Plan your blocks, log your activity, print the card. Free, no sign-up.">
+<link rel="canonical" href="https://tools.ffloptimum.com/goalcard/">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Optimum">
+<meta property="og:title" content="The Goal Card: free for insurance agents">
+<meta property="og:description" content="Plan your blocks, log your activity, print the card. Free, no sign-up.">
+<meta property="og:url" content="https://tools.ffloptimum.com/goalcard/">
+<meta property="og:image" content="https://tools.ffloptimum.com/goalcard/og.png?v=1">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Goal Card: free for insurance agents">
+<meta name="twitter:description" content="Plan your blocks, log your activity, print the card. Free, no sign-up.">
+<meta name="twitter:image" content="https://tools.ffloptimum.com/goalcard/og.png?v=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#16203C;--gold:#C9A24E;--goldd:#A8853A;--golddk:#8A6C2C;--line:#E3DFD4;--gcs:#6E6D66;--pagebg:#F5F1E8;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--pagebg);font-family:'Inter',-apple-system,'Segoe UI',Roboto,sans-serif;color:var(--navy)}
+.wrap{max-width:1180px;margin:0 auto;padding:22px 18px 70px}
+.h1{font-size:23px;font-weight:800;letter-spacing:-.3px;margin:0 0 3px}
+.sub{font-size:13.5px;color:var(--gcs);margin:0 0 14px;line-height:1.5}
+
+
+@media print{
+  @page{margin:12mm}
+  html,body{background:#fff!important}
+  .wrap{padding:0;max-width:none}
+  .gc-noprint,.m5gc-noprint{display:none!important}
+}
+/* ===== Goal Card + Activity Dashboard ===== */
+#m5gc-app{--gcn:#16233f;--gcg:#c9a227;--gcl:#e5e9f0;--gci:#1f2a44;--gcs:#6b7688;--gcgood:#1a8f5a;--gcbad:#c0392b;color:var(--gci)}
+#m5gc-app .m5gc-card{background:#fff;border:1px solid var(--gcl);border-radius:16px;padding:20px;margin-top:16px;box-shadow:0 8px 26px rgba(20,35,63,.06)}
+#m5gc-app .m5gc-stitle{text-align:center;font-family:Georgia,'Times New Roman',serif;font-size:22px;color:var(--gcn);letter-spacing:.06em;font-weight:700}
+#m5gc-app .m5gc-stars{text-align:center;color:var(--gcg);font-size:15px;letter-spacing:3px;margin:4px 0 8px}
+#m5gc-app .m5gc-ssub{text-align:center;font-size:13px;color:var(--gcs);margin:0 0 14px}
+#m5gc-app .m5gc-row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+#m5gc-app .m5gc-fld{font-size:11px;font-weight:800;color:var(--gcs);text-transform:uppercase;letter-spacing:.03em;display:flex;flex-direction:column;gap:6px}
+#m5gc-app .m5gc-fld input{font-size:15px;padding:9px 11px;border:1px solid var(--gcl);border-radius:9px;font-family:inherit;color:var(--gci);background:#fff}
+#m5gc-app .m5gc-fld input:focus{outline:none;border-color:var(--gcg)}
+#m5gc-app .m5gc-track{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:14px 0 4px}
+#m5gc-app .m5gc-stat{background:#f7fafe;border:1px solid var(--gcl);border-radius:11px;padding:10px 6px;text-align:center}
+#m5gc-app .m5gc-stat .l{font-size:9px;font-weight:800;color:var(--gcs);text-transform:uppercase}
+#m5gc-app .m5gc-stat .v{font-size:20px;font-weight:800;color:var(--gcn);margin-top:2px}
+#m5gc-app .m5gc-stat.hl{background:#fbf7e9;border-color:#efe3b8}
+#m5gc-app .m5gc-stat.hl .v{color:#a9861d}
+#m5gc-app .m5gc-planbar{background:#f4f7fc;border:1px solid #dde6f2;border-radius:12px;padding:12px 14px;margin:14px 0 2px}
+#m5gc-app .m5gc-planbar .pintro{font-size:12.5px;color:var(--gcs);margin-bottom:10px}
+#m5gc-app .m5gc-planbar .pintro b{color:var(--gcn)}
+#m5gc-app .m5gc-planbar .plangrid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+#m5gc-app .m5gc-planbar .plan{background:#fff;border:1px solid var(--gcl);border-radius:10px;padding:8px;text-align:center}
+#m5gc-app .m5gc-planbar .plan .l{font-size:9px;font-weight:800;color:var(--gcs);text-transform:uppercase}
+#m5gc-app .m5gc-planbar .plan .v{font-size:17px;font-weight:800;color:var(--gcn);margin-top:2px}
+#m5gc-app .m5gc-planbar .plan.acc .v{color:#a9861d}
+#m5gc-app .m5gc-prog{background:#f4f6fa;border:1px solid var(--gcl);border-radius:12px;padding:12px 14px;margin:12px 0 4px}
+#m5gc-app .m5gc-prog .pt{font-size:14px;font-weight:700;color:var(--gcn)}
+#m5gc-app .m5gc-barp{height:9px;background:#e3e8f0;border-radius:6px;overflow:hidden;margin-top:8px}
+#m5gc-app .m5gc-barp>i{display:block;height:100%;background:linear-gradient(90deg,#e8b73a,#c9971f);border-radius:6px}
+#m5gc-app table.m5gc-act{width:100%;border-collapse:collapse;margin-top:14px;font-size:13.5px}
+#m5gc-app table.m5gc-act th{background:var(--gcn);color:#fff;padding:9px 5px;font-size:10.5px;font-weight:700;text-align:center}
+#m5gc-app table.m5gc-act th small{display:block;font-weight:500;color:#b9c6e0;font-size:9px;margin-top:2px}
+#m5gc-app table.m5gc-act td{border:1px solid var(--gcl);padding:5px;text-align:center}
+#m5gc-app table.m5gc-act td.time{background:#f4f6fa;font-weight:700;color:var(--gcn);font-size:12px;white-space:nowrap}
+#m5gc-app table.m5gc-act tr.planned td.time{box-shadow:inset 4px 0 0 var(--gcg)}
+#m5gc-app table.m5gc-act tr.planned td{background:#fcfaf1}
+#m5gc-app table.m5gc-act input[type=number]{width:52px;text-align:center;font-size:14px;padding:6px 4px;border:1px solid var(--gcl);border-radius:7px;font-family:inherit;background:#fff}
+#m5gc-app table.m5gc-act input[type=number]:focus{outline:none;border-color:var(--gcg)}
+#m5gc-app table.m5gc-act input[type=checkbox]{width:19px;height:19px;accent-color:var(--gcg);cursor:pointer}
+#m5gc-app table.m5gc-act td.rp{font-weight:800;color:var(--gcn);background:#f7fafe}
+#m5gc-app table.m5gc-act tr.tot td{background:var(--gcn);color:#fff;font-weight:800;font-size:13px;padding:9px 5px}
+#m5gc-app .m5gc-btns{text-align:center;margin-top:18px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+#m5gc-app .m5gc-btn{border:0;border-radius:9px;padding:11px 20px;font-size:13.5px;font-weight:800;cursor:pointer;font-family:inherit}
+#m5gc-app .m5gc-btn.p{background:var(--gcg);color:#16233f}
+#m5gc-app .m5gc-btn.s{background:var(--gcn);color:#fff}
+#m5gc-app .m5gc-btn.g{background:#eef1f6;color:var(--gcn)}
+#m5gc-app .m5gc-dashh{font-family:Georgia,serif;font-size:20px;color:var(--gcn);font-weight:700}
+#m5gc-app .m5gc-hint{background:#f4f7fc;border:1px dashed #cdd8ee;border-radius:10px;padding:10px 12px;font-size:12.5px;color:var(--gcs);margin:10px 0}
+#m5gc-app .m5gc-cmp3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:12px}
+#m5gc-app .m5gc-cmp{background:#f7fafe;border:1px solid var(--gcl);border-radius:14px;padding:14px}
+#m5gc-app .m5gc-cmp .ct{font-size:11px;font-weight:800;color:var(--gcs);text-transform:uppercase}
+#m5gc-app .m5gc-cmp .cbig{font-size:28px;font-weight:800;color:var(--gcn);margin:6px 0 2px;line-height:1}
+#m5gc-app .m5gc-cmp .cunit{font-size:12px;color:var(--gcs);font-weight:600}
+#m5gc-app .m5gc-delta{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;font-weight:800;padding:3px 9px;border-radius:20px;margin-top:8px}
+#m5gc-app .m5gc-delta.up{background:#e6f5ee;color:var(--gcgood)}
+#m5gc-app .m5gc-delta.down{background:#fbeae7;color:var(--gcbad)}
+#m5gc-app .m5gc-delta.flat{background:#eef1f6;color:var(--gcs)}
+#m5gc-app .m5gc-cmp .cprev{font-size:11.5px;color:var(--gcs);margin-top:8px}
+#m5gc-app .m5gc-avgstrip{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin-top:14px}
+#m5gc-app .m5gc-avg{background:#fff;border:1px solid var(--gcl);border-radius:11px;padding:10px 6px;text-align:center}
+#m5gc-app .m5gc-avg .l{font-size:9px;font-weight:800;color:var(--gcs);text-transform:uppercase}
+#m5gc-app .m5gc-avg .v{font-size:18px;font-weight:800;color:var(--gcn);margin-top:2px}
+#m5gc-app .m5gc-hlgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:11px;margin-top:14px}
+#m5gc-app .m5gc-hlc{display:flex;gap:11px;align-items:flex-start;background:linear-gradient(135deg,#fbfcfe,#f4f7fc);border:1px solid var(--gcl);border-radius:13px;padding:13px}
+#m5gc-app .m5gc-hlc .ic{font-size:21px}
+#m5gc-app .m5gc-hlc .ht{font-size:10.5px;font-weight:800;color:var(--gcs);text-transform:uppercase}
+#m5gc-app .m5gc-hlc .hv{font-size:15px;font-weight:800;color:var(--gcn);margin-top:2px}
+#m5gc-app .m5gc-hlc .hd{font-size:11.5px;color:var(--gcs);margin-top:2px}
+#m5gc-app .m5gc-chart{margin-top:18px}
+#m5gc-app .m5gc-chart h4{font-size:12px;font-weight:800;color:var(--gcs);text-transform:uppercase;margin:0 0 12px}
+#m5gc-app .m5gc-bars{display:flex;align-items:flex-end;gap:8px;height:150px;padding:0 4px;border-bottom:2px solid var(--gcl)}
+#m5gc-app .m5gc-b{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%}
+#m5gc-app .m5gc-b .col{width:70%;max-width:44px;background:linear-gradient(180deg,#2c4a86,#16233f);border-radius:6px 6px 0 0;position:relative}
+#m5gc-app .m5gc-b .col.goal{background:linear-gradient(180deg,#38b06f,#1a8f5a)}
+#m5gc-app .m5gc-b .col .n{position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-size:11px;font-weight:800;color:var(--gcn)}
+#m5gc-app .m5gc-b .lab{font-size:10.5px;color:var(--gcs);margin-top:7px;font-weight:600}
+#m5gc-app .m5gc-b .dow{font-size:9.5px;color:#9aa4b5}
+#m5gc-app .m5gc-legend{font-size:11.5px;color:var(--gcs);margin-top:12px;text-align:center}
+@media(max-width:720px){#m5gc-app .m5gc-row2,#m5gc-app .m5gc-cmp3,#m5gc-app .m5gc-hlgrid{grid-template-columns:1fr}#m5gc-app .m5gc-track,#m5gc-app .m5gc-avgstrip,#m5gc-app .m5gc-planbar .plangrid{grid-template-columns:repeat(2,1fr)}#m5gc-app table.m5gc-act input[type=number]{width:40px}}
+@media print{body *{visibility:hidden!important}#m5gc-printarea,#m5gc-printarea *{visibility:visible!important}#m5gc-printarea{position:absolute;left:0;top:0;width:100%;box-shadow:none;border:none;margin:0}#m5gc-app .m5gc-noprint,.m5gc-noprint{display:none!important}}
+
+
+/* ---- the block editor and the carry-out controls -------------------------- */
+.gcbe-open{appearance:none;cursor:pointer;font:inherit;font-size:12px;font-weight:700;
+  color:var(--golddk);background:#F7F1E2;border:1px solid #E6D6AE;border-radius:999px;
+  padding:5px 12px;margin:0 0 10px}
+.gcbe-open:hover{background:#F2E8D0}
+.gcbe-panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:0 0 14px}
+.gcbe-head{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--gcs);margin-bottom:10px}
+.gcbe-row{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.gcbe-row input[type=time]{font:inherit;font-size:13px;padding:6px 8px;border:1px solid var(--line);
+  border-radius:8px;background:#fff;color:var(--navy)}
+.gcbe-to{font-size:12px;color:var(--gcs)}
+.gcbe-x{appearance:none;cursor:pointer;border:0;background:none;color:#B4524A;font-size:18px;line-height:1;padding:2px 6px}
+.gcbe-x:hover{color:#8E3A33}
+.gcbe-foot{display:flex;align-items:center;gap:10px;margin-top:12px;flex-wrap:wrap}
+.gcbe-sp{flex:1}
+.gcbe-add,.gcbe-reset,.gcbe-done{appearance:none;cursor:pointer;font:inherit;font-size:12.5px;font-weight:700;
+  border-radius:8px;padding:7px 13px;border:1px solid var(--line);background:#fff;color:var(--navy)}
+.gcbe-done{background:var(--navy);color:#fff;border-color:var(--navy)}
+.gcbe-add:hover,.gcbe-reset:hover{background:#F6F4EE}
+.gcbe-note{font-size:11.5px;color:var(--gcs);margin:10px 0 0;line-height:1.45}
+
+.gc-state{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:16px 0 0;
+  padding-top:13px;border-top:1px solid var(--line);font-size:12.5px;color:var(--gcs);line-height:1.5}
+.gc-state #gcState{flex:1;min-width:240px}
+.gc-state #gcState b{color:var(--navy);font-weight:700}
+.gc-state #gcState.ok{color:#2F6B4A}
+.gc-state #gcState.ok b{color:#2F6B4A}
+.gc-state .slink{appearance:none;background:none;border:0;cursor:pointer;font:inherit;
+  font-size:12.5px;font-weight:700;color:var(--goldd);padding:2px 0;
+  text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+.gc-state .slink:hover{color:var(--golddk)}
+
+/* the print chooser */
+.gc-pm{position:absolute;z-index:120;min-width:272px;background:#fff;border:1px solid var(--line);
+  border-radius:12px;box-shadow:0 14px 40px rgba(22,32,60,.20);padding:7px;overflow:hidden}
+.gc-pm-h{font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--gcs);padding:7px 10px 8px}
+.gc-pm button{display:block;width:100%;text-align:left;appearance:none;background:none;border:0;
+  cursor:pointer;font:inherit;padding:9px 10px;border-radius:8px}
+.gc-pm button:hover{background:#F5F2E9}
+.gc-pm button b{display:block;font-size:13.5px;color:var(--navy);font-weight:700}
+.gc-pm button span{display:block;font-size:11.5px;color:var(--gcs);margin-top:1px}
+
+.gc-toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(14px);
+  background:var(--navy);color:#fff;font-size:13px;font-weight:600;padding:11px 18px;border-radius:10px;
+  box-shadow:0 10px 30px rgba(22,32,60,.3);opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:200}
+.gc-toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+@media(max-width:620px){ .gcbe-row{flex-wrap:wrap} }
+
+/* whose card this is - reads as fields on screen, as a printed line on paper */
+.gc-who{display:flex;gap:14px;flex-wrap:wrap;margin:2px 0 18px;padding-bottom:14px;
+  border-bottom:1px solid var(--line)}
+.gc-who-f{flex:1;min-width:210px;display:flex;flex-direction:column;gap:4px}
+.gc-who-f span{font-size:10.5px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--gcs)}
+.gc-who-f input{font:inherit;font-size:14px;padding:9px 11px;border:1px solid var(--line);
+  border-radius:9px;background:#fff;color:var(--navy);width:100%}
+.gc-who-f input:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:var(--gold)}
+@media print{
+  .gc-who{border-bottom:1px solid #ccc}
+  .gc-who-f span{font-size:9px}
+  /* a printed sheet should not show empty form boxes */
+  .gc-who-f input{border:0!important;padding:0!important;font-size:14px;font-weight:700;
+    background:none!important;color:#000!important}
+}
+.gc-carry .cbtn.prim{background:var(--navy);color:#fff;border-color:var(--navy)}
+.gc-carry .cbtn.prim:hover{background:#22304f}
+.gc-carry .why #gcLinkState{font-weight:800;color:var(--gcs)}
+.gc-carry .why #gcLinkState.linked{color:#2F6B4A}
+
+/* the blank sheet is built only when they ask for it, and never shows on screen */
+#gc-blank{display:none}
+@media print{
+  /* printing the dashboard: the blank sheet stays away */
+  body:not(.gc-printing-blank) #gc-blank{display:none!important}
+
+  /* Printing the paper card: it is the only thing on the page. The ported portal
+     CSS marks #m5gc-printarea visible with !important, so merely hiding by
+     visibility left the dashboard laid out underneath and the two overlapped.
+     Taking the whole app out of the flow is both simpler and unambiguous. */
+  body.gc-printing-blank .wrap{display:none!important}
+  body.gc-printing-blank #gc-blank,
+  body.gc-printing-blank #gc-blank *{visibility:visible!important}
+  body.gc-printing-blank #gc-blank{display:flex!important;gap:5mm;align-items:stretch;
+    position:absolute;left:0;top:0;width:100%;font-family:'Inter',sans-serif;color:#000}
+
+  #gc-blank .pb-card{flex:1;min-width:0;border:1.6px solid #000;padding:4mm 3mm 3mm}
+  #gc-blank .pb-ttl{display:flex;align-items:center;gap:4px;justify-content:center}
+  #gc-blank .pb-ttl::before,#gc-blank .pb-ttl::after{content:"";height:1.4px;background:#000;flex:1;max-width:16px}
+  #gc-blank .pb-ttl span{font-family:'Source Serif 4',Georgia,serif;font-size:15px;font-weight:700;
+    letter-spacing:.07em;white-space:nowrap}
+  #gc-blank .pb-stars{text-align:center;font-size:11px;letter-spacing:.06em;margin:1px 0 5px}
+
+  #gc-blank .pb-g{width:100%;border-collapse:collapse;table-layout:fixed}
+  #gc-blank .pb-g th,#gc-blank .pb-g td{border:1px solid #000;padding:0}
+  #gc-blank .pb-g th{font-size:7.4px;font-weight:700;letter-spacing:.02em;padding:3px 1px;
+    text-align:center;border-bottom-width:1.4px}
+  #gc-blank .pb-g th.tm,#gc-blank .pb-g td.tm{width:12px;border-left:0;border-top:0;border-bottom:0}
+  #gc-blank .pb-g tbody td{height:62px}            /* room to write in, not tick */
+  #gc-blank .pb-g td.tm{position:relative}
+  #gc-blank .pb-g td.tm span{position:absolute;left:50%;top:50%;
+    transform:translate(-50%,-50%) rotate(-90deg);transform-origin:center;
+    font-size:7.6px;font-weight:700;white-space:nowrap;letter-spacing:.01em}
+  #gc-blank .pb-g tfoot td{font-size:7.4px;font-weight:700;text-align:center;padding:3px 1px;
+    border-top-width:1.4px;border-bottom:0}
+  #gc-blank .pb-g tfoot td.tm{border:0}
+
+  #gc-blank .pb-sig{margin-top:3.5mm}
+  #gc-blank .pb-sig .dt{display:block;border-bottom:1px solid #777;min-height:13px;
+    font-size:7px;color:#999;padding-bottom:1px;letter-spacing:.08em}
+  @page{margin:11mm}
+}
+
+/* ---- the printed record (day / week / month) ----------------------------- */
+#gc-record{display:none}
+@media print{
+  body.gc-printing-record .wrap{display:none!important}
+  body.gc-printing-record #gc-blank{display:none!important}
+  /* The ported portal sheet sets `body *{visibility:hidden}` and only re-reveals
+     its own #m5gc-printarea. Anything new has to claim visibility back explicitly
+     or it prints as a blank page while looking perfectly fine in the DOM. */
+  body.gc-printing-record #gc-record,
+  body.gc-printing-record #gc-record *{visibility:visible!important}
+  body.gc-printing-record #gc-record{display:block!important;position:absolute;left:0;top:0;width:100%;
+    font-family:'Inter',sans-serif;color:#000}
+
+  #gc-record .rc-head{margin-bottom:5mm}
+  #gc-record .rc-ttl{display:flex;align-items:center;gap:6px;justify-content:center}
+  #gc-record .rc-ttl::before,#gc-record .rc-ttl::after{content:"";height:1.5px;background:#000;flex:1;max-width:34px}
+  #gc-record .rc-ttl span{font-family:'Source Serif 4',Georgia,serif;font-size:21px;font-weight:700;letter-spacing:.07em}
+  #gc-record .rc-sub{text-align:center;font-size:12px;font-weight:700;margin-top:2px;letter-spacing:.03em}
+  #gc-record .rc-who{display:flex;justify-content:space-between;align-items:baseline;
+    border-bottom:1.5px solid #000;padding-bottom:3px;margin-top:5px}
+  #gc-record .rc-who b{font-size:12px}
+  #gc-record .rc-who span{font-size:9px;color:#555}
+
+  #gc-record .rc-g{width:100%;border-collapse:collapse;table-layout:fixed;margin-bottom:5mm}
+  #gc-record .rc-g th,#gc-record .rc-g td{border:1px solid #000;padding:5px 3px;text-align:center;font-size:10px}
+  #gc-record .rc-g th{background:#16203C;color:#fff;font-size:8px;font-weight:700;letter-spacing:.05em}
+  #gc-record .rc-g th em{display:block;font-style:normal;font-weight:400;font-size:6.5px;opacity:.8}
+  #gc-record .rc-g .tm{text-align:left;padding-left:6px;font-weight:700;font-size:9px;width:17%}
+  #gc-record .rc-g th.tm{color:#fff}
+  #gc-record .rc-g .pl,#gc-record .rc-g th.pl{width:8%}
+  #gc-record .rc-g .rp,#gc-record .rc-g th.rp{width:12%;font-weight:700;background:#F2F3F6}
+  #gc-record .rc-g th.rp{background:#16203C}
+  #gc-record .rc-g tfoot td{background:#16203C;color:#fff;font-weight:700}
+  /* the points column's own light fill was winning in the footer and bleaching
+     white text to near-invisible - the footer owns its row */
+  #gc-record .rc-g tfoot td.rp{background:#16203C;color:#fff}
+  #gc-record .rc-range .tm{width:20%}
+  #gc-record .rc-empty{font-size:11px;color:#555;padding:10mm 0;text-align:center;border:1px dashed #999}
+
+  #gc-record .rc-kpis{display:flex;gap:4mm}
+  #gc-record .rc-k{flex:1;border:1px solid #000;padding:3mm}
+  #gc-record .rc-k span{display:block;font-size:7.5px;font-weight:700;letter-spacing:.09em;
+    text-transform:uppercase;color:#555}
+  #gc-record .rc-k b{display:block;font-size:17px;margin-top:2px}
+  #gc-record .rc-k i{display:block;font-style:normal;font-size:7.5px;color:#666;margin-top:1px}
+  @page{margin:12mm}
+}
+
+/* The partnership mark. Page furniture only - it is deliberately NOT inside the
+   print area and not on the cut-apart cards, where the full lockup rendered at
+   18px and turned to a smudge. On screen it has room to be read. */
+.gc-partner{display:flex;align-items:center;justify-content:center;gap:12px;
+  margin:26px auto 0;padding-top:18px;border-top:1px solid var(--line);max-width:1180px}
+.gc-partner .lbl{font-size:10px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--gcs);white-space:nowrap}
+.gc-partner img{height:40px;width:auto;display:block}
+@media(max-width:620px){ .gc-partner{flex-direction:column;gap:8px} }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="gc-noprint">
+    <h1 class="h1">Goal Card</h1>
+    <p class="sub">Plan your blocks, log your dials, and watch your activity build day over day.</p>
+  </div>
+  <div id="m5gc-app"></div>
+  <!-- Page furniture, not card content: it sits outside #m5gc-app so neither the
+       record sheet nor the blank cards can pick it up. Jesse, 19 Oct: the site
+       page only. -->
+  <div class="gc-partner gc-noprint">
+    <span class="lbl">In partnership with</span>
+    <img src="/img/apex-legacy.png" alt="Apex Legacy Group" width="289" height="138">
+  </div>
+</div>
+<script>
+/* ===== Goal Card + Activity Tracker ===== */
+var M5GC_BLOCKS=["8–10 AM","10–12 PM","12–2 PM","2–4 PM","4–6 PM","6–8 PM","8–10 PM"];
+var M5GC_W={c:1,p:3,a:2,s:5};
+var M5GC_DEFGOAL=40;
+var M5GC_DOW=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+var M5GC_MON=["January","February","March","April","May","June","July","August","September","October","November","December"];
+var m5gcDate=null, m5gcView='day';
+function m5gcIso(d){return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);}
+function m5gcAdd(d,n){var x=new Date(d);x.setDate(x.getDate()+n);return x;}
+function m5gcParseD(s){var d=new Date(s+'T00:00:00');return isNaN(d.getTime())?new Date():d;}
+function m5gcMoney(n){n=Math.round(n||0);return '$'+n.toLocaleString('en-US');}
+function m5gcNum(n){return (Math.round((n||0)*100)/100).toLocaleString('en-US');}
+function m5gcRatio(a,b){return b>0?a/b:0;}
+/* The portal keeps these on the signed-in agent. The tools page has no login,
+   so the same per-day shape lives in this browser instead - one object keyed
+   YYYY-MM-DD, exactly as the portal stores it, so a card exported from here
+   would drop straight into that shape. */
+var GC_KEY='oat.goalcards';
+var _gcCache=null;
+function m5gcStore(){
+  if(_gcCache) return _gcCache;
+  try{ var v=JSON.parse(localStorage.getItem(GC_KEY)||'{}');
+       _gcCache=(v&&typeof v==='object')?v:{}; }catch(e){ _gcCache={}; }
+  return _gcCache;
+}
+function gcPersist(){
+  try{ localStorage.setItem(GC_KEY, JSON.stringify(m5gcStore())); return true; }
+  catch(e){ return false; }   /* private window, blocked storage - card still works */
+}
+function m5gcBlank(){return M5GC_BLOCKS.map(function(){return [0,0,0,0,0];});}
+function m5gcBlankPlan(){return M5GC_BLOCKS.map(function(){return false;});}
+function m5gcStats(rec){var t={c:0,p:0,a:0,s:0,dials:0,pts:0,planned:0,worked:0,pw:0};if(!rec)return t;(rec.blocks||[]).forEach(function(b,i){if(!b)return;var dl=b[4]||0;var has=((b[0]||0)+(b[1]||0)+(b[2]||0)+(b[3]||0)+dl)>0;var pl=rec.planned&&rec.planned[i];t.c+=b[0]||0;t.p+=b[1]||0;t.a+=b[2]||0;t.s+=b[3]||0;t.dials+=dl;if(has)t.worked++;if(pl)t.planned++;if(pl&&has)t.pw++;});t.pts=t.c*M5GC_W.c+t.p*M5GC_W.p+t.a*M5GC_W.a+t.s*M5GC_W.s;return t;}
+function m5gcHoursFor(rec,st){st=st||m5gcStats(rec);if(rec&&rec.hours!=null&&rec.hours!=='')return +rec.hours||0;return st.worked*2;}
+
+function m5gcStyle(){return '<style>'+
+'#m5gc-app .m5gcx-seg{display:inline-flex;background:#fff;border:1px solid var(--gcl);border-radius:12px;padding:4px;gap:4px;box-shadow:0 4px 12px rgba(20,35,63,.04)}'+
+'#m5gc-app .m5gcx-seg button{border:0;background:transparent;padding:9px 20px;border-radius:9px;font-size:14px;font-weight:800;color:var(--gcs);cursor:pointer;font-family:inherit}'+
+'#m5gc-app .m5gcx-seg button.on{background:var(--gcn);color:#fff}'+
+'#m5gc-app .m5gcx-rangelab{font-size:12.5px;color:var(--gcs);margin:10px 2px 0}#m5gc-app .m5gcx-rangelab b{color:var(--gcn)}'+
+'#m5gc-app .m5gcx-scroll{overflow-x:auto}'+
+'#m5gc-app .m5gcx-stp{display:inline-flex;align-items:center;gap:3px}'+
+'#m5gc-app .m5gcx-mn{width:22px;height:30px;border:1px solid var(--gcl);background:#f6f8fc;border-radius:7px;font-size:16px;font-weight:800;color:var(--gcn);cursor:pointer;line-height:1;padding:0;font-family:inherit}'+
+'#m5gc-app .m5gcx-mn:hover{border-color:var(--gcg);background:#fdf8ea}'+
+'#m5gc-app .m5gcx-stp input[type=number]{width:44px;-webkit-appearance:none;-moz-appearance:textfield}'+
+'#m5gc-app .m5gcx-sub2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}'+
+'#m5gc-app .m5gcx-money{display:flex;align-items:center;border:1px solid var(--gcl);border-radius:9px;background:#fff;padding:2px 10px}'+
+'#m5gc-app .m5gcx-money span{color:var(--gcs);font-size:16px;font-weight:800}'+
+'#m5gc-app .m5gc-fld .m5gcx-money input,#m5gc-app .m5gc-fld .m5gcx-money input:focus{border:0;outline:0;border-radius:0;box-shadow:none;font-size:16px;font-weight:800;color:var(--gci);width:100%;padding:8px 6px;background:transparent;font-family:inherit}'+
+'#m5gc-app .m5gcx-sub{font-size:11px;color:var(--gcs);margin-top:5px;font-weight:600;text-transform:none;letter-spacing:0}#m5gc-app .m5gcx-sub a{color:#a9861d;font-weight:800}'+
+'#m5gc-app .m5gcx-sec{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--gcs);font-weight:800;margin:20px 2px 9px}'+
+'#m5gc-app .m5gcx-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:11px}'+
+'#m5gc-app .m5gcx-stat{border:1px solid var(--gcl);border-radius:13px;padding:13px 15px;background:#fff}'+
+'#m5gc-app .m5gcx-stat .k{font-size:12px;color:var(--gcs);font-weight:700}'+
+'#m5gc-app .m5gcx-stat .v{font-size:25px;font-weight:800;letter-spacing:-.5px;margin-top:4px;color:var(--gcn)}'+
+'#m5gc-app .m5gcx-stat .sub{font-size:11px;color:var(--gcs);margin-top:3px}'+
+'#m5gc-app .m5gcx-stat.hl{background:linear-gradient(135deg,#16233f,#1f2f4f);border-color:#16233f}#m5gc-app .m5gcx-stat.hl .k{color:rgba(255,255,255,.7)}#m5gc-app .m5gcx-stat.hl .v{color:#fff}'+
+'#m5gc-app .m5gcx-grid.worth .v{color:var(--gcgood)}'+
+'#m5gc-app .m5gcx-frow{display:flex;align-items:center;gap:12px;margin:8px 0}'+
+'#m5gc-app .m5gcx-frow .fl{width:120px;font-size:13px;font-weight:700;color:var(--gcn);flex:0 0 auto}'+
+'#m5gc-app .m5gcx-frow .fbar{flex:1;height:24px;background:#eef2f8;border-radius:8px;overflow:hidden}'+
+'#m5gc-app .m5gcx-frow .ff{height:100%;border-radius:8px;background:linear-gradient(90deg,#2c4a86,#4f78c8);display:flex;align-items:center;padding-left:10px;color:#fff;font-size:12px;font-weight:800;min-width:32px}'+
+'#m5gc-app .m5gcx-frow .fn{width:88px;text-align:right;font-size:12px;color:var(--gcs);flex:0 0 auto}#m5gc-app .m5gcx-frow .fn b{color:var(--gcn);font-size:14px}'+
+'#m5gc-app .m5gcx-note{font-size:12px;color:var(--gcs);margin-top:15px;line-height:1.5;background:#f4f7fc;border-radius:10px;padding:11px 14px;border:1px solid var(--gcl)}#m5gc-app .m5gcx-note b{color:var(--gcn)}'+
+'#m5gc-app .m5gcx-tot{display:grid;grid-template-columns:repeat(auto-fit,minmax(92px,1fr));border:1px solid var(--gcl);border-radius:13px;overflow:hidden}'+
+'#m5gc-app .m5gcx-tc{padding:11px 8px;text-align:center;border-right:1px solid var(--gcl);border-bottom:1px solid var(--gcl);background:#fff}'+
+'#m5gc-app .m5gcx-tc .tk{font-size:9.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--gcs);font-weight:800}'+
+'#m5gc-app .m5gcx-tc .tv{font-size:21px;font-weight:800;color:var(--gcn);margin-top:2px}'+
+'#m5gc-app .m5gcx-tc.acc{background:#0f1c33}#m5gc-app .m5gcx-tc.acc .tk{color:rgba(255,255,255,.6)}#m5gc-app .m5gcx-tc.acc .tv{color:#fff}'+
+'#m5gc-app .m5gcx-tc.gold{background:#fbf7e9}#m5gc-app .m5gcx-tc.gold .tv{color:#a9861d}'+
+'#m5gc-app .m5gcx-pdchart{display:flex;align-items:flex-end;gap:8px;height:160px;padding:16px 4px 0;border-bottom:1px solid var(--gcl)}'+
+'#m5gc-app .m5gcx-pdcol{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;min-width:0}'+
+'#m5gc-app .m5gcx-pdbar{width:74%;max-width:44px;border-radius:6px 6px 0 0;background:linear-gradient(180deg,#2c4a86,#16233f);position:relative;display:flex;justify-content:center}'+
+'#m5gc-app .m5gcx-pdbar.off{background:#e7ebf3}'+
+'#m5gc-app .m5gcx-pdval{position:absolute;top:-17px;font-size:11px;font-weight:800;color:var(--gcn);white-space:nowrap}'+
+'#m5gc-app .m5gcx-pdlabs{display:flex;gap:8px;margin-top:6px}'+
+'#m5gc-app .m5gcx-pdlab{flex:1;text-align:center;font-size:10.5px;color:var(--gcs);min-width:0}#m5gc-app .m5gcx-pdlab b{display:block;color:var(--gcn);font-size:11.5px}#m5gc-app .m5gcx-pdlab .hh{display:block;font-size:10px;color:var(--gcs);margin-top:1px}#m5gc-app .m5gcx-pdlab.off b{color:#b7bfce}'+
+'@media(max-width:720px){#m5gc-app .m5gcx-sub2{grid-template-columns:1fr}#m5gc-app .m5gcx-stp input[type=number]{width:38px}#m5gc-app .m5gcx-mn{width:20px}}'+
+'</style>';}
+
+function m5GoalCard(){var today=new Date();today.setHours(0,0,0,0);m5gcDate=m5gcIso(today);m5gcView='day';setTimeout(m5gcInit,0);return '<h1 class="page">🎯 Goal Card</h1><p class="sub">Plan your blocks, log your dials, and watch your activity build day over day.</p><div id="m5gc-app"></div>';}
+function m5gcInit(){var host=document.getElementById('m5gc-app');if(!host)return;m5gcStore();host.innerHTML=m5gcStyle()+'<div class="m5gcx-seg" id="m5gc-seg"><button data-v="day" class="on">Daily</button><button data-v="week">Weekly</button><button data-v="month">Monthly</button></div><div class="m5gcx-rangelab" id="m5gc-rangelab"></div><div id="m5gc-view"></div>';var seg=document.getElementById('m5gc-seg');seg.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;[].forEach.call(seg.querySelectorAll('button'),function(x){x.classList.remove('on');});b.classList.add('on');m5gcView=b.dataset.v;m5gcRenderView();});m5gcRenderView();}
+
+function m5gcRenderView(){var v=document.getElementById('m5gc-view');if(!v)return;if(m5gcView==='day'){v.innerHTML=m5gcDailyShell();m5gcBuildBody();m5gcWireDaily();m5gcRenderDaily();}else{m5gcRenderRollup();}m5gcRangeLabel();}
+
+function m5gcDailyShell(){var st=m5gcStore();var rec=st[m5gcDate];var goal=(rec&&rec.goal)||M5GC_DEFGOAL;var ip=(rec&&rec.ip)||0;var hrs=(rec&&rec.hours!=null&&rec.hours!=='')?rec.hours:'';return '<div id="m5gc-printarea" class="m5gc-card">'+
+ '<div class="m5gc-stitle">THE GOAL CARD</div><div class="m5gc-stars">★ ★ ★ ★ ★</div>'+
+ '<div class="m5gc-ssub">Plan your blocks, then log your activity. Points and totals calculate automatically.</div>'+
+ '<div class="m5gc-row2"><label class="m5gc-fld">Daily Point Goal<input id="m5gc-goal" type="number" min="0" value="'+goal+'"></label><label class="m5gc-fld">Date<input id="m5gc-date" type="date" value="'+m5gcDate+'"></label></div>'+
+ '<div class="m5gc-prog"><div style="display:flex;justify-content:space-between;align-items:center"><span class="pt">Daily Goal Progress</span><span class="pt" id="m5gc-prog-txt">0 of '+goal+' points</span></div><div class="m5gc-barp"><i id="m5gc-prog-bar" style="width:0%"></i></div></div>'+
+ '<div class="m5gcx-scroll"><table class="m5gc-act"><thead><tr><th>TIME</th><th>PLAN<small>working?</small></th><th>DIALS<small>activity</small></th><th>CONTACTS<small>1 pt</small></th><th>PRESENTATIONS<small>3 pts</small></th><th>APPOINTMENTS<small>2 pts</small></th><th>SALES<small>5 pts</small></th><th>ROW POINTS<small>auto</small></th></tr></thead><tbody id="m5gc-body"></tbody><tfoot><tr class="tot"><td>Daily Totals</td><td id="m5gc-f-plan">0</td><td id="m5gc-f-d">0</td><td id="m5gc-f-c">0</td><td id="m5gc-f-p">0</td><td id="m5gc-f-a">0</td><td id="m5gc-f-s">0</td><td id="m5gc-f-pts">0</td></tr></tfoot></table></div>'+
+ '<div class="m5gcx-sub2">'+
+   '<label class="m5gc-fld">Premium / IP written<span class="m5gcx-money"><span>$</span><input id="m5gc-ip" inputmode="numeric" value="'+(ip?m5gcNum(ip):'')+'" placeholder="0"></span></label>'+
+   '<div class="m5gc-fld">Hours worked<span class="m5gcx-money"><input id="m5gc-hours" inputmode="decimal" value="'+hrs+'" placeholder="0"></span><span class="m5gcx-sub" id="m5gc-hours-sub"></span></div>'+
+ '</div>'+
+ '<div class="m5gc-btns m5gc-noprint">'
+  /* Save writes every day, past to present - the old "Today's Card" label was
+     simply untrue. Print asks rather than depending on which tab is open. Reset
+     names what it spares. */
+  +'<button class="m5gc-btn s" onclick="m5gcSave()">Save Goal Card</button>'
+  +'<button class="m5gc-btn p" id="gcPrint" onclick="gcPrintMenu()">Print\u2026</button>'
+  +'<button class="m5gc-btn g" onclick="m5gcReset()">Reset this day</button></div>'+
+ '</div>'+
+ '<div class="m5gc-card" id="m5gc-ana"></div>';}
+
+function m5gcBuildBody(){var body=document.getElementById('m5gc-body');if(!body)return;var rec=m5gcStore()[m5gcDate];var blocks=rec&&rec.blocks?rec.blocks:m5gcBlank();var planned=rec&&rec.planned?rec.planned:m5gcBlankPlan();
+ function cell(i,ci){var v=(blocks[i]&&blocks[i][ci])||0;return '<td><span class="m5gcx-stp"><button type="button" class="m5gcx-mn" data-b="'+i+'" data-c="'+ci+'" data-d="-1">−</button><input type="number" min="0" inputmode="numeric" data-b="'+i+'" data-c="'+ci+'" placeholder="0" value="'+(v?v:'')+'" onfocus="this.select()"><button type="button" class="m5gcx-mn" data-b="'+i+'" data-c="'+ci+'" data-d="1">+</button></span></td>';}
+ var h='';M5GC_BLOCKS.forEach(function(tl,i){h+='<tr><td class="time">'+tl+'</td><td><input type="checkbox" data-plan="'+i+'"'+(planned[i]?' checked':'')+'></td>'+cell(i,4)+cell(i,0)+cell(i,1)+cell(i,2)+cell(i,3)+'<td class="rp" id="m5gc-rp-'+i+'">0</td></tr>';});
+ body.innerHTML=h;}
+
+function m5gcWireDaily(){var body=document.getElementById('m5gc-body');
+ if(body){body.addEventListener('input',function(e){if(e.target.tagName==='INPUT'&&e.target.type==='number')m5gcRenderDaily();});
+  body.addEventListener('change',function(e){if(e.target.type==='checkbox')m5gcRenderDaily();});
+  body.addEventListener('click',function(e){var b=e.target.closest('.m5gcx-mn');if(!b)return;var inp=body.querySelector('input[type=number][data-b="'+b.dataset.b+'"][data-c="'+b.dataset.c+'"]');if(!inp)return;var nv=Math.max(0,(parseInt(inp.value||'0',10)||0)+(+b.dataset.d));inp.value=nv?nv:'';m5gcRenderDaily();});}
+ var ge=document.getElementById('m5gc-goal');if(ge)ge.addEventListener('input',m5gcRenderDaily);
+ var ipEl=document.getElementById('m5gc-ip');if(ipEl){ipEl.addEventListener('input',m5gcRenderDaily);ipEl.addEventListener('focus',function(){this.value=(''+this.value).replace(/[^0-9.]/g,'');});ipEl.addEventListener('blur',function(){var n=parseFloat((''+this.value).replace(/[^0-9.]/g,''))||0;this.value=n?m5gcNum(n):'';});}
+ var hr=document.getElementById('m5gc-hours');if(hr)hr.addEventListener('input',m5gcRenderDaily);
+ var de=document.getElementById('m5gc-date');if(de)de.addEventListener('change',function(){m5gcDate=this.value;m5gcRenderView();});}
+
+function m5gcReadGrid(){var blocks=m5gcBlank(),planned=m5gcBlankPlan();document.querySelectorAll('#m5gc-body input[type=number]').forEach(function(inp){blocks[+inp.dataset.b][+inp.dataset.c]=Math.max(0,parseInt(inp.value||'0',10)||0);});document.querySelectorAll('#m5gc-body input[type=checkbox]').forEach(function(inp){planned[+inp.dataset.plan]=inp.checked;});return {blocks:blocks,planned:planned};}
+
+function m5gcRenderDaily(){var g=m5gcReadGrid();var ge=document.getElementById('m5gc-goal');var goal=Math.max(1,parseInt((ge&&ge.value)||M5GC_DEFGOAL,10));
+ var ipEl=document.getElementById('m5gc-ip');var ip=ipEl?(parseFloat((''+ipEl.value).replace(/[^0-9.]/g,''))||0):0;
+ var hrEl=document.getElementById('m5gc-hours');var hoursOv=(hrEl&&(''+hrEl.value).trim()!=='')?(parseFloat((''+hrEl.value).replace(/[^0-9.]/g,''))||0):null;
+ g.blocks.forEach(function(b,i){var rp=b[0]*M5GC_W.c+b[1]*M5GC_W.p+b[2]*M5GC_W.a+b[3]*M5GC_W.s;var cell=document.getElementById('m5gc-rp-'+i);if(cell){cell.textContent=rp;var tr=cell.parentNode;if(tr)tr.classList.toggle('planned',!!g.planned[i]);}});
+ var rec={goal:goal,blocks:g.blocks,planned:g.planned,ip:ip,hours:hoursOv};m5gcStore()[m5gcDate]=rec;
+ var st=m5gcStats(rec);var autoH=st.worked*2;var hours=hoursOv!=null?hoursOv:autoH;
+ var set=function(id,v){var e=document.getElementById(id);if(e)e.textContent=v;};
+ set('m5gc-f-plan',st.planned);set('m5gc-f-d',st.dials);set('m5gc-f-c',st.c);set('m5gc-f-p',st.p);set('m5gc-f-a',st.a);set('m5gc-f-s',st.s);set('m5gc-f-pts',st.pts);
+ set('m5gc-prog-txt',st.pts+' of '+goal+' points');var pb=document.getElementById('m5gc-prog-bar');if(pb)pb.style.width=Math.min(100,Math.round(st.pts/goal*100))+'%';
+ var hs=document.getElementById('m5gc-hours-sub');if(hs){hs.innerHTML=hoursOv!=null?('manual · blocks = '+autoH+'h · <a href="#" id="m5gc-hours-reset">use blocks</a>'):('from '+st.worked+' block'+(st.worked===1?'':'s')+' × 2 hrs (type to override)');var rr=document.getElementById('m5gc-hours-reset');if(rr)rr.onclick=function(e){e.preventDefault();var h2=document.getElementById('m5gc-hours');if(h2)h2.value='';m5gcRenderDaily();};}
+ st.ip=ip;var close=m5gcRatio(st.s,st.p);var el=document.getElementById('m5gc-ana');if(!el)return;
+ el.innerHTML='<div class="m5gc-dashh">What today’s numbers say</div><div class="m5gc-ssub" style="text-align:left;margin:2px 0 6px">Derived automatically from the card above.</div>'+
+   m5gcxRates(st,hours)+m5gcxTakes(st)+m5gcxWorth(st)+
+   '<div class="m5gcx-grid" style="margin-top:11px">'+
+     m5gcxStat('Points',st.pts,'goal '+goal+' · '+Math.round(m5gcRatio(st.pts,goal)*100)+'%','hl')+
+     m5gcxStat('Premium written',m5gcMoney(ip),'today','hl')+
+     m5gcxStat('$ / hour worked',m5gcMoney(m5gcRatio(ip,hours)),'premium ÷ hours','')+
+   '</div>'+
+   '<div class="m5gcx-note">💡 Every dial today was worth <b>'+m5gcMoney(m5gcRatio(ip,st.dials))+'</b> in premium. It took about <b>'+(st.s?Math.round(m5gcRatio(st.dials,st.s)):'—')+' dials</b> and <b>'+(close?Math.round(1/close):'—')+' presentations</b> to land a sale — and you hit <b>'+st.pts+' of '+goal+'</b> points.</div>';}
+
+function m5gcxStat(k,v,sub,cls){return '<div class="m5gcx-stat '+(cls||'')+'"><div class="k">'+k+'</div><div class="v">'+v+'</div><div class="sub">'+(sub||'')+'</div></div>';}
+function m5gcxRates(t,hours){var close=m5gcRatio(t.s,t.p);var dph=hours?t.dials/hours:0;var dphS=Math.round(dph*10)/10;return '<div class="m5gcx-sec">Pace &amp; rates</div><div class="m5gcx-grid">'+
+ m5gcxStat('Dials / hour',dphS,t.dials+' dials ÷ '+hours+' hrs')+
+ m5gcxStat('Contact rate',Math.round(m5gcRatio(t.c,t.dials)*100)+'%','of dials reach someone')+
+ m5gcxStat('Present. rate',Math.round(m5gcRatio(t.p,t.c)*100)+'%','of contacts get a pitch')+
+ m5gcxStat('Close ratio',Math.round(close*100)+'%',t.s+' sale'+(t.s===1?'':'s')+' / '+t.p+' pres.')+'</div>';}
+function m5gcxTakes(t){var per=[['1 contact',m5gcRatio(t.dials,t.c),100],['1 appointment',m5gcRatio(t.dials,t.a),78],['1 presentation',m5gcRatio(t.dials,t.p),62],['1 sale',m5gcRatio(t.dials,t.s),40]];var f='<div class="m5gcx-sec">What it takes to get one</div>';per.forEach(function(p){f+='<div class="m5gcx-frow"><div class="fl">'+p[0]+'</div><div class="fbar"><div class="ff" style="width:'+p[2]+'%">'+(p[1]?Math.round(p[1]):'—')+'</div></div><div class="fn"><b>'+(p[1]?Math.round(p[1]):'—')+'</b> dials</div></div>';});return f;}
+function m5gcxWorth(t){return '<div class="m5gcx-sec">What your activity is worth</div><div class="m5gcx-grid worth">'+
+ m5gcxStat('Per dial',m5gcMoney(m5gcRatio(t.ip,t.dials)),'every dial you make')+
+ m5gcxStat('Per contact',m5gcMoney(m5gcRatio(t.ip,t.c)),'every person you reach')+
+ m5gcxStat('Per presentation',m5gcMoney(m5gcRatio(t.ip,t.p)),'every pitch you give')+
+ m5gcxStat('Avg per sale',m5gcMoney(m5gcRatio(t.ip,t.s)),'average premium written')+'</div>';}
+
+function m5gcSave(){m5gcRenderDaily();gcPersist();if(typeof toast==='function')toast('Goal Card saved ✓');}
+function m5gcReset(){var ge=document.getElementById('m5gc-goal');var goal=Math.max(1,parseInt((ge&&ge.value)||M5GC_DEFGOAL,10));m5gcStore()[m5gcDate]={goal:goal,blocks:m5gcBlank(),planned:m5gcBlankPlan(),ip:0,hours:null};var ip=document.getElementById('m5gc-ip');if(ip)ip.value='';var hr=document.getElementById('m5gc-hours');if(hr)hr.value='';m5gcBuildBody();m5gcRenderDaily();gcPersist();if(_gcHandle)gcWriteHandle();}
+
+function m5gcListFor(){var d=m5gcParseD(m5gcDate),out=[];if(m5gcView==='week'){var mon=(d.getDay()+6)%7;var m=m5gcAdd(d,-mon);for(var i=0;i<7;i++)out.push(m5gcIso(m5gcAdd(m,i)));}else{var end=new Date(d.getFullYear(),d.getMonth()+1,0).getDate();var last=Math.min(d.getDate(),end);for(var day=1;day<=last;day++)out.push(m5gcIso(new Date(d.getFullYear(),d.getMonth(),day)));}return out;}
+function m5gcAgg(list){var t={c:0,p:0,a:0,s:0,dials:0,pts:0,ip:0,hours:0,worked:0};list.forEach(function(k){var rec=m5gcStore()[k];if(!rec)return;var st=m5gcStats(rec);if(st.worked>0)t.worked++;t.c+=st.c;t.p+=st.p;t.a+=st.a;t.s+=st.s;t.dials+=st.dials;t.pts+=st.pts;t.ip+=(rec.ip||0);t.hours+=m5gcHoursFor(rec,st);});return t;}
+
+function m5gcRangeLabel(){var el=document.getElementById('m5gc-rangelab');if(!el)return;var d=m5gcParseD(m5gcDate);if(m5gcView==='day'){el.innerHTML='Showing <b>'+M5GC_DOW[d.getDay()]+', '+(d.getMonth()+1)+'/'+d.getDate()+'</b>. Use the date box on the card to log a different day.';}else if(m5gcView==='week'){var mon=(d.getDay()+6)%7;var m=m5gcAdd(d,-mon),su=m5gcAdd(m,6);var t=m5gcAgg(m5gcListFor());el.innerHTML='Showing <b>the week of '+(m.getMonth()+1)+'/'+m.getDate()+' – '+(su.getMonth()+1)+'/'+su.getDate()+'</b> (Mon–Sun) — <b>'+t.worked+'</b> day'+(t.worked===1?'':'s')+' worked.';}else{var t2=m5gcAgg(m5gcListFor());el.innerHTML='Showing <b>'+M5GC_MON[d.getMonth()]+'</b> (month to date) — <b>'+t2.worked+'</b> day'+(t2.worked===1?'':'s')+' worked.';}}
+
+function m5gcRenderRollup(){var host=document.getElementById('m5gc-view');if(!host)return;var list=m5gcListFor();var t=m5gcAgg(list);var worked=t.worked,hours=t.hours,pts=t.pts,goalTot=M5GC_DEFGOAL*worked;
+ var title=(m5gcView==='week'?'This week at a glance':'This month at a glance');
+ if(!worked){host.innerHTML='<div class="m5gc-card"><div class="m5gc-dashh">📊 '+title+'</div><div class="m5gc-hint">No saved days in this range yet. Log and save a Goal Card and your '+(m5gcView==='week'?'weekly':'monthly')+' totals, per-day breakdown, and averages fill in here automatically.</div></div>';return;}
+ var tc=function(k,v,cls){return '<div class="m5gcx-tc '+(cls||'')+'"><div class="tk">'+k+'</div><div class="tv">'+v+'</div></div>';};
+ var strip='<div class="m5gcx-sec">Totals — everything you did '+(m5gcView==='week'?'this week':'this month')+'</div><div class="m5gcx-tot">'+
+   tc('Days worked',worked,'acc')+tc('Hours',m5gcNum(hours),'acc')+tc('Dials',m5gcNum(t.dials))+tc('Contacts',m5gcNum(t.c))+tc('Present.',m5gcNum(t.p))+tc('Appts',m5gcNum(t.a))+tc('Sales',m5gcNum(t.s))+tc('Premium',m5gcMoney(t.ip),'gold')+tc('Points',m5gcNum(pts),'gold')+'</div>';
+ var maxD=1;list.forEach(function(k){var r=m5gcStore()[k];if(r){var dd=m5gcStats(r).dials;if(dd>maxD)maxD=dd;}});
+ var bars='',labs='';list.forEach(function(k){var r=m5gcStore()[k];var st=r?m5gcStats(r):null;var dt=m5gcParseD(k);var workedDay=st&&st.worked>0;var dials=st?st.dials:0;var hh=st?m5gcHoursFor(r,st):0;var hpct=workedDay?Math.max(6,Math.round(dials/maxD*100)):4;bars+='<div class="m5gcx-pdcol"><div class="m5gcx-pdbar'+(workedDay?'':' off')+'" style="height:'+hpct+'%">'+(workedDay?'<span class="m5gcx-pdval">'+dials+'</span>':'')+'</div></div>';labs+='<div class="m5gcx-pdlab'+(workedDay?'':' off')+'"><b>'+M5GC_DOW[dt.getDay()]+'</b>'+(dt.getMonth()+1)+'/'+dt.getDate()+'<span class="hh">'+(workedDay?m5gcNum(hh)+'h':'off')+'</span></div>';});
+ var perday='<div class="m5gcx-sec">Dials per day'+(m5gcView==='week'?' (Mon–Sun)':'')+'</div><div class="m5gcx-pdchart">'+bars+'</div><div class="m5gcx-pdlabs">'+labs+'</div>';
+ var avg='<div class="m5gcx-sec">Per working day (averages)</div><div class="m5gcx-grid">'+
+   m5gcxStat('Points / day',Math.round(m5gcRatio(pts,worked)),'avg on days worked','hl')+
+   m5gcxStat('Dials / day',Math.round(m5gcRatio(t.dials,worked)),'avg on days worked')+
+   m5gcxStat('Hours / day',(m5gcRatio(hours,worked)).toFixed(1),'avg on days worked')+'</div>'+
+   '<div class="m5gcx-sec">What you made</div><div class="m5gcx-grid">'+
+   m5gcxStat('Made / hour',m5gcMoney(m5gcRatio(t.ip,hours)),m5gcNum(hours)+' hrs on the phones','hl')+
+   m5gcxStat('Made / day',m5gcMoney(m5gcRatio(t.ip,worked)),'avg on days worked','hl')+
+   m5gcxStat('Total premium',m5gcMoney(t.ip),(m5gcView==='week'?'this week':'this month'))+'</div>';
+ var note='<div class="m5gcx-note">Over <b>'+worked+' day'+(worked===1?'':'s')+'</b> worked you put in <b>'+m5gcNum(hours)+' hours</b> ('+m5gcRatio(hours,worked).toFixed(1)+'/day), averaged <b>'+Math.round(m5gcRatio(pts,worked))+' points/day</b>, and wrote <b>'+m5gcMoney(t.ip)+'</b>. That works out to <b>'+m5gcMoney(m5gcRatio(t.ip,t.dials))+'</b> per dial and <b>'+m5gcMoney(m5gcRatio(t.ip,hours))+'</b> per hour on the phones.</div>';
+ host.innerHTML='<div class="m5gc-card">'+
+   '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px"><span class="m5gc-dashh">📊 '+title+'</span><span class="pt">'+pts+' of '+goalTot+' pts</span></div>'+
+   '<div class="m5gc-barp" style="margin-top:10px"><i style="width:'+Math.min(100,Math.round(m5gcRatio(pts,goalTot)*100))+'%"></i></div>'+
+   strip+perday+avg+m5gcxRates(t,hours)+m5gcxTakes(t)+m5gcxWorth(t)+note+
+   '</div>';}
+
+
+
+
+/* ============================================================================
+   Tools-page additions. The portal version runs behind a login, so it can lean
+   on the agent's stored account. This one is public: it has to look after the
+   agent's own data in their browser, and give them a way to carry it out.
+   ========================================================================= */
+
+/* ---- 1. editable time blocks ------------------------------------------------
+   The portal hard-codes seven two-hour blocks. Agents do not all work 8-10pm,
+   so here the blocks are data: stored as {f,t} in 24h, labelled for display. */
+var GC_BLOCKS_KEY = 'oat.goalcard.blocks';
+var GC_DEFAULT_BLOCKS = [
+  {f:'08:00',t:'10:00'},{f:'10:00',t:'12:00'},{f:'12:00',t:'14:00'},
+  {f:'14:00',t:'16:00'},{f:'16:00',t:'18:00'},{f:'18:00',t:'20:00'},{f:'20:00',t:'22:00'}
+];
+var GC_BLOCKS = GC_DEFAULT_BLOCKS.slice();
+
+function gcHM(v){                       /* "14:00" -> "2 PM" ; "14:30" -> "2:30 PM" */
+  var p=String(v||'').split(':'), h=+p[0]||0, m=+p[1]||0;
+  var ap=h>=12?'PM':'AM', hh=h%12; if(hh===0) hh=12;
+  return hh + (m? ':'+String(m).padStart(2,'0') : '') + ' ' + ap;
+}
+function gcLabel(b){                    /* "8-10 AM" when both sides share a meridiem */
+  var a=gcHM(b.f), z=gcHM(b.t);
+  var am=a.slice(-2), zm=z.slice(-2);
+  return am===zm ? a.slice(0,-3)+'–'+z : a+'–'+z;
+}
+function gcApplyBlocks(){ M5GC_BLOCKS = GC_BLOCKS.map(gcLabel); }
+
+function gcLoadBlocks(){
+  try{ var v=JSON.parse(localStorage.getItem(GC_BLOCKS_KEY)||'null');
+       if(Array.isArray(v) && v.length && v[0] && v[0].f) GC_BLOCKS=v; }catch(e){}
+  gcApplyBlocks();
+}
+function gcStoreBlocks(){
+  gcApplyBlocks();
+  try{ localStorage.setItem(GC_BLOCKS_KEY, JSON.stringify(GC_BLOCKS)); }catch(e){}
+}
+
+/* The editor sits above the grid - Jesse asked for a small control by the times
+   rather than a settings page buried somewhere else. */
+function gcBlocksEditorHTML(){
+  var rows = GC_BLOCKS.map(function(b,i){
+    return '<div class="gcbe-row" data-i="'+i+'">'
+      + '<input type="time" class="gcbe-f" value="'+b.f+'" aria-label="Block '+(i+1)+' start">'
+      + '<span class="gcbe-to">to</span>'
+      + '<input type="time" class="gcbe-t" value="'+b.t+'" aria-label="Block '+(i+1)+' end">'
+      + '<button type="button" class="gcbe-x" data-i="'+i+'" aria-label="Remove this block">&times;</button>'
+      + '</div>';
+  }).join('');
+  return '<div class="gcbe-panel" id="gcbe" hidden>'
+    + '<div class="gcbe-head">Your working blocks</div>'
+    + '<div class="gcbe-rows">'+rows+'</div>'
+    + '<div class="gcbe-foot">'
+    +   '<button type="button" class="gcbe-add" id="gcbeAdd">+ Add a block</button>'
+    +   '<span class="gcbe-sp"></span>'
+    +   '<button type="button" class="gcbe-reset" id="gcbeReset">Use the default seven</button>'
+    +   '<button type="button" class="gcbe-done" id="gcbeDone">Done</button>'
+    + '</div>'
+    + '<p class="gcbe-note">Changing your blocks does not touch days you have already '
+    +   'saved — it changes the rows you log from here on.</p>'
+    + '</div>';
+}
+
+function gcWireBlocksEditor(){
+  var panel=document.getElementById('gcbe'); if(!panel) return;
+  var open=document.getElementById('gcbeOpen');
+  if(open) open.addEventListener('click',function(){ panel.hidden=!panel.hidden; });
+
+  panel.addEventListener('click',function(e){
+    var x=e.target.closest('.gcbe-x');
+    if(x){ if(GC_BLOCKS.length<=1) return;
+           GC_BLOCKS.splice(+x.dataset.i,1); gcStoreBlocks(); gcRerender(); return; }
+    if(e.target.id==='gcbeAdd'){
+      var last=GC_BLOCKS[GC_BLOCKS.length-1];
+      GC_BLOCKS.push({f:last?last.t:'08:00', t:last?last.t:'10:00'});
+      gcStoreBlocks(); gcRerender(); return;
+    }
+    if(e.target.id==='gcbeReset'){ GC_BLOCKS=GC_DEFAULT_BLOCKS.slice(); gcStoreBlocks(); gcRerender(); return; }
+    if(e.target.id==='gcbeDone'){ panel.hidden=true; return; }
+  });
+
+  panel.addEventListener('change',function(e){
+    var row=e.target.closest('.gcbe-row'); if(!row) return;
+    var i=+row.dataset.i;
+    if(e.target.classList.contains('gcbe-f')) GC_BLOCKS[i].f=e.target.value;
+    if(e.target.classList.contains('gcbe-t')) GC_BLOCKS[i].t=e.target.value;
+    gcStoreBlocks(); gcRerender(true);
+  });
+}
+
+/* ---- 2. carry it out of this browser ---------------------------------------
+   Browser storage is precisely what "clear cookies" removes, so a local save on
+   its own will lose an agent's history. The file is the insurance. */
+function gcExport(){
+  var payload={ tool:'optimum-goal-card', version:1,
+                exported:new Date().toISOString(),
+                blocks:GC_BLOCKS, goalcards:m5gcStore() };
+  var blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
+  var a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='optimum-goal-card-'+m5gcIso(new Date())+'.json';
+  document.body.appendChild(a); a.click();
+  setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); },0);
+}
+
+function gcImport(file){
+  var fr=new FileReader();
+  fr.onload=function(){
+    var d; try{ d=JSON.parse(fr.result); }catch(e){ return gcToast('That file is not a goal card export.'); }
+    if(!d || typeof d!=='object' || !d.goalcards) return gcToast('That file is not a goal card export.');
+    /* Merge rather than replace: a day already in this browser is kept unless the
+       file carries one for the same date, so loading a backup cannot silently
+       wipe work done since that backup was taken. */
+    var cur=m5gcStore(), added=0, kept=0;
+    Object.keys(d.goalcards).forEach(function(k){
+      if(cur[k]) kept++; else added++;
+      cur[k]=d.goalcards[k];
+    });
+    if(Array.isArray(d.blocks)&&d.blocks.length&&d.blocks[0]&&d.blocks[0].f){
+      GC_BLOCKS=d.blocks; gcStoreBlocks();
+    }
+    gcPersist(); gcRerender();
+    gcToast('Loaded '+(added+kept)+' day'+((added+kept)===1?'':'s')+
+            (kept? ' ('+kept+' replaced what was here)':'')+'.');
+  };
+  fr.readAsText(file);
+}
+
+function gcToast(msg){
+  var t=document.getElementById('gcToast');
+  if(!t){ t=document.createElement('div'); t.id='gcToast'; t.className='gc-toast'; document.body.appendChild(t); }
+  t.textContent=msg; t.classList.add('on');
+  clearTimeout(gcToast._t); gcToast._t=setTimeout(function(){ t.classList.remove('on'); },3200);
+}
+
+/* ---- 3. re-render after anything structural changes ----------------------- */
+function gcRerender(keepPanelOpen){
+  var wasOpen = (function(){ var p=document.getElementById('gcbe'); return p && !p.hidden; })();
+  gcBoot();
+  if(keepPanelOpen || wasOpen){ var p=document.getElementById('gcbe'); if(p) p.hidden=false; }
+}
+
+
+/* ---- whose card is this ----------------------------------------------------
+   Name and email belong to the agent, not to a day, so they live under their own
+   key and carry across every card. They sit inside the print area so a printed
+   sheet says who it belongs to. */
+var GC_WHO_KEY='oat.goalcard.who';
+function gcWho(){
+  try{ var v=JSON.parse(localStorage.getItem(GC_WHO_KEY)||'{}');
+       return (v&&typeof v==='object')?v:{}; }catch(e){ return {}; }
+}
+function gcSetWho(w){ try{ localStorage.setItem(GC_WHO_KEY, JSON.stringify(w)); }catch(e){} }
+
+function gcWhoHTML(){
+  var w=gcWho();
+  return '<div class="gc-who">'
+    + '<label class="gc-who-f"><span>Name</span>'
+    +   '<input type="text" id="gcWhoName" autocomplete="name" placeholder="Your name" value="'
+    +   String(w.name||'').replace(/"/g,'&quot;')+'"></label>'
+    + '<label class="gc-who-f"><span>Email</span>'
+    +   '<input type="email" id="gcWhoEmail" autocomplete="email" placeholder="you@email.com" value="'
+    +   String(w.email||'').replace(/"/g,'&quot;')+'"></label>'
+    + '</div>';
+}
+function gcWireWho(){
+  ['gcWhoName','gcWhoEmail'].forEach(function(id){
+    var el=document.getElementById(id); if(!el) return;
+    el.addEventListener('input', function(){
+      var w=gcWho();
+      w.name  = (document.getElementById('gcWhoName')||{}).value||'';
+      w.email = (document.getElementById('gcWhoEmail')||{}).value||'';
+      gcSetWho(w);
+    });
+  });
+}
+
+
+/* ---- keeping a live copy on their computer ---------------------------------
+   A download never overwrites, it adds - auto-exporting on every save would
+   leave an agent with 250 files a year and no idea which is current. The File
+   System Access API solves exactly this: they choose a file once, and the page
+   writes that same file on every save afterwards. Chrome and Edge support it;
+   Safari, Firefox and phones do not, so those fall back to the manual download
+   and the button says which one they are getting. */
+var GC_FS_SUPPORTED = (typeof window.showSaveFilePicker === 'function');
+var _gcHandle = null;
+
+function gcPayload(){
+  return { tool:'optimum-goal-card', version:1,
+           exported:new Date().toISOString(),
+           who:gcWho(), blocks:GC_BLOCKS, goalcards:m5gcStore() };
+}
+
+async function gcPickBackupFile(){
+  if(!GC_FS_SUPPORTED) return gcExport();        /* no API - just download once */
+  try{
+    _gcHandle = await window.showSaveFilePicker({
+      suggestedName:'optimum-goal-card.json',
+      types:[{description:'Goal Card backup', accept:{'application/json':['.json']}}]
+    });
+    await gcWriteHandle();
+    gcToast('Linked. Every save now writes ' + _gcHandle.name + '.');
+    gcRenderBackupState();
+  }catch(e){ /* the agent cancelled the picker - nothing to report */ }
+}
+
+async function gcWriteHandle(){
+  if(!_gcHandle) return false;
+  try{
+    var w = await _gcHandle.createWritable();
+    await w.write(JSON.stringify(gcPayload(), null, 2));
+    await w.close();
+    return true;
+  }catch(e){
+    /* permission lapses when the browser is fully closed - say so, do not pretend */
+    _gcHandle = null; gcRenderBackupState();
+    gcToast('Your backup file needs linking again.');
+    return false;
+  }
+}
+
+function gcRenderBackupState(){
+  var el=document.getElementById('gcState'), link=document.getElementById('gcLink');
+  if(!el) return;
+  var days=Object.keys(m5gcStore()).length;
+  var n=days+' day'+(days===1?'':'s')+' saved';
+  if(_gcHandle){
+    el.innerHTML='<b>'+n+'</b>, backed up to '+_gcHandle.name+' \u2713';
+    el.className='ok';
+    if(link) link.textContent='Change file';
+  } else {
+    el.innerHTML='<b>'+n+'</b> \u2014 in this browser only. Clearing your history erases them.';
+    el.className='';
+    if(link) link.textContent = GC_FS_SUPPORTED ? 'Keep a copy on my computer' : 'Download a copy';
+  }
+}
+
+/* Save Today's Card writes the file too, when one is linked. */
+var _gcSaveInner = m5gcSave;
+m5gcSave = function(){ _gcSaveInner.apply(this, arguments); if(_gcHandle) gcWriteHandle(); };
+
+
+/* ---- the paper card --------------------------------------------------------
+   Two different jobs. Printing the dashboard gives them a record of a day that
+   already happened. This gives them an empty sheet to carry and tick through the
+   day, which is a different object: no steppers, boxes big enough for a pen, and
+   tally squares sized to how often each thing actually happens. */
+/* Jesse, 16 Oct: the written sheet does not track calls. Nobody tallies 100 dials
+   with a pen, and the column just ate the width the tickable things needed. Dials
+   stay on the screen card, where a stepper makes sense; paper tracks the events
+   that are worth a tick mark. */
+var GC_TALLY = [
+  {k:'Contacts',      boxes:14},
+  {k:'Presentations', boxes:8},
+  {k:'Appointments',  boxes:8},
+  {k:'Sales',         boxes:5}
+];
+
+function gcBoxes(n){
+  var s=''; for(var i=0;i<n;i++) s+='<span class="pbx"></span>';
+  return s;
+}
+
+function gcBlankSheetHTML(){
+  /* Three cards to a sheet, cut apart - that is what the original is: a pocket
+     card, not a page. Cells are open rather than boxed to tick, because the
+     original leaves you room to tally your own way, and the point values sit
+     under the columns where they have always been. No calls column. */
+  var w = gcWho();
+  var cols = [['CONTACTS','1PT'],['PRESENT','3PTS'],['APTS','2PTS'],['SALES','5PTS']];
+
+  function oneCard(){
+    var head = '<tr><th class="tm"></th>'
+      + cols.map(function(c){ return '<th>'+c[0]+'</th>'; }).join('') + '</tr>';
+    var rows = M5GC_BLOCKS.map(function(label){
+      return '<tr><td class="tm"><span>'+label.replace(/\s*(AM|PM)/g,'')+'</span></td>'
+        + cols.map(function(){ return '<td></td>'; }).join('') + '</tr>';
+    }).join('');
+    var pts = '<tr class="pts"><td class="tm"></td>'
+      + cols.map(function(c){ return '<td>'+c[1]+'</td>'; }).join('') + '</tr>';
+    return '<div class="pb-card">'
+      + '<div class="pb-ttl"><span>GOAL CARD</span></div>'
+      + '<div class="pb-stars">☆☆☆☆☆☆☆☆</div>'
+      + '<table class="pb-g"><thead>'+head+'</thead><tbody>'+rows+'</tbody>'
+      +   '<tfoot>'+pts+'</tfoot></table>'
+      + '<div class="pb-sig"><span class="dt">Date</span></div>'
+      + '</div>';
+  }
+  return '<div id="gc-blank">'+oneCard()+oneCard()+oneCard()+'</div>';
+}
+
+function gcPrintBlank(){
+  var old=document.getElementById('gc-blank'); if(old) old.remove();
+  var holder=document.createElement('div');
+  holder.innerHTML=gcBlankSheetHTML();
+  document.body.appendChild(holder.firstChild);
+  document.body.classList.add('gc-printing-blank');
+  var done=function(){
+    document.body.classList.remove('gc-printing-blank');
+    var n=document.getElementById('gc-blank'); if(n) n.remove();
+    window.removeEventListener('afterprint',done);
+  };
+  window.addEventListener('afterprint',done);
+  window.print();
+  setTimeout(done,1500);          /* browsers that never fire afterprint */
+}
+
+
+/* ---- the printed record ----------------------------------------------------
+   Three different sheets off one path. The ported portal CSS only ever revealed
+   #m5gc-printarea, and that element exists on the Daily view alone - so printing
+   a week or a month produced a blank page. This builds the sheet for whichever
+   view is open, so all three print, and saves the day first because a printed
+   record should match what is stored. */
+
+function gcFmtD(iso){ var d=m5gcParseD(iso);
+  return M5GC_DOW[d.getDay()]+' '+(d.getMonth()+1)+'/'+d.getDate(); }
+
+function gcRecHead(title, sub){
+  var w=gcWho();
+  return '<div class="rc-head">'
+    + '<div class="rc-ttl"><span>GOAL CARD</span></div>'
+    + '<div class="rc-sub">'+sub+'</div>'
+    + '<div class="rc-who">'
+    +   '<b>'+(w.name? String(w.name).replace(/</g,'&lt;') : '')+'</b>'
+    +   (w.email? '<span>'+String(w.email).replace(/</g,'&lt;')+'</span>' : '')
+    + '</div></div>';
+}
+
+function gcKpis(items){
+  return '<div class="rc-kpis">'+items.map(function(k){
+    return '<div class="rc-k"><span>'+k[0]+'</span><b>'+k[1]+'</b>'
+         + (k[2]? '<i>'+k[2]+'</i>':'')+'</div>'; }).join('')+'</div>';
+}
+
+/* --- a single day: the blocks as they were logged ------------------------- */
+function gcRecordDay(){
+  var rec=m5gcStore()[m5gcDate]||{}, st=m5gcStats(rec);
+  var goal=rec.goal||M5GC_DEFGOAL, hrs=m5gcHoursFor(rec,st);
+  var cols=[['CONTACTS',0,M5GC_W.c],['PRESENT',1,M5GC_W.p],['APTS',2,M5GC_W.a],['SALES',3,M5GC_W.s]];
+  var blocks=rec.blocks||m5gcBlank();
+
+  var rows=M5GC_BLOCKS.map(function(label,i){
+    var b=blocks[i]||[0,0,0,0,0];
+    var rp=(b[0]||0)*M5GC_W.c+(b[1]||0)*M5GC_W.p+(b[2]||0)*M5GC_W.a+(b[3]||0)*M5GC_W.s;
+    var planned=rec.planned&&rec.planned[i];
+    return '<tr><td class="tm">'+label+'</td>'
+      + '<td class="pl">'+(planned?'✓':'')+'</td>'
+      + cols.map(function(c){ return '<td>'+((b[c[1]]||0)||'')+'</td>'; }).join('')
+      + '<td class="rp">'+(rp||'')+'</td></tr>';
+  }).join('');
+
+  return gcRecHead('day', gcFmtD(m5gcDate))
+    + '<table class="rc-g"><thead><tr><th class="tm">TIME</th><th class="pl">PLAN</th>'
+    +   cols.map(function(c){ return '<th>'+c[0]+'<em>'+c[2]+' pt'+(c[2]>1?'s':'')+'</em></th>'; }).join('')
+    +   '<th class="rp">POINTS</th></tr></thead><tbody>'+rows+'</tbody>'
+    + '<tfoot><tr><td class="tm">TOTAL</td><td class="pl"></td>'
+    +   '<td>'+st.c+'</td><td>'+st.p+'</td><td>'+st.a+'</td><td>'+st.s+'</td>'
+    +   '<td class="rp">'+st.pts+'</td></tr></tfoot></table>'
+    + gcKpis([
+        ['Points', st.pts+' / '+goal, Math.round(st.pts/goal*100)+'% of goal'],
+        ['Premium written', m5gcMoney(rec.ip||0), ''],
+        ['Hours worked', (hrs||0), st.worked+' of '+M5GC_BLOCKS.length+' blocks'],
+        ['Per hour', hrs? m5gcMoney((rec.ip||0)/hrs) : '—', 'premium ÷ hours']
+      ]);
+}
+
+/* --- a week or a month: one line per day ---------------------------------- */
+function gcRecordRange(){
+  var list=m5gcListFor(), tot=m5gcAgg(list), store=m5gcStore();
+  var logged=list.filter(function(k){ return store[k]; });
+
+  var rows=logged.map(function(k){
+    var rec=store[k], st=m5gcStats(rec);
+    return '<tr><td class="tm">'+gcFmtD(k)+'</td>'
+      + '<td>'+(st.c||'')+'</td><td>'+(st.p||'')+'</td><td>'+(st.a||'')+'</td><td>'+(st.s||'')+'</td>'
+      + '<td>'+(m5gcHoursFor(rec,st)||'')+'</td>'
+      + '<td>'+(rec.ip? m5gcMoney(rec.ip):'')+'</td>'
+      + '<td class="rp">'+(st.pts||'')+'</td></tr>';
+  }).join('');
+
+  var d=m5gcParseD(m5gcDate), sub;
+  if(m5gcView==='week'){
+    var mon=(d.getDay()+6)%7, m=m5gcAdd(d,-mon), su=m5gcAdd(m,6);
+    sub='Week of '+(m.getMonth()+1)+'/'+m.getDate()+' – '+(su.getMonth()+1)+'/'+su.getDate();
+  } else {
+    sub=M5GC_MON[d.getMonth()]+' '+d.getFullYear();
+  }
+
+  var body = logged.length
+    ? '<table class="rc-g rc-range"><thead><tr><th class="tm">DAY</th>'
+      + '<th>CONTACTS</th><th>PRESENT</th><th>APTS</th><th>SALES</th>'
+      + '<th>HOURS</th><th>PREMIUM</th><th class="rp">POINTS</th></tr></thead>'
+      + '<tbody>'+rows+'</tbody>'
+      + '<tfoot><tr><td class="tm">TOTAL</td><td>'+tot.c+'</td><td>'+tot.p+'</td>'
+      +   '<td>'+tot.a+'</td><td>'+tot.s+'</td><td>'+Math.round(tot.hours)+'</td>'
+      +   '<td>'+m5gcMoney(tot.ip)+'</td><td class="rp">'+tot.pts+'</td></tr></tfoot></table>'
+    : '<p class="rc-empty">No days saved in this range yet.</p>';
+
+  return gcRecHead('range', sub) + body
+    + gcKpis([
+        ['Days logged', tot.worked, 'of '+list.length+' in range'],
+        ['Points', tot.pts, tot.worked? Math.round(tot.pts/tot.worked)+' per day':''],
+        ['Premium written', m5gcMoney(tot.ip), ''],
+        ['Per hour', tot.hours? m5gcMoney(tot.ip/tot.hours) : '—', Math.round(tot.hours)+' hours']
+      ]);
+}
+
+function gcPrintRecord(){
+  /* a printed record should match what is stored, so commit the day first */
+  if(m5gcView==='day') m5gcSave();
+
+  var old=document.getElementById('gc-record'); if(old) old.remove();
+  var el=document.createElement('div'); el.id='gc-record';
+  el.innerHTML = (m5gcView==='day') ? gcRecordDay() : gcRecordRange();
+  document.body.appendChild(el);
+  document.body.classList.add('gc-printing-record');
+  var done=function(){
+    document.body.classList.remove('gc-printing-record');
+    var n=document.getElementById('gc-record'); if(n) n.remove();
+    window.removeEventListener('afterprint',done);
+  };
+  window.addEventListener('afterprint',done);
+  window.print();
+  setTimeout(done,1500);
+}
+
+
+/* ---- the print chooser ------------------------------------------------------
+   Printing used to depend on which tab you happened to be on, which made the week
+   and month sheets effectively undiscoverable. One button that asks is both fewer
+   controls and more of the tool visible. */
+function gcPrintMenu(){
+  var old=document.getElementById('gcPM'); if(old){ old.remove(); return; }
+  var d=m5gcParseD(m5gcDate);
+  var wrap=document.createElement('div');
+  wrap.id='gcPM'; wrap.className='gc-pm gc-noprint';
+  wrap.innerHTML =
+      '<div class="gc-pm-h">What would you like to print?</div>'
+    + '<button type="button" data-k="day"><b>This day</b><span>'
+    +   M5GC_DOW[d.getDay()]+' '+(d.getMonth()+1)+'/'+d.getDate()+' as you logged it</span></button>'
+    + '<button type="button" data-k="week"><b>This week</b><span>a line per day, with totals</span></button>'
+    + '<button type="button" data-k="month"><b>This month</b><span>a line per day, with totals</span></button>'
+    + '<button type="button" data-k="blank"><b>Blank cards to fill in</b>'
+    +   '<span>three to a sheet, your working times, cut them apart</span></button>';
+  document.body.appendChild(wrap);
+
+  var btn=document.getElementById('gcPrint');
+  var r=btn.getBoundingClientRect();
+  wrap.style.top = (window.scrollY + r.bottom + 8)+'px';
+  wrap.style.left= Math.max(12, window.scrollX + r.left)+'px';
+
+  wrap.addEventListener('click', function(e){
+    var b=e.target.closest('button[data-k]'); if(!b) return;
+    var k=b.dataset.k; wrap.remove();
+    if(k==='blank') return gcPrintBlank();
+    var was=m5gcView;
+    if(k!==m5gcView){ m5gcView=k; }      /* print what was asked for, not the tab */
+    gcPrintRecord();
+    m5gcView=was;
+  });
+  var away=function(e){
+    if(!wrap.contains(e.target) && e.target!==btn){ wrap.remove(); document.removeEventListener('mousedown',away); }
+  };
+  setTimeout(function(){ document.addEventListener('mousedown',away); },0);
+}
+
+/* ---- boot ------------------------------------------------------------------
+   m5gcInit() owns #m5gc-app and m5gcRenderView() rewrites the card on every view
+   or date change, so anything injected once is wiped on the next render. The
+   editor and the backup bar are therefore re-attached after each render, which
+   also keeps them sitting with the grid rather than floating above the tabs. */
+var _gcPanelOpen = false;
+
+function gcAttachExtras(){
+  if (m5gcView !== 'day') return;                 /* the grid only exists on Daily */
+  var view = document.getElementById('m5gc-view'); if(!view) return;
+
+  /* a. whose card - first thing inside the printed area */
+  if(!document.getElementById('gcWhoName')){
+    var sub=view.querySelector('.m5gc-ssub');
+    if(sub && sub.parentNode){
+      var holder=document.createElement('div');
+      holder.innerHTML=gcWhoHTML();
+      sub.parentNode.insertBefore(holder.firstChild, sub.nextSibling);
+      gcWireWho();
+    }
+  }
+
+  /* b. the block editor, immediately above the time grid */
+  if(!document.getElementById('gcbeOpen')){
+    var body = document.getElementById('m5gc-body');
+    var table = body ? body.closest('table') : null;
+    if(table && table.parentNode){
+      var slot=document.createElement('div');
+      slot.className='gc-noprint';
+      slot.innerHTML='<button type="button" class="gcbe-open" id="gcbeOpen">'
+        + '\u270E Edit my working times</button>' + gcBlocksEditorHTML();
+      table.parentNode.insertBefore(slot, table);
+      gcWireBlocksEditor();
+      if(_gcPanelOpen){ var p=document.getElementById('gcbe'); if(p) p.hidden=false; }
+    }
+  }
+
+  /* c. the backup state. Jesse, 19 Oct: Save writes everything, past to present -
+     it is one file you keep saving, not a per-day action. So there is no backup
+     BUTTON any more; there is a line that states where the copy lives, because
+     browser storage and a real file on disk are genuinely different durabilities
+     and that is the only distinction worth showing. */
+  if(!document.getElementById('gcState')){
+    var area=document.getElementById('m5gc-printarea') || view;
+    var bar=document.createElement('div');
+    bar.className='gc-state gc-noprint';
+    bar.innerHTML='<span id="gcState"></span>'
+      + '<button type="button" class="slink" id="gcLink"></button>'
+      + '<button type="button" class="slink" id="gcImp">Load from a file</button>'
+      + '<input type="file" id="gcFile" accept="application/json,.json" hidden>';
+    area.appendChild(bar);
+    document.getElementById('gcLink').addEventListener('click', gcPickBackupFile);
+    document.getElementById('gcImp').addEventListener('click', function(){
+      document.getElementById('gcFile').click(); });
+    document.getElementById('gcFile').addEventListener('change', function(e){
+      if(e.target.files && e.target.files[0]) gcImport(e.target.files[0]);
+      e.target.value=''; });
+    gcRenderBackupState();
+  }
+}
+
+/* re-attach after every render the ported code performs */
+var _gcRenderView = m5gcRenderView;
+m5gcRenderView = function(){ _gcRenderView.apply(this, arguments); gcAttachExtras(); };
+
+function gcBoot(){
+  var p=document.getElementById('gcbe'); _gcPanelOpen = !!(p && !p.hidden);
+  m5gcInit();            /* writes the tabs and #m5gc-view, then renders the view */
+  gcAttachExtras();
+}
+
+(function(){
+  var today=new Date(); today.setHours(0,0,0,0);
+  m5gcDate=m5gcIso(today); m5gcView='day';
+  gcLoadBlocks();
+  gcBoot();
+})();
+</script>
+</body>
+</html>
