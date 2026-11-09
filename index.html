@@ -1012,7 +1012,10 @@ const ARROW = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 
 const ARROW_SM = '<svg viewBox="0 0 24 24" aria-hidden="true" style="width:13px;height:13px"><path d="M7 17L17 7M9 7h8v8"/></svg>';
 const TAG = {live:'', soon:'soon', placeholder:'ph'};
 const phone = () => matchMedia('(max-width:900px)').matches;
-let cat = 'sell', view = 'overview', q = '';
+/* Jesse, 2026-11-07: the overview opens on "All tools", so Explore your tools
+   lists everything. It used to open on Sell, which hid Grow and Resources
+   behind a chip nobody had a reason to press. */
+let cat = 'all', view = 'overview', q = '';
 
 const banner = M.tools.find(t => t.banner);
 const featured = M.tools.filter(t => t.feature).sort((a,b)=>a.feature-b.feature);
